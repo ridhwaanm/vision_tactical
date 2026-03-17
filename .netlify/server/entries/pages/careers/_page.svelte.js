@@ -1,0 +1,121 @@
+import { h as head, e as ensure_array_like, b as attr, c as escape_html } from "../../../chunks/index.js";
+import { G as GlowCard } from "../../../chunks/GlowCard.js";
+function _page($$renderer) {
+  const benefits = [
+    {
+      title: "Competitive Salary",
+      description: "Industry-leading compensation packages with performance bonuses.",
+      icon: "M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+    },
+    {
+      title: "Comprehensive Training",
+      description: "Continuous skills development and certification programs.",
+      icon: "M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"
+    },
+    {
+      title: "Career Advancement",
+      description: "Clear progression paths from officer to management roles.",
+      icon: "M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"
+    },
+    {
+      title: "Medical Benefits",
+      description: "Comprehensive medical aid and life insurance coverage.",
+      icon: "M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
+    }
+  ];
+  const positions = [
+    {
+      title: "Security Officer",
+      type: "Full-time",
+      location: "Johannesburg",
+      description: "Protect residential and commercial properties with professionalism and integrity."
+    },
+    {
+      title: "Armed Response Officer",
+      type: "Full-time",
+      location: "Johannesburg",
+      description: "Join our rapid response unit. Requires valid PDP and firearms competency."
+    },
+    {
+      title: "Control Room Operator",
+      type: "Full-time / Shift Work",
+      location: "Houghton",
+      description: "Monitor alarms and coordinate response teams from our 24/7 control centre."
+    },
+    {
+      title: "Drone Pilot",
+      type: "Full-time",
+      location: "Johannesburg",
+      description: "SACAA-licensed drone pilot for aerial surveillance operations."
+    }
+  ];
+  head("1thlcsk", $$renderer, ($$renderer2) => {
+    $$renderer2.title(($$renderer3) => {
+      $$renderer3.push(`<title>Careers | Vision Tactical | Security Jobs Johannesburg</title>`);
+    });
+    $$renderer2.push(`<meta name="description" content="Join the Vision Tactical team. Explore career opportunities in private security with competitive salaries, training, and advancement."/>`);
+  });
+  $$renderer.push(`<div class="bg-[#09090B]"><section class="relative py-24 md:py-32 overflow-hidden"><div class="glow-ambient glow-ambient-top"></div> <div class="container mx-auto px-4 relative z-10"><div class="max-w-4xl"><p class="overline mb-4">CAREERS</p> <h1 class="heading-gradient text-4xl md:text-5xl font-bold mb-6">Join the Team</h1> <p class="text-zinc-400 text-lg md:text-xl leading-relaxed">Build your career with Johannesburg's most innovative security company. 
+          We offer competitive salaries, comprehensive training, and opportunities 
+          for advancement.</p></div></div></section> <section class="py-24"><div class="container mx-auto px-4"><div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center"><div><h2 class="text-2xl font-bold text-white mb-6">Our Culture</h2> <div class="space-y-4 text-zinc-400 leading-relaxed"><p>At Vision Tactical, we believe that our people are our greatest asset. 
+              We foster a culture of excellence, integrity, and continuous improvement. 
+              Our team members are not just employees—they are partners in our mission 
+              to protect communities and prevent crime.</p> <p>We invest heavily in training and development, ensuring our team has the 
+              skills and knowledge to excel in their roles. From initial certification 
+              to advanced tactical training, we support our people at every stage of 
+              their career.</p> <p>Our commitment to excellence has earned us recognition as one of 
+              Johannesburg's top security employers. We offer competitive compensation, 
+              comprehensive benefits, and a supportive work environment where dedication 
+              and hard work are recognised and rewarded.</p></div></div> <div class="relative"><div class="aspect-[4/3] rounded-2xl overflow-hidden bg-gradient-to-br from-zinc-800 to-zinc-900"><div class="absolute inset-0 bg-[url('/images/team/group.jpg')] bg-cover bg-center opacity-60"></div> <div class="absolute inset-0 bg-gradient-to-t from-[#09090B] via-transparent to-transparent"></div></div></div></div></div></section> <section class="py-24 bg-[#0F0F12] border-y border-zinc-800"><div class="container mx-auto px-4"><div class="text-center mb-16"><p class="overline mb-4">BENEFITS</p> <h2 class="heading-gradient text-3xl md:text-4xl font-bold mb-4">Why Work With Us</h2></div> <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4"><!--[-->`);
+  const each_array = ensure_array_like(benefits);
+  for (let i = 0, $$length = each_array.length; i < $$length; i++) {
+    let benefit = each_array[i];
+    GlowCard($$renderer, {
+      children: ($$renderer2) => {
+        $$renderer2.push(`<div class="card p-6"><div class="w-12 h-12 rounded-lg bg-red-500/10 flex items-center justify-center mb-4 text-red-500"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"${attr("d", benefit.icon)}></path></svg></div> <h3 class="text-white font-semibold mb-2">${escape_html(benefit.title)}</h3> <p class="text-zinc-400 text-sm leading-relaxed">${escape_html(benefit.description)}</p></div>`);
+      }
+    });
+  }
+  $$renderer.push(`<!--]--></div></div></section> <section class="py-24"><div class="container mx-auto px-4"><div class="text-center mb-16"><p class="overline mb-4">POSITIONS</p> <h2 class="heading-gradient text-3xl md:text-4xl font-bold mb-4">Current Openings</h2> <p class="text-zinc-400 max-w-2xl mx-auto">Explore our available positions. Don't see a role that fits? Submit a 
+          general application and we'll keep your details on file.</p></div> <div class="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-5xl mx-auto"><!--[-->`);
+  const each_array_1 = ensure_array_like(positions);
+  for (let i = 0, $$length = each_array_1.length; i < $$length; i++) {
+    let position = each_array_1[i];
+    GlowCard($$renderer, {
+      children: ($$renderer2) => {
+        $$renderer2.push(`<div class="card p-6"><div class="flex items-start justify-between mb-4"><div><h3 class="text-white font-semibold text-lg">${escape_html(position.title)}</h3> <div class="flex items-center gap-3 mt-2 text-sm text-zinc-500"><span class="flex items-center gap-1"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg> ${escape_html(position.type)}</span> <span class="flex items-center gap-1"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg> ${escape_html(position.location)}</span></div></div></div> <p class="text-zinc-400 text-sm mb-4">${escape_html(position.description)}</p> <a href="#apply" class="text-red-500 hover:text-red-400 text-sm font-medium inline-flex items-center gap-1 transition-colors">Apply Now <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg></a></div>`);
+      }
+    });
+  }
+  $$renderer.push(`<!--]--></div></div></section> <section id="apply" class="py-24 bg-[#0F0F12] border-y border-zinc-800"><div class="container mx-auto px-4"><div class="max-w-2xl mx-auto"><div class="text-center mb-12"><p class="overline mb-4">GENERAL APPLICATION</p> <h2 class="heading-gradient text-3xl md:text-4xl font-bold mb-4">Don't See Your Role?</h2> <p class="text-zinc-400">Submit a general application and we'll keep your details on file for 
+            future opportunities.</p></div> `);
+  GlowCard($$renderer, {
+    children: ($$renderer2) => {
+      $$renderer2.push(`<div class="card p-8"><form class="space-y-6"><div class="grid grid-cols-1 md:grid-cols-2 gap-6"><div><label for="fullName" class="block text-sm font-medium text-zinc-300 mb-2">Full Name</label> <input id="fullName" type="text" class="w-full px-4 py-3 bg-[#09090B] border border-zinc-700 rounded-lg text-white placeholder-zinc-500 focus:outline-none focus:border-red-500 transition-colors" placeholder="John Doe"/></div> <div><label for="email" class="block text-sm font-medium text-zinc-300 mb-2">Email</label> <input id="email" type="email" class="w-full px-4 py-3 bg-[#09090B] border border-zinc-700 rounded-lg text-white placeholder-zinc-500 focus:outline-none focus:border-red-500 transition-colors" placeholder="john@example.com"/></div></div> <div class="grid grid-cols-1 md:grid-cols-2 gap-6"><div><label for="phone" class="block text-sm font-medium text-zinc-300 mb-2">Phone</label> <input id="phone" type="tel" class="w-full px-4 py-3 bg-[#09090B] border border-zinc-700 rounded-lg text-white placeholder-zinc-500 focus:outline-none focus:border-red-500 transition-colors" placeholder="084 123 4567"/></div> <div><label for="position" class="block text-sm font-medium text-zinc-300 mb-2">Position Interest</label> <select id="position" class="w-full px-4 py-3 bg-[#09090B] border border-zinc-700 rounded-lg text-white focus:outline-none focus:border-red-500 transition-colors">`);
+      $$renderer2.option({ value: "" }, ($$renderer3) => {
+        $$renderer3.push(`Select a position`);
+      });
+      $$renderer2.option({ value: "security-officer" }, ($$renderer3) => {
+        $$renderer3.push(`Security Officer`);
+      });
+      $$renderer2.option({ value: "armed-response" }, ($$renderer3) => {
+        $$renderer3.push(`Armed Response Officer`);
+      });
+      $$renderer2.option({ value: "control-room" }, ($$renderer3) => {
+        $$renderer3.push(`Control Room Operator`);
+      });
+      $$renderer2.option({ value: "drone-pilot" }, ($$renderer3) => {
+        $$renderer3.push(`Drone Pilot`);
+      });
+      $$renderer2.option({ value: "other" }, ($$renderer3) => {
+        $$renderer3.push(`Other`);
+      });
+      $$renderer2.push(`</select></div></div> <div><label for="cv-upload" class="block text-sm font-medium text-zinc-300 mb-2">CV / Resume</label> <div class="border-2 border-dashed border-zinc-700 rounded-lg p-6 text-center hover:border-zinc-600 transition-colors cursor-pointer"><svg class="w-10 h-10 text-zinc-500 mx-auto mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path></svg> <p class="text-zinc-400 text-sm">Drop your CV here or click to browse</p> <p class="text-zinc-500 text-xs mt-1">PDF, DOC, or DOCX (max 5MB)</p> <input id="cv-upload" type="file" class="sr-only" accept=".pdf,.doc,.docx"/></div></div> <div><label for="coverMessage" class="block text-sm font-medium text-zinc-300 mb-2">Cover Message</label> <textarea id="coverMessage" rows="4" class="w-full px-4 py-3 bg-[#09090B] border border-zinc-700 rounded-lg text-white placeholder-zinc-500 focus:outline-none focus:border-red-500 transition-colors resize-none" placeholder="Tell us why you'd be a great fit for Vision Tactical..."></textarea></div> <button type="submit" class="w-full btn btn-primary py-4">Submit Application</button> <p class="text-zinc-500 text-xs text-center">By submitting this application, you agree to our privacy policy and 
+                consent to us processing your personal information for recruitment purposes.</p></form></div>`);
+    }
+  });
+  $$renderer.push(`<!----></div></div></section></div>`);
+}
+export {
+  _page as default
+};
