@@ -13,7 +13,7 @@
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
       <!-- Column 1: Company Info -->
       <div>
-        <img src="/images/logo.svg" alt="Vision Tactical" class="h-10 w-auto mb-6" />
+        <img src="/images/vt.png" alt="Vision Tactical" class="h-10 w-auto mb-6" />
         <p class="text-zinc-400 text-sm leading-relaxed mb-6">
           Vision Tactical is Johannesburg's trusted private security company, providing comprehensive
           security solutions including armed response, manned guarding, drone surveillance, and
