@@ -20,13 +20,6 @@
       attributionControl: true
     }).setView([-26.15, 28.05], 11);
 
-    onDestroy(() => {
-      if (map) {
-        map.remove();
-        map = null;
-      }
-    });
-
     // Add zoom control to bottom right
     L.control.zoom({
       position: 'bottomright'
@@ -52,13 +45,6 @@
           box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
           animation: pulse 2s infinite;
         "></div>
-        <style>
-          @keyframes pulse {
-            0% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7); }
-            70% { box-shadow: 0 0 0 10px rgba(239, 68, 68, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); }
-          }
-        </style>
       `,
       iconSize: [24, 24],
       iconAnchor: [12, 12],
@@ -126,6 +112,14 @@
       weight: 2
     }).addTo(map);
 
+  });
+
+  onDestroy(() => {
+    if (map) {
+      map.remove();
+      map = null;
+    }
+    markers = [];
   });
 </script>
 
@@ -271,7 +265,7 @@
           Don't See Your Area?
         </h2>
         <p class="text-zinc-400 mb-8">
-          We're constantly expanding our coverage. Contact us to check if we can 
+          We're constantly expanding our coverage. Contact us to check if we can
           service your location.
         </p>
         <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
@@ -286,3 +280,12 @@
     </div>
   </section>
 </div>
+
+<style>
+  /* @keyframes at top-level are not scoped by Svelte; this applies globally to Leaflet-injected DOM */
+  @keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7); }
+    70% { box-shadow: 0 0 0 10px rgba(239, 68, 68, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); }
+  }
+</style>
