@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { onMount } from 'svelte';
+  import { onMount, onDestroy } from 'svelte';
   import { reveal } from '$lib/actions/reveal';
   import { coverageAreas } from '$lib/data/areas';
   import type { CoverageArea } from '$lib/types/area';
@@ -19,6 +19,13 @@
       zoomControl: false,
       attributionControl: true
     }).setView([-26.15, 28.05], 11);
+
+    onDestroy(() => {
+      if (map) {
+        map.remove();
+        map = null;
+      }
+    });
 
     // Add zoom control to bottom right
     L.control.zoom({
@@ -58,13 +65,45 @@
       popupAnchor: [0, -12]
     });
 
+    // HQ marker icon — larger, stronger glow, with star label
+    const hqMarkerIcon = L.divIcon({
+      className: 'custom-marker',
+      html: `
+        <div style="
+          width: 32px;
+          height: 32px;
+          background-color: #EF4444;
+          border: 3px solid white;
+          border-radius: 50%;
+          box-shadow: 0 0 0 4px rgba(239,68,68,0.3);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          animation: pulse 2s infinite;
+          font-size: 11px;
+          font-weight: 700;
+          color: white;
+          font-family: sans-serif;
+        ">★</div>
+      `,
+      iconSize: [32, 32],
+      iconAnchor: [16, 16],
+      popupAnchor: [0, -16]
+    });
+
     // Add markers for each coverage area
     coverageAreas.forEach((area: CoverageArea) => {
-      const marker = L.marker([area.lat, area.lng], { icon: markerIcon }).addTo(map);
+      const isHQ = area.name === 'Houghton';
+      const icon = isHQ ? hqMarkerIcon : markerIcon;
+      const marker = L.marker([area.lat, area.lng], { icon }).addTo(map);
+
+      const hqBadge = isHQ
+        ? `<span style="display:inline-block;margin-left:6px;padding:1px 5px;background:#EF4444;color:white;font-size:10px;font-weight:700;border-radius:3px;vertical-align:middle;">HQ</span>`
+        : '';
 
       const popupContent = `
         <div style="font-family: 'Inter', sans-serif; padding: 8px;">
-          <h3 style="margin: 0 0 4px 0; color: #111; font-size: 14px; font-weight: 600;">${area.name}</h3>
+          <h3 style="margin: 0 0 4px 0; color: #111; font-size: 14px; font-weight: 600;">${area.name}${hqBadge}</h3>
           <p style="margin: 0 0 8px 0; color: #71717A; font-size: 12px;">Protecting since ${area.activeSince}</p>
           <a href="/get-a-quote" style="color: #EF4444; text-decoration: none; font-size: 12px; font-weight: 500;">Get a quote →</a>
         </div>
@@ -87,12 +126,6 @@
       weight: 2
     }).addTo(map);
 
-    // Cleanup on destroy
-    return () => {
-      if (map) {
-        map.remove();
-      }
-    };
   });
 </script>
 
@@ -153,6 +186,35 @@
         </div>
       </div>
     </div>
+  </section>
+
+  <!-- ACCESSIBLE TABLE ALTERNATIVE -->
+  <section class="container mx-auto px-4 pb-6">
+    <details class="sr-visible">
+      <summary class="text-zinc-500 text-sm cursor-pointer hover:text-zinc-300 transition-colors">
+        Coverage areas list (text alternative for screen readers)
+      </summary>
+      <div class="mt-4 overflow-x-auto rounded border border-zinc-800">
+        <table class="w-full text-sm bg-[#0F0F12] text-zinc-400 border-collapse">
+          <thead>
+            <tr class="border-b border-zinc-800">
+              <th class="text-left px-4 py-3 font-semibold text-zinc-300">Area</th>
+              <th class="text-left px-4 py-3 font-semibold text-zinc-300">Description</th>
+              <th class="text-left px-4 py-3 font-semibold text-zinc-300">Active Since</th>
+            </tr>
+          </thead>
+          <tbody>
+            {#each coverageAreas as area}
+              <tr class="border-b border-zinc-800 last:border-0">
+                <td class="px-4 py-3 font-medium text-zinc-300">{area.name}</td>
+                <td class="px-4 py-3">{area.description}</td>
+                <td class="px-4 py-3">{area.activeSince}</td>
+              </tr>
+            {/each}
+          </tbody>
+        </table>
+      </div>
+    </details>
   </section>
 
   <!-- SUBURBS GRID -->
