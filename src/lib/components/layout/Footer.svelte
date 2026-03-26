@@ -109,7 +109,7 @@
           <a href="/terms-of-service" class="text-zinc-500 hover:text-zinc-300 transition-colors">Terms of Service</a>
         </div>
         <p class="text-zinc-500 text-sm">
-          PSIRA Registration: Pending
+          PSIRA Reg No: 2464883
         </p>
       </div>
     </div>
