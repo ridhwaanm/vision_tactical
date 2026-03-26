@@ -44,7 +44,8 @@ export async function getSanityRelatedPosts(currentId: string, tags: string[]): 
       publishedAt,
       excerpt,
       mainImage { asset, alt },
-      tags
+      tags,
+      author
     }
   `, { currentId, tags });
 }

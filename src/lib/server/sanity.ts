@@ -1,10 +1,8 @@
 import { createClient } from '@sanity/client';
 
-// These will be set via environment variables in production
-// For now use placeholder values that can be swapped
 export const sanityClient = createClient({
-  projectId: import.meta.env.VITE_SANITY_PROJECT_ID || 'REPLACE_WITH_PROJECT_ID',
-  dataset: import.meta.env.VITE_SANITY_DATASET || 'production',
+  projectId: import.meta.env.VITE_SANITY_PROJECT_ID ?? '',
+  dataset: import.meta.env.VITE_SANITY_DATASET ?? 'production',
   apiVersion: '2026-03-26',
   useCdn: true,
 });
