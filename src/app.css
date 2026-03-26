@@ -1,5 +1,7 @@
 @import 'tailwindcss';
 @plugin '@tailwindcss/typography';
+@source not "../static/**";
+@source not "../old-site-backup/**";
 
 /* ============================================
    VISION TACTICAL — LINEAR LOOK DESIGN SYSTEM

@@ -7,7 +7,7 @@
   let { data }: { data: PageData } = $props();
 
   let selectedTag = $state('All');
-  const allTags = ['All', ...new Set(data.posts.flatMap(post => post.tags))];
+  const allTags = $derived(['All', ...new Set(data.posts.flatMap(post => post.tags))]);
 
   let filteredPosts = $derived(
     selectedTag === 'All'

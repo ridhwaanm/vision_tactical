@@ -5,7 +5,7 @@ function _page($$renderer, $$props) {
   $$renderer.component(($$renderer2) => {
     let { data } = $$props;
     let selectedTag = "All";
-    const allTags = ["All", ...new Set(data.posts.flatMap((post) => post.tags))];
+    const allTags = derived(() => ["All", ...new Set(data.posts.flatMap((post) => post.tags))]);
     let filteredPosts = derived(
       () => data.posts
     );
@@ -17,7 +17,7 @@ function _page($$renderer, $$props) {
     });
     $$renderer2.push(`<div class="bg-[#09090B]"><section class="relative py-24 md:py-32 overflow-hidden"><div class="glow-ambient glow-ambient-top"></div> <div class="container mx-auto px-4 relative z-10"><div class="max-w-4xl"><p class="overline mb-4">COMMUNITY &amp; NEWS</p> <h1 class="heading-gradient text-4xl md:text-5xl font-bold mb-6">Stories from the Frontline</h1> <p class="text-zinc-400 text-lg md:text-xl leading-relaxed">Stay updated with our latest operations, community initiatives, 
           and industry insights.</p></div></div></section> <section class="pb-12"><div class="container mx-auto px-4"><div class="flex flex-wrap gap-2"><!--[-->`);
-    const each_array = ensure_array_like(allTags);
+    const each_array = ensure_array_like(allTags());
     for (let $$index = 0, $$length = each_array.length; $$index < $$length; $$index++) {
       let tag = each_array[$$index];
       $$renderer2.push(`<button${attr_class(`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${stringify(selectedTag === tag ? "bg-red-500 text-white" : "bg-zinc-800 text-zinc-400 hover:text-white hover:bg-zinc-700")}`)}>${escape_html(tag)}</button>`);

@@ -1,4 +1,4 @@
-import { h as head, e as ensure_array_like, b as attr, c as escape_html, a as attr_class, d as stringify } from "../../../../chunks/index.js";
+import { h as head, e as ensure_array_like, b as attr, c as escape_html, a as attr_class, d as stringify, aa as derived } from "../../../../chunks/index.js";
 import { f as formatDate } from "../../../../chunks/formatDate.js";
 function html(value) {
   var html2 = String(value ?? "");
@@ -9,10 +9,10 @@ function _page($$renderer, $$props) {
   $$renderer.component(($$renderer2) => {
     let { data } = $$props;
     const shareUrl = typeof window !== "undefined" ? window.location.href : "";
-    const shareTitle = data.post?.title || "";
+    const shareTitle = derived(() => data.post?.title || "");
     function getShareUrl(platform) {
       const encodedUrl = encodeURIComponent(shareUrl);
-      const encodedTitle = encodeURIComponent(shareTitle);
+      const encodedTitle = encodeURIComponent(shareTitle());
       switch (platform) {
         case "facebook":
           return `https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}`;

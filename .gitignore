@@ -39,3 +39,6 @@ temp/
 
 # Netlify build output
 .netlify/
+
+# Old site backup (not part of the project, do not scan)
+old-site-backup/

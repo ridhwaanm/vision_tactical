@@ -3,6 +3,7 @@ import type { SanityBlogPost } from './sanity';
 
 // Fetch all published blog posts, newest first
 export async function getSanityPosts(): Promise<SanityBlogPost[]> {
+  if (!sanityClient) return [];
   return sanityClient.fetch(`
     *[_type == "blogPost"] | order(publishedAt desc) {
       _id,
@@ -19,6 +20,7 @@ export async function getSanityPosts(): Promise<SanityBlogPost[]> {
 
 // Fetch a single post by slug
 export async function getSanityPostBySlug(slug: string): Promise<SanityBlogPost | null> {
+  if (!sanityClient) return null;
   return sanityClient.fetch(`
     *[_type == "blogPost" && slug.current == $slug][0] {
       _id,
@@ -36,6 +38,7 @@ export async function getSanityPostBySlug(slug: string): Promise<SanityBlogPost 
 
 // Fetch related posts (same tag, excluding current)
 export async function getSanityRelatedPosts(currentId: string, tags: string[]): Promise<SanityBlogPost[]> {
+  if (!sanityClient) return [];
   return sanityClient.fetch(`
     *[_type == "blogPost" && _id != $currentId && count((tags[])[@ in $tags]) > 0] | order(publishedAt desc)[0...3] {
       _id,

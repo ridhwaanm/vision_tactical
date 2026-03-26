@@ -3069,6 +3069,7 @@ export {
   render as a8,
   setContext as a9,
   derived as aa,
+  ssr_context as ab,
   attr as b,
   escape_html as c,
   stringify as d,

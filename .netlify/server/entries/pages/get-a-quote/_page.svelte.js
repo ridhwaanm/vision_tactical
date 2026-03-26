@@ -51,7 +51,7 @@ function _page($$renderer, $$props) {
       $$renderer2.push(`<form>`);
       {
         $$renderer2.push("<!--[0-->");
-        $$renderer2.push(`<div><h2 class="text-2xl font-bold text-white mb-2">What do you need?</h2> <p class="text-zinc-400 mb-8">Select your client type and services required.</p> <div class="mb-8"><label class="block text-sm font-medium text-zinc-300 mb-4">Client Type *</label> <div class="grid grid-cols-1 sm:grid-cols-2 gap-3"><!--[-->`);
+        $$renderer2.push(`<div><h2 class="text-2xl font-bold text-white mb-2">What do you need?</h2> <p class="text-zinc-400 mb-8">Select your client type and services required.</p> <div class="mb-8"><p class="block text-sm font-medium text-zinc-300 mb-4">Client Type *</p> <div class="grid grid-cols-1 sm:grid-cols-2 gap-3"><!--[-->`);
         const each_array_2 = ensure_array_like([
           { value: "residential", label: "Residential Security" },
           { value: "commercial", label: "Commercial Security" },

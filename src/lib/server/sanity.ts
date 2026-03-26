@@ -1,11 +1,11 @@
 import { createClient } from '@sanity/client';
 
-export const sanityClient = createClient({
-  projectId: import.meta.env.VITE_SANITY_PROJECT_ID ?? '',
-  dataset: import.meta.env.VITE_SANITY_DATASET ?? 'production',
-  apiVersion: '2026-03-26',
-  useCdn: true,
-});
+const projectId = import.meta.env.VITE_SANITY_PROJECT_ID;
+const dataset = import.meta.env.VITE_SANITY_DATASET ?? 'production';
+
+export const sanityClient = projectId
+  ? createClient({ projectId, dataset, apiVersion: '2026-03-26', useCdn: true })
+  : null;
 
 export type SanityBlogPost = {
   _id: string;

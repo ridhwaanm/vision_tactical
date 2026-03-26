@@ -241,7 +241,7 @@
 
                   <!-- Client Type -->
                   <div class="mb-8">
-                    <label class="block text-sm font-medium text-zinc-300 mb-4">Client Type *</label>
+                    <p class="block text-sm font-medium text-zinc-300 mb-4">Client Type *</p>
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
                       {#each [
                         { value: 'residential', label: 'Residential Security' },
@@ -267,7 +267,7 @@
                   <!-- Services -->
                   {#if formData.clientType}
                     <div>
-                      <label class="block text-sm font-medium text-zinc-300 mb-4">Services Required *</label>
+                      <p class="block text-sm font-medium text-zinc-300 mb-4">Services Required *</p>
                       <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
                         {#each serviceOptions[formData.clientType] as service}
                           <button
@@ -357,7 +357,7 @@
 
                     <!-- Existing Security -->
                     <div>
-                      <label class="block text-sm font-medium text-zinc-300 mb-2">Existing Security Measures</label>
+                      <p class="block text-sm font-medium text-zinc-300 mb-2">Existing Security Measures</p>
                       <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
                         {#each existingSecurityOptions as item}
                           <button
@@ -468,7 +468,7 @@
                     <!-- Contact Preferences -->
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                       <div>
-                        <label class="block text-sm font-medium text-zinc-300 mb-2">Preferred Contact Method</label>
+                        <p class="block text-sm font-medium text-zinc-300 mb-2">Preferred Contact Method</p>
                         <div class="space-y-2">
                           {#each [
                             { value: 'phone', label: 'Phone Call' },
@@ -490,7 +490,7 @@
                       </div>
 
                       <div>
-                        <label class="block text-sm font-medium text-zinc-300 mb-2">Preferred Contact Time</label>
+                        <p class="block text-sm font-medium text-zinc-300 mb-2">Preferred Contact Time</p>
                         <div class="space-y-2">
                           {#each [
                             { value: 'morning', label: 'Morning (8am - 12pm)' },

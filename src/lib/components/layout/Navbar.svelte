@@ -46,7 +46,7 @@
           {#if item.children}
             <div class="relative">
               <button
-                class="flex items-center space-x-1 px-4 py-2 rounded-md text-sm font-medium transition-colors {servicesDropdownOpen ? 'text-white bg-white/[0.05]' : 'text-zinc-400'}"
+                class="flex items-center space-x-1 px-4 py-2 rounded-md text-sm font-bold transition-colors {servicesDropdownOpen ? 'text-red-400 bg-white/[0.05]' : 'text-red-500'}"
                 onmouseenter={() => (servicesDropdownOpen = true)}
                 onmouseleave={() => (servicesDropdownOpen = false)}
                 aria-expanded={servicesDropdownOpen}
@@ -70,6 +70,7 @@
                   onmouseleave={() => (servicesDropdownOpen = false)}
                   role="menu"
                   aria-label="Services menu"
+                  tabindex="-1"
                 >
                   <div class="p-4 grid grid-cols-3 gap-2">
                     {#each item.children as child}
@@ -87,7 +88,7 @@
           {:else}
             <a
               href={item.href}
-              class="px-4 py-2 rounded-md text-sm font-medium transition-colors {$page.url.pathname === item.href ? 'text-white' : 'text-zinc-400 hover:text-white hover:bg-white/[0.05]'}"
+              class="px-4 py-2 rounded-md text-sm font-bold transition-colors {$page.url.pathname === item.href ? 'text-red-400' : 'text-red-500 hover:text-red-400 hover:bg-white/[0.05]'}"
             >
               {item.label}
             </a>

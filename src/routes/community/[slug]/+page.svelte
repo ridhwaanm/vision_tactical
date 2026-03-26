@@ -6,7 +6,7 @@
   let { data }: { data: PageData } = $props();
 
   const shareUrl = typeof window !== 'undefined' ? window.location.href : '';
-  const shareTitle = data.post?.title || '';
+  const shareTitle = $derived(data.post?.title || '');
 
   function getShareUrl(platform: string) {
     const encodedUrl = encodeURIComponent(shareUrl);

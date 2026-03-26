@@ -24,7 +24,7 @@
     email: 'info@visiontactical.co.za',
     address: {
       '@type': 'PostalAddress',
-      streetAddress: '49 W Street',
+      streetAddress: '46 Central Street',
       addressLocality: 'Houghton',
       addressRegion: 'Gauteng',
       postalCode: '2198',
@@ -32,17 +32,18 @@
     },
     geo: {
       '@type': 'GeoCoordinates',
-      latitude: -26.1725,
-      longitude: 28.0599
+      latitude: -26.1617,
+      longitude: 28.0584
     },
     openingHours: 'Mo-Fr 08:00-17:00',
     priceRange: '$$',
     image: 'https://visiontactical.co.za/images/og-default.jpg',
     sameAs: [
-      'https://www.facebook.com/visiontactical',
-      'https://twitter.com/visiontactical',
+      'https://www.facebook.com/visiontacticalZA/',
+      'https://x.com/visiontactical',
       'https://www.instagram.com/visiontactical',
-      'https://www.linkedin.com/company/vision-tactical'
+      'https://www.linkedin.com/company/vision-tactical',
+      'https://www.youtube.com/@VisionTacticalZA'
     ],
     services: getAllServices().map(s => s.title)
   };
@@ -57,8 +58,22 @@
     <!-- Background image with overlay -->
     <div class="absolute inset-0 z-0">
       <div class="absolute inset-0 bg-gradient-to-b from-[#09090B]/80 via-[#09090B]/60 to-[#09090B] z-10"></div>
-      <!-- Placeholder for hero image - replace with actual image -->
-      <div class="absolute inset-0 bg-[url('/images/hero/main.jpg')] bg-cover bg-center"></div>
+      <picture class="absolute inset-0">
+        <source
+          srcset="/images/hero/main-1280.webp 1280w, /images/hero/main-2560.webp 2560w"
+          sizes="100vw"
+          type="image/webp"
+        />
+        <img
+          src="/images/hero/main-2560.webp"
+          alt="Vision Tactical security operations"
+          class="w-full h-full object-cover"
+          loading="eager"
+          fetchpriority="high"
+          width="2560"
+          height="1440"
+        />
+      </picture>
     </div>
 
     <!-- Ambient glow -->
@@ -71,16 +86,16 @@
         <p class="overline mb-6" use:reveal={{ delay: 0 }}>
           PROTECTING COMMUNITIES · PREVENTING CRIME
         </p>
-        
+
         <h1 class="heading-gradient mb-6 max-w-4xl mx-auto" use:reveal={{ delay: 100 }}>
           Security That Never Sleeps
         </h1>
-        
+
         <p class="text-zinc-400 text-lg md:text-xl max-w-2xl mx-auto mb-10" use:reveal={{ delay: 200 }}>
-          Johannesburg's most trusted private security company. Armed response, manned guarding, 
+          Johannesburg's most trusted private security company. Armed response, manned guarding,
           drone surveillance, and anti-kidnapping operations.
         </p>
-        
+
         <div class="flex flex-col sm:flex-row items-center justify-center gap-4" use:reveal={{ delay: 300 }}>
           <a href="/get-a-quote" class="btn btn-primary px-8 py-4 text-base">
             Get Protected Today
@@ -133,7 +148,7 @@
           Comprehensive Security Solutions
         </h2>
         <p class="text-zinc-400 max-w-2xl mx-auto">
-          From armed response to drone surveillance, we provide end-to-end security 
+          From armed response to drone surveillance, we provide end-to-end security
           services tailored to your needs.
         </p>
       </div>
@@ -241,7 +256,7 @@
           Ready to Secure Your Property?
         </h2>
         <p class="text-zinc-400 mb-8 max-w-xl mx-auto">
-          Get a free, no-obligation quote today. Our team will assess your security needs 
+          Get a free, no-obligation quote today. Our team will assess your security needs
           and provide a tailored solution.
         </p>
         <div class="flex flex-col sm:flex-row items-center justify-center gap-4">

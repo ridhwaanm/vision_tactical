@@ -1,5 +1,42 @@
 <script lang="ts">
+  import { onMount, onDestroy } from 'svelte';
   import { reveal } from '$lib/actions/reveal';
+
+  let mapContainer: HTMLElement;
+  let map: any = null;
+
+  onMount(async () => {
+    const L = await import('leaflet');
+    await import('leaflet/dist/leaflet.css');
+
+    map = L.map(mapContainer, { zoomControl: false, attributionControl: true })
+      .setView([-26.1617, 28.0584], 16);
+
+    L.control.zoom({ position: 'bottomright' }).addTo(map);
+
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+      subdomains: 'abcd',
+      maxZoom: 20
+    }).addTo(map);
+
+    const hqIcon = L.divIcon({
+      className: 'custom-marker',
+      html: `<div style="width:32px;height:32px;background-color:#EF4444;border:3px solid white;border-radius:50%;box-shadow:0 0 0 4px rgba(239,68,68,0.3);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:white;font-family:sans-serif;">★</div>`,
+      iconSize: [32, 32],
+      iconAnchor: [16, 16],
+      popupAnchor: [0, -16]
+    });
+
+    L.marker([-26.1617, 28.0584], { icon: hqIcon })
+      .addTo(map)
+      .bindPopup(`<div style="font-family:sans-serif;padding:8px;"><strong style="font-size:14px;">Vision Tactical HQ</strong><p style="margin:4px 0 0;color:#71717A;font-size:12px;">46 Central Street, Houghton<br/>Johannesburg</p></div>`)
+      .openPopup();
+  });
+
+  onDestroy(() => {
+    if (map) { map.remove(); map = null; }
+  });
 
   let formState = $state({
     name: '',
@@ -79,7 +116,7 @@
   <title>Contact Us | Vision Tactical | Johannesburg Security</title>
   <meta
     name="description"
-    content="Get in touch with Vision Tactical. Emergency: 084 222 2222. Email: info@visiontactical.co.za. Office: 49 W Street, Houghton, Johannesburg."
+    content="Get in touch with Vision Tactical. Emergency: 084 222 2222. Email: info@visiontactical.co.za. Office: 46 Central Street, Houghton, Johannesburg."
   />
 </svelte:head>
 
@@ -145,7 +182,7 @@
                 </div>
                 <div>
                   <p class="text-zinc-500 text-sm mb-1">Address</p>
-                  <p class="text-white">49 W Street, Houghton<br />Johannesburg, South Africa</p>
+                  <p class="text-white">46 Central Street, Houghton<br />Johannesburg, South Africa</p>
                 </div>
               </div>
 
@@ -324,16 +361,21 @@
   <section class="pb-24">
     <div class="container mx-auto px-4">
       <div class="card overflow-hidden" use:reveal>
-        <div class="aspect-[21/9] bg-zinc-800 flex items-center justify-center">
-          <div class="text-center">
-            <svg class="w-16 h-16 text-zinc-600 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7" />
-            </svg>
-            <p class="text-zinc-500">Interactive map coming soon</p>
-            <p class="text-zinc-600 text-sm mt-2">49 W Street, Houghton, Johannesburg</p>
+        <div class="aspect-[21/9] relative">
+          <div bind:this={mapContainer} class="absolute inset-0 z-10"></div>
+          <div class="absolute inset-0 bg-[#0F0F12] flex items-center justify-center z-0">
+            <div class="animate-spin h-8 w-8 border-2 border-red-500 border-t-transparent rounded-full"></div>
           </div>
         </div>
       </div>
     </div>
   </section>
 </div>
+
+<style>
+  @keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7); }
+    70% { box-shadow: 0 0 0 10px rgba(239, 68, 68, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); }
+  }
+</style>
