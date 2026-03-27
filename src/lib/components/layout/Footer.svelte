@@ -18,7 +18,7 @@
         <p class="text-zinc-400 text-sm leading-relaxed mb-6">
           Vision Tactical is Johannesburg's trusted private security company, providing comprehensive
           security solutions including armed response, manned guarding, drone surveillance, and
-          anti-kidnapping operations.
+          VIP protection.
         </p>
         <div class="flex space-x-4">
           {#each socialLinks as link}
@@ -59,7 +59,6 @@
           <li><a href="/services/vip-protection" class="text-zinc-400 hover:text-white transition-colors text-sm">VIP Protection</a></li>
           <li><a href="/services/emergency-medical" class="text-zinc-400 hover:text-white transition-colors text-sm">Emergency Medical</a></li>
           <li><a href="/services/drone-surveillance" class="text-zinc-400 hover:text-white transition-colors text-sm">Drone Surveillance</a></li>
-          <li><a href="/services/anti-kidnapping" class="text-zinc-400 hover:text-white transition-colors text-sm">Anti-Kidnapping</a></li>
           <li><a href="/services/cctv-alarms" class="text-zinc-400 hover:text-white transition-colors text-sm">CCTV &amp; Alarms</a></li>
           <li><a href="/services/event-security" class="text-zinc-400 hover:text-white transition-colors text-sm">Event Security</a></li>
           <li><a href="/services/dog-handling" class="text-zinc-400 hover:text-white transition-colors text-sm">Dog Handling</a></li>

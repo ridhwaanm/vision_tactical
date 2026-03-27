@@ -18,7 +18,7 @@
       <!-- Background image -->
       <div class="absolute inset-0 z-0">
         <div class="absolute inset-0 bg-gradient-to-b from-[#09090B]/90 via-[#09090B]/70 to-[#09090B] z-10"></div>
-        <div class="absolute inset-0 bg-[url('/images/services/{data.service.slug}.jpg')] bg-cover bg-center"></div>
+        <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('/images/services/{data.service.slug}.jpg')"></div>
       </div>
 
       <!-- Ambient glow -->

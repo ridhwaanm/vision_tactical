@@ -13,7 +13,7 @@
   const services = getAllServices().slice(0, 6);
 
   const seoTitle = 'Vision Tactical | Surveillance & Security Solutions | Johannesburg';
-  const seoDescription = "Johannesburg's most trusted private security company. Armed response, manned guarding, drone surveillance, VIP protection, and anti-kidnapping operations.";
+  const seoDescription = "Johannesburg's most trusted private security company. Armed response, manned guarding, drone surveillance, VIP protection, and emergency medical services.";
 
   const localBusinessData = {
     '@type': 'LocalBusiness',
@@ -93,7 +93,7 @@
 
         <p class="text-zinc-400 text-lg md:text-xl max-w-2xl mx-auto mb-10" use:reveal={{ delay: 200 }}>
           Johannesburg's most trusted private security company. Armed response, manned guarding,
-          drone surveillance, and anti-kidnapping operations.
+          drone surveillance, and emergency medical services.
         </p>
 
         <div class="flex flex-col sm:flex-row items-center justify-center gap-4" use:reveal={{ delay: 300 }}>

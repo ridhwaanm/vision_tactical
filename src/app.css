@@ -121,6 +121,24 @@ h1, h2, h3, h4, h5, h6 {
   background-clip: text;
 }
 
+/* Navbar link — dark-red-to-red gradient, white on hover/active */
+.nav-link-gradient {
+  background: linear-gradient(to right, #7f1d1d, #ef4444);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: #ef4444; /* used by currentColor in child SVGs */
+  font-weight: 800;
+  transition: color 150ms, background 150ms, -webkit-text-fill-color 150ms;
+}
+
+.nav-link-gradient:hover,
+.nav-link-gradient.active {
+  background: none;
+  -webkit-text-fill-color: white;
+  color: white;
+}
+
 /* Red accent gradient */
 .heading-red-gradient {
   background: linear-gradient(

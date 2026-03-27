@@ -7,6 +7,18 @@
   let mobileMenuOpen = $state(false);
   let servicesDropdownOpen = $state(false);
   let scrolled = $state(false);
+  let closeTimer: ReturnType<typeof setTimeout>;
+
+  function openDropdown() {
+    clearTimeout(closeTimer);
+    servicesDropdownOpen = true;
+  }
+
+  function scheduleClose() {
+    closeTimer = setTimeout(() => {
+      servicesDropdownOpen = false;
+    }, 150);
+  }
 
   // Handle scroll effect
   $effect(() => {
@@ -46,9 +58,9 @@
           {#if item.children}
             <div class="relative">
               <button
-                class="flex items-center space-x-1 px-4 py-2 rounded-md text-sm font-bold transition-colors {servicesDropdownOpen ? 'text-red-400 bg-white/[0.05]' : 'text-red-500'}"
-                onmouseenter={() => (servicesDropdownOpen = true)}
-                onmouseleave={() => (servicesDropdownOpen = false)}
+                class="nav-link-gradient flex items-center space-x-1 px-4 py-2 rounded-md text-sm {servicesDropdownOpen ? 'active bg-white/[0.05]' : ''}"
+                onmouseenter={openDropdown}
+                onmouseleave={scheduleClose}
                 aria-expanded={servicesDropdownOpen}
               >
                 <span>{item.label}</span>
@@ -66,8 +78,8 @@
               {#if servicesDropdownOpen}
                 <div
                   class="absolute top-full left-0 mt-2 w-[600px] glass-surface shadow-2xl"
-                  onmouseenter={() => (servicesDropdownOpen = true)}
-                  onmouseleave={() => (servicesDropdownOpen = false)}
+                  onmouseenter={openDropdown}
+                  onmouseleave={scheduleClose}
                   role="menu"
                   aria-label="Services menu"
                   tabindex="-1"
@@ -88,7 +100,7 @@
           {:else}
             <a
               href={item.href}
-              class="px-4 py-2 rounded-md text-sm font-bold transition-colors {$page.url.pathname === item.href ? 'text-red-400' : 'text-red-500 hover:text-red-400 hover:bg-white/[0.05]'}"
+              class="nav-link-gradient px-4 py-2 rounded-md text-sm {$page.url.pathname === item.href ? 'active' : ''}"
             >
               {item.label}
             </a>

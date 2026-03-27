@@ -10,7 +10,7 @@
   <title>Our Services | Vision Tactical | Johannesburg Security</title>
   <meta
     name="description"
-    content="Comprehensive security services including armed response, manned guarding, drone surveillance, VIP protection, and anti-kidnapping operations."
+    content="Comprehensive security services including armed response, manned guarding, drone surveillance, VIP protection, and emergency medical services."
   />
 </svelte:head>
 

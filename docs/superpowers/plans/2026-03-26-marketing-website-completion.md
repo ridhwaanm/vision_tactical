@@ -353,7 +353,7 @@ Files that will be created or significantly modified:
 
 ---
 
-## Task 13 — Netlify Production Configuration
+## Task 14 — Netlify Production Configuration
 
 **Files:**
 - Create/verify: `netlify.toml`
@@ -373,7 +373,7 @@ Files that will be created or significantly modified:
 
 ---
 
-## Task 14 — Domain Cutover & Go-Live
+## Task 15 — Domain Cutover & Go-Live
 
 **Prerequisite:** Tasks 1–13 complete. Test deployment passing on Netlify preview URL. Yaseen has reviewed and approved the site.
 
@@ -393,7 +393,7 @@ Files that will be created or significantly modified:
 
 ---
 
-## Task 15 — Post-Launch Monitoring (Week 1)
+## Task 16 — Post-Launch Monitoring (Week 1)
 
 **Steps:**
 
@@ -427,9 +427,9 @@ Task 15 (Monitoring)    ← After Task 14
 ```
 
 **Parallel tracks (can run simultaneously):**
-- Track A: Tasks 1, 3, 6, 7, 8 — no external blockers
+- Track A: Tasks 1, 3, 6, 7, 8, 12 — no external blockers
 - Track B: Tasks 2, 4, 5 — blocked on Yaseen supplying assets
-- Track C: Tasks 9, 12 — blocked on Yaseen supplying Google account + domain access
+- Track C: Tasks 9, 13 — blocked on Yaseen supplying Google account + domain access
 
 ---
 
@@ -448,7 +448,7 @@ Before or at kickoff:
 | 7 | Real photography: hero images, 1 per service, team photo, vehicles, awards | Task 5 |
 | 8 | Final approved AI hero image | Task 2 |
 | 9 | Google account email for GA4 + Search Console | Task 9 |
-| 10 | Domain registrar login or DNS access | Tasks 12, 13 |
+| 10 | Domain registrar login or DNS access | Tasks 13, 14 |
 | 11 | Email hosting confirmation (does `@visiontactical.co.za` email exist?) | Task 1 |
 
 ---
@@ -457,11 +457,11 @@ Before or at kickoff:
 
 | Track | Tasks | Duration |
 |-------|-------|----------|
-| Developer (no blockers) | 1, 3, 6, 7, 8, 10, 11, 13 | ~10 days |
-| Waiting on Yaseen assets | 2, 4, 5, 9, 12 | Depends on response time |
-| Go-live + post-launch | 14, 15 | ~2 days + 1 week monitoring |
-| **Total (optimistic)** | All 15 tasks | **3 weeks** |
-| **Total (realistic with asset delays)** | All 15 tasks | **4–5 weeks** |
+| Developer (no blockers) | 1, 3, 6, 7, 8, 10, 11, 12, 14 | ~10 days |
+| Waiting on Yaseen assets | 2, 4, 5, 9, 13 | Depends on response time |
+| Go-live + post-launch | 15, 16 | ~2 days + 1 week monitoring |
+| **Total (optimistic)** | All 16 tasks | **3 weeks** |
+| **Total (realistic with asset delays)** | All 16 tasks | **4–5 weeks** |
 
 ---
 
