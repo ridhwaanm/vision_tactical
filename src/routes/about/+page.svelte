@@ -1,6 +1,21 @@
 <script lang="ts">
   import GlowCard from '$lib/components/ui/GlowCard.svelte';
   import { reveal } from '$lib/actions/reveal';
+  import { partnerships, partnerCategories } from '$lib/data/partnerships';
+
+  const categories = ['medical', 'intelligence', 'technology', 'regulatory'] as const;
+
+  let certModalOpen = false;
+  let certImage = '';
+
+  function openCert(src: string) {
+    certImage = src;
+    certModalOpen = true;
+  }
+
+  function closeCert() {
+    certModalOpen = false;
+  }
 </script>
 
 <svelte:head>
@@ -22,8 +37,8 @@
           Protecting Communities, Preventing Crime
         </h1>
         <p class="text-zinc-400 text-lg md:text-xl leading-relaxed">
-          Vision Tactical is Johannesburg's most trusted private security company, 
-          combining cutting-edge technology with highly trained personnel to deliver 
+          Vision Tactical is Johannesburg's most trusted private security company,
+          combining cutting-edge technology with highly trained personnel to deliver
           exceptional security solutions.
         </p>
       </div>
@@ -51,18 +66,18 @@
         <div class="space-y-6" use:reveal={{ delay: 100 }}>
           <h2 class="text-2xl font-bold text-white">Our Story</h2>
           <p class="text-zinc-400 leading-relaxed">
-            Vision Tactical was founded with a simple mission: to provide Johannesburg communities 
-            with security services that truly make a difference. We saw a need for a company that 
+            Vision Tactical was founded with a simple mission: to provide Johannesburg communities
+            with security services that truly make a difference. We saw a need for a company that
             combines operational excellence with genuine community commitment.
           </p>
           <p class="text-zinc-400 leading-relaxed">
-            From our headquarters in Houghton, we've grown to become one of the region's most 
-            respected security providers. Our innovative approach—including pioneering the use 
+            From our headquarters in Houghton, we've grown to become one of the region's most
+            respected security providers. Our innovative approach—including pioneering the use
             of drone surveillance in private security—has set new industry standards.
           </p>
           <p class="text-zinc-400 leading-relaxed">
-            Every security contract we undertake is personally overseen by one of our Directors, 
-            ensuring the highest level of accountability and service delivery. This hands-on 
+            Every security contract we undertake is personally overseen by one of our Directors,
+            ensuring the highest level of accountability and service delivery. This hands-on
             approach has earned us the trust of thousands of clients across Johannesburg.
           </p>
         </div>
@@ -142,48 +157,23 @@
           <h2 class="text-2xl font-bold text-white mb-6">Yaseen Theba — Director</h2>
           <div class="space-y-4 text-zinc-400 leading-relaxed">
             <p>
-              Yaseen Theba is the driving force behind Vision Tactical's innovative approach 
-              to private security. With extensive experience in the security industry, Yaseen 
-              has built a reputation for combining operational excellence with community-focused 
+              Yaseen Theba is the driving force behind Vision Tactical's innovative approach
+              to private security. With extensive experience in the security industry, Yaseen
+              has built a reputation for combining operational excellence with community-focused
               initiatives.
             </p>
             <p>
-              Under his leadership, Vision Tactical has pioneered the use of drone technology 
-              in private security operations, becoming the first company in South Africa to 
+              Under his leadership, Vision Tactical has pioneered the use of drone technology
+              in private security operations, becoming the first company in South Africa to
               successfully integrate aerial surveillance into routine security services.
             </p>
             <p>
-              Yaseen is actively involved in community safety initiatives and maintains close 
-              partnerships with SAPS and other law enforcement agencies. His commitment to 
-              fighting crime extends beyond business—Vision Tactical's Anti-Kidnapping Unit 
-              operates pro-bono, providing free rescue services to kidnapping victims regardless 
+              Yaseen is actively involved in community safety initiatives and maintains close
+              partnerships with SAPS and other law enforcement agencies. His commitment to
+              fighting crime extends beyond business—Vision Tactical's Anti-Kidnapping Unit
+              operates pro-bono, providing free rescue services to kidnapping victims regardless
               of their ability to pay.
             </p>
-          </div>
-
-          <!-- Affiliations -->
-          <div class="mt-8 pt-8 border-t border-zinc-800">
-            <h3 class="text-white font-semibold mb-4">Community Involvement</h3>
-            <ul class="space-y-2 text-zinc-400 text-sm">
-              <li class="flex items-center gap-2">
-                <svg class="w-4 h-4 text-red-500" fill="currentColor" viewBox="0 0 20 20">
-                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
-                </svg>
-                Mandela Legacy Member
-              </li>
-              <li class="flex items-center gap-2">
-                <svg class="w-4 h-4 text-red-500" fill="currentColor" viewBox="0 0 20 20">
-                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
-                </svg>
-                #OperationHydrate Supporter
-              </li>
-              <li class="flex items-center gap-2">
-                <svg class="w-4 h-4 text-red-500" fill="currentColor" viewBox="0 0 20 20">
-                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
-                </svg>
-                Houghton Muslim Association
-              </li>
-            </ul>
           </div>
         </div>
 
@@ -198,59 +188,96 @@
     </div>
   </section>
 
-  <!-- PARTNERS SECTION -->
-  <section class="py-24 bg-[#0F0F12] border-y border-zinc-800">
+  <!-- PARTNERSHIPS & ACCREDITATIONS SECTION -->
+  <section id="partnerships" class="py-24 bg-[#0F0F12] border-y border-zinc-800">
     <div class="container mx-auto px-4">
-      <div class="text-center mb-12" use:reveal>
-        <p class="overline mb-4">PARTNERSHIPS</p>
+      <div class="text-center mb-16" use:reveal>
+        <p class="overline mb-4">PARTNERSHIPS & ACCREDITATIONS</p>
         <h2 class="heading-gradient text-3xl md:text-4xl font-bold mb-4">
           Working Together for Safety
         </h2>
+        <p class="text-zinc-400 max-w-2xl mx-auto">
+          We partner with leading medical, intelligence, and technology providers to deliver
+          a comprehensive security ecosystem for our clients.
+        </p>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
-        <!-- ER24 Partnership -->
-        <GlowCard>
-          <div class="p-8">
-            <div class="flex items-center gap-4 mb-4">
-              <div class="w-16 h-16 rounded-lg bg-red-500/10 flex items-center justify-center text-red-500">
-                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
-                </svg>
-              </div>
-              <div>
-                <h3 class="text-white font-semibold text-lg">ER24 Partnership</h3>
-                <p class="text-zinc-500 text-sm">Medical Emergency Services</p>
-              </div>
-            </div>
-            <p class="text-zinc-400 text-sm leading-relaxed">
-              Through our strategic partnership with ER24, we provide comprehensive emergency 
-              medical services with access to 280+ vehicles across South Africa.
-            </p>
+      {#each categories as category, ci}
+        {@const categoryInfo = partnerCategories[category]}
+        {@const categoryPartners = partnerships.filter(p => p.category === category)}
+        <div class="mb-16 last:mb-0" use:reveal={{ delay: ci * 100 }}>
+          <div class="flex items-center gap-3 mb-2">
+            {#if category === 'medical'}
+              <svg class="w-5 h-5 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+              </svg>
+            {:else if category === 'intelligence'}
+              <svg class="w-5 h-5 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+              </svg>
+            {:else if category === 'technology'}
+              <svg class="w-5 h-5 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+              </svg>
+            {:else}
+              <svg class="w-5 h-5 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
+              </svg>
+            {/if}
+            <h3 class="text-white font-semibold text-lg">{categoryInfo.label}</h3>
           </div>
-        </GlowCard>
+          <p class="text-zinc-500 text-sm mb-6 ml-8">{categoryInfo.intro}</p>
 
-        <!-- SAPS Partnership -->
-        <GlowCard>
-          <div class="p-8">
-            <div class="flex items-center gap-4 mb-4">
-              <div class="w-16 h-16 rounded-lg bg-red-500/10 flex items-center justify-center text-red-500">
-                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-                </svg>
-              </div>
-              <div>
-                <h3 class="text-white font-semibold text-lg">SAPS Collaboration</h3>
-                <p class="text-zinc-500 text-sm">Law Enforcement Partnership</p>
-              </div>
-            </div>
-            <p class="text-zinc-400 text-sm leading-relaxed">
-              Our Anti-Kidnapping Unit operates in official partnership with SAPS, providing 
-              pro-bono rescue services and intelligence sharing.
-            </p>
+          <div class="grid grid-cols-1 {categoryPartners.length === 1 ? 'max-w-xl' : 'md:grid-cols-2 lg:grid-cols-3'} gap-4">
+            {#each categoryPartners as partner}
+              <GlowCard>
+                <div class="p-6">
+                  {#if partner.logo}
+                    <div class="h-12 flex items-center mb-4">
+                      <img
+                        src={partner.logo}
+                        alt="{partner.name} logo"
+                        class="max-h-full max-w-[160px] object-contain transition-all duration-300 {partner.invertLogo ? 'brightness-0 invert opacity-70 hover:opacity-100' : 'grayscale opacity-60 hover:grayscale-0 hover:opacity-100'}"
+                      />
+                    </div>
+                  {/if}
+                  <div class="mb-3">
+                    <h4 class="text-white font-semibold">{partner.name}</h4>
+                    <p class="text-zinc-500 text-xs uppercase tracking-wider">{partner.tagline}</p>
+                  </div>
+                  <p class="text-zinc-400 text-sm leading-relaxed">{partner.description}</p>
+                  <div class="flex flex-wrap gap-3 mt-3">
+                    {#if partner.website}
+                      <a
+                        href={partner.website}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="inline-flex items-center gap-1 text-zinc-500 hover:text-red-400 text-xs transition-colors"
+                      >
+                        Visit website
+                        <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                        </svg>
+                      </a>
+                    {/if}
+                    {#if partner.certificate}
+                      <button
+                        on:click={() => openCert(partner.certificate!)}
+                        class="inline-flex items-center gap-1 text-zinc-500 hover:text-red-400 text-xs transition-colors"
+                      >
+                        View certificate
+                        <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                        </svg>
+                      </button>
+                    {/if}
+                  </div>
+                </div>
+              </GlowCard>
+            {/each}
           </div>
-        </GlowCard>
-      </div>
+        </div>
+      {/each}
     </div>
   </section>
 
@@ -264,7 +291,7 @@
           Join Our Community
         </h2>
         <p class="text-zinc-400 mb-8">
-          Whether you need security services or want to join our team, 
+          Whether you need security services or want to join our team,
           we'd love to hear from you.
         </p>
         <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
@@ -279,3 +306,28 @@
     </div>
   </section>
 </div>
+
+{#if certModalOpen}
+  <!-- svelte-ignore a11y-click-events-have-key-events a11y-no-static-element-interactions -->
+  <div
+    class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm"
+    on:click={closeCert}
+  >
+    <div class="relative max-w-lg w-full" on:click|stopPropagation>
+      <button
+        on:click={closeCert}
+        class="absolute -top-3 -right-3 z-10 w-8 h-8 rounded-full bg-zinc-800 border border-zinc-700 flex items-center justify-center text-zinc-400 hover:text-white transition-colors"
+        aria-label="Close"
+      >
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+      <img
+        src={certImage}
+        alt="PSIRA Certificate of Registration"
+        class="w-full rounded-lg border border-zinc-700 shadow-2xl"
+      />
+    </div>
+  </div>
+{/if}

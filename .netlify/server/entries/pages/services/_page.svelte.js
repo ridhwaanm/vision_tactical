@@ -8,7 +8,7 @@ function _page($$renderer, $$props) {
       $$renderer3.title(($$renderer4) => {
         $$renderer4.push(`<title>Our Services | Vision Tactical | Johannesburg Security</title>`);
       });
-      $$renderer3.push(`<meta name="description" content="Comprehensive security services including armed response, manned guarding, drone surveillance, VIP protection, and anti-kidnapping operations."/>`);
+      $$renderer3.push(`<meta name="description" content="Comprehensive security services including armed response, manned guarding, drone surveillance, VIP protection, and emergency medical services."/>`);
     });
     $$renderer2.push(`<div class="bg-[#09090B]"><section class="relative py-24 md:py-32 overflow-hidden"><div class="glow-ambient glow-ambient-top"></div> <div class="container mx-auto px-4 relative z-10"><div class="text-center max-w-4xl mx-auto"><p class="overline mb-4">OUR SERVICES</p> <h1 class="heading-gradient text-4xl md:text-5xl font-bold mb-6">Complete Security Solutions</h1> <p class="text-zinc-400 text-lg max-w-2xl mx-auto">From armed response to drone surveillance, we provide comprehensive 
           security services tailored to residential, commercial, and corporate needs.</p></div></div></section> <section class="pb-24 md:pb-32"><div class="container mx-auto px-4"><div class="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-4">`);

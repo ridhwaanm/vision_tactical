@@ -5,6 +5,7 @@
   import { reveal } from '$lib/actions/reveal';
   import { getAllServices } from '$lib/data/services';
   import { testimonials } from '$lib/data/testimonials';
+  import { partnerships } from '$lib/data/partnerships';
   import { stats } from '$lib/data/stats';
   import SEOHead from '$lib/components/seo/SEOHead.svelte';
   import JsonLd from '$lib/components/seo/JsonLd.svelte';
@@ -92,8 +93,7 @@
         </h1>
 
         <p class="text-zinc-400 text-lg md:text-xl max-w-2xl mx-auto mb-10" use:reveal={{ delay: 200 }}>
-          Johannesburg's most trusted private security company. Armed response, manned guarding,
-          drone surveillance, and emergency medical services.
+          Johannesburg's most trusted private security company.
         </p>
 
         <div class="flex flex-col sm:flex-row items-center justify-center gap-4" use:reveal={{ delay: 300 }}>
@@ -131,7 +131,7 @@
               <svg class="w-5 h-5 text-red-500" fill="currentColor" viewBox="0 0 20 20">
                 <path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-3a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v3h-3zM4.75 12.094A5.973 5.973 0 004 15v3H1v-3a3 3 0 013.75-2.906z" />
               </svg>
-              Drone Pioneers
+              PSIRA Registered
             </span>
           </div>
         </div>
@@ -211,6 +211,43 @@
           <p class="text-4xl md:text-5xl font-bold text-white mb-2">R700M+</p>
           <p class="text-zinc-500 text-sm uppercase tracking-wider">Ransoms Prevented</p>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PARTNERSHIPS STRIP -->
+  <section class="section relative">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-12" use:reveal>
+        <p class="overline mb-4">PARTNERSHIPS & ACCREDITATIONS</p>
+        <h2 class="heading-gradient text-2xl md:text-3xl font-bold mb-4">
+          Trusted Network, Integrated Response
+        </h2>
+        <p class="text-zinc-400 max-w-2xl mx-auto text-sm">
+          One call dispatches armed response, paramedics, and vehicle tracking. Our partnerships
+          with leading medical, intelligence, and technology providers create a comprehensive safety net.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-4">
+        {#each partnerships as partner, i}
+          <div
+            class="card p-4 text-center group hover:border-zinc-600 transition-colors"
+            use:reveal={{ delay: i * 50 }}
+          >
+            <p class="text-white text-sm font-semibold mb-1">{partner.name}</p>
+            <p class="text-zinc-500 text-[10px] uppercase tracking-wider leading-tight">{partner.tagline}</p>
+          </div>
+        {/each}
+      </div>
+
+      <div class="text-center mt-8" use:reveal>
+        <a href="/about#partnerships" class="text-zinc-500 hover:text-red-400 text-sm transition-colors inline-flex items-center gap-1">
+          Learn more about our partnerships
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+          </svg>
+        </a>
       </div>
     </div>
   </section>

@@ -298,71 +298,10 @@ Our drone pilots are fully licensed by the South African Civil Aviation Authorit
       whyVisionTactical: `Vision Tactical was the first private security company in South Africa to successfully integrate drone technology into routine security operations. Our drone unit has been featured in national media for its role in combating crime, and our innovative approach has been recognised with industry awards. We continue to push the boundaries of what's possible with security technology.`
     },
     cta: { text: "Request Drone Coverage", href: "/get-a-quote" },
-    relatedServices: ["armed-response", "cctv-alarms", "anti-kidnapping"],
+    relatedServices: ["armed-response", "cctv-alarms", "event-security"],
     seo: {
       title: "Drone Surveillance Services | Vision Tactical | Johannesburg",
       description: "Advanced drone surveillance and aerial security operations in Johannesburg. Thermal imaging, real-time monitoring, and SACAA-licensed pilots."
-    }
-  },
-  {
-    slug: "anti-kidnapping",
-    title: "Anti-Kidnapping Unit",
-    shortDescription: "Pro-bono SAPS partnership with specialised Kidnapping Analysis Unit (KAU) for victim rescue and intelligence-driven operations.",
-    icon: "handcuffs",
-    heroImage: "/images/services/anti-kidnapping.jpg",
-    content: {
-      intro: `Vision Tactical's Anti-Kidnapping Unit (AKU) represents a unique pro-bono partnership with SAPS, dedicated to combating the epidemic of kidnappings in South Africa. Our specialised Kidnapping Analysis Unit (KAU) has successfully resolved hundreds of cases and rescued countless victims.
-
-Operating at no cost to victims0027 families, our unit combines intelligence gathering, tactical operations, and investigative expertise to locate and rescue kidnapping victims. We work closely with SAPS and other law enforcement agencies to bring perpetrators to justice.
-
-Our team includes former law enforcement professionals with extensive experience in hostage rescue, criminal investigation, and intelligence analysis.`,
-      features: [
-        {
-          title: "Pro-Bono Service",
-          description: "All anti-kidnapping services provided free of charge to victims0027 families."
-        },
-        {
-          title: "SAPS Partnership",
-          description: "Official partnership with South African Police Service for coordinated operations."
-        },
-        {
-          title: "Intelligence-Driven",
-          description: "Advanced intelligence gathering and analysis to locate victims quickly."
-        },
-        {
-          title: "Tactical Rescue",
-          description: "Highly trained tactical team for high-risk rescue operations."
-        }
-      ],
-      process: [
-        {
-          step: 1,
-          title: "Case Intake",
-          description: "Family reports kidnapping; immediate case assessment begins."
-        },
-        {
-          step: 2,
-          title: "Intelligence Gathering",
-          description: "Rapid collection and analysis of all available information."
-        },
-        {
-          step: 3,
-          title: "Operation Planning",
-          description: "Tactical team develops rescue strategy based on intelligence."
-        },
-        {
-          step: 4,
-          title: "Rescue Operation",
-          description: "Coordinated operation to locate and rescue victim safely."
-        }
-      ],
-      whyVisionTactical: `Vision Tactical's Anti-Kidnapping Unit has become a beacon of hope for families facing the nightmare of a kidnapped loved one. Our pro-bono commitment means that financial circumstances never prevent a family from receiving world-class rescue services. With hundreds of successful rescues and a track record that speaks for itself, our AKU is recognised as one of the most effective anti-kidnapping units in South Africa.`
-    },
-    cta: { text: "Report a Kidnapping", href: "/contact" },
-    relatedServices: ["armed-response", "drone-surveillance", "vip-protection"],
-    seo: {
-      title: "Anti-Kidnapping Unit | Vision Tactical | Johannesburg",
-      description: "Pro-bono anti-kidnapping services in partnership with SAPS. Kidnapping rescue, intelligence operations, and victim recovery at no cost to families."
     }
   },
   {

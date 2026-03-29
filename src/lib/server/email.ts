@@ -83,10 +83,9 @@ export async function sendQuoteRequestEmail(formData: {
   reference: string;
   clientType: string;
   services: string[];
-  propertyType: string;
-  propertySize: string;
-  accessPoints: string;
-  existingSecurity: string[];
+  propertyType?: string;
+  propertySize?: string;
+  accessPoints?: string;
   notes?: string;
   fullName: string;
   companyName?: string;
@@ -126,22 +125,18 @@ export async function sendQuoteRequestEmail(formData: {
         <td style="padding: 8px; border: 1px solid #ddd; font-weight: bold;">Services</td>
         <td style="padding: 8px; border: 1px solid #ddd;">${formData.services.join(', ')}</td>
       </tr>
-      <tr>
+      ${formData.propertyType ? `<tr>
         <td style="padding: 8px; border: 1px solid #ddd; font-weight: bold;">Property Type</td>
         <td style="padding: 8px; border: 1px solid #ddd;">${formData.propertyType}</td>
-      </tr>
-      <tr>
+      </tr>` : ''}
+      ${formData.propertySize ? `<tr>
         <td style="padding: 8px; border: 1px solid #ddd; font-weight: bold;">Property Size</td>
         <td style="padding: 8px; border: 1px solid #ddd;">${formData.propertySize}</td>
-      </tr>
-      <tr>
+      </tr>` : ''}
+      ${formData.accessPoints ? `<tr>
         <td style="padding: 8px; border: 1px solid #ddd; font-weight: bold;">Access Points</td>
         <td style="padding: 8px; border: 1px solid #ddd;">${formData.accessPoints}</td>
-      </tr>
-      <tr>
-        <td style="padding: 8px; border: 1px solid #ddd; font-weight: bold;">Existing Security</td>
-        <td style="padding: 8px; border: 1px solid #ddd;">${formData.existingSecurity.join(', ') || 'None'}</td>
-      </tr>
+      </tr>` : ''}
       <tr>
         <td style="padding: 8px; border: 1px solid #ddd; font-weight: bold;">Preferred Contact</td>
         <td style="padding: 8px; border: 1px solid #ddd;">${formData.contactMethod} - ${formData.contactTime}</td>

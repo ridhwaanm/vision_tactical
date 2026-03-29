@@ -17,7 +17,6 @@ export const POST: RequestHandler = async ({ request }) => {
       propertyType: formData.propertyType,
       propertySize: formData.propertySize,
       accessPoints: formData.accessPoints,
-      existingSecurity: formData.existingSecurity,
       notes: formData.notes,
       fullName: formData.fullName,
       companyName: formData.companyName,
@@ -31,15 +30,17 @@ export const POST: RequestHandler = async ({ request }) => {
       console.error('Failed to send quote email:', emailResult.error);
     }
 
-    // Send confirmation email to client
-    const confirmResult = await sendQuoteConfirmationEmail(
-      formData.email,
-      reference,
-      formData.fullName
-    );
+    // Send confirmation email to client (only if they provided an email)
+    if (formData.email) {
+      const confirmResult = await sendQuoteConfirmationEmail(
+        formData.email,
+        reference,
+        formData.fullName
+      );
 
-    if (!confirmResult.success) {
-      console.error('Failed to send confirmation email:', confirmResult.error);
+      if (!confirmResult.success) {
+        console.error('Failed to send confirmation email:', confirmResult.error);
+      }
     }
 
     return new Response(JSON.stringify({ success: true, reference }), {

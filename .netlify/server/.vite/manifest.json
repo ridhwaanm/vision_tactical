@@ -75,6 +75,10 @@
       "_environment.js"
     ]
   },
+  "_partnerships.js": {
+    "file": "chunks/partnerships.js",
+    "name": "partnerships"
+  },
   "_root.js": {
     "file": "chunks/root.js",
     "name": "root",
@@ -167,7 +171,7 @@
       "_stores.js"
     ],
     "css": [
-      "_app/immutable/assets/_layout.BHIcSNcZ.css"
+      "_app/immutable/assets/_layout.BO4tdw2P.css"
     ]
   },
   "src/routes/+page.server.ts": {
@@ -185,6 +189,7 @@
       "_index.js",
       "_GlowCard.js",
       "_services.js",
+      "_partnerships.js",
       "_SEOHead.js"
     ]
   },
@@ -195,7 +200,8 @@
     "isEntry": true,
     "imports": [
       "_index.js",
-      "_GlowCard.js"
+      "_GlowCard.js",
+      "_partnerships.js"
     ]
   },
   "src/routes/awards/+page.svelte": {

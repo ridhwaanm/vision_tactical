@@ -9,7 +9,6 @@ const mainNav = [
       { label: "VIP Protection", href: "/services/vip-protection" },
       { label: "Emergency Medical", href: "/services/emergency-medical" },
       { label: "Drone Surveillance", href: "/services/drone-surveillance" },
-      { label: "Anti-Kidnapping", href: "/services/anti-kidnapping" },
       { label: "CCTV & Alarms", href: "/services/cctv-alarms" },
       { label: "Event Security", href: "/services/event-security" },
       { label: "Dog Handling", href: "/services/dog-handling" }

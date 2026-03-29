@@ -2,8 +2,8 @@ const coverageAreas = [
   {
     name: "Houghton",
     slug: "houghton",
-    lat: -26.1725,
-    lng: 28.0599,
+    lat: -26.1617,
+    lng: 28.0584,
     description: "Our headquarters location and primary coverage area since founding.",
     activeSince: 2015
   },

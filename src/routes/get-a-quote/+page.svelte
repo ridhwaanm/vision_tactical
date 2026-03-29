@@ -15,7 +15,6 @@
     propertyType: '',
     propertySize: '',
     accessPoints: '',
-    existingSecurity: [] as string[],
     notes: '',
     fullName: '',
     companyName: '',
@@ -50,29 +49,25 @@
     }
 
     if (step === 2) {
-      if (!formData.propertyType) {
-        errors.propertyType = 'Please select a property type';
-      }
-      if (!formData.propertySize) {
-        errors.propertySize = 'Please select a property size';
-      }
-      if (!formData.accessPoints) {
-        errors.accessPoints = 'Please select number of access points';
-      }
+      // Property details are optional — they help VT prepare a better quote
+      // but shouldn't block a lead from submitting
     }
 
     if (step === 3) {
       if (!formData.fullName.trim()) {
         errors.fullName = 'Full name is required';
       }
-      if (!formData.email.trim()) {
-        errors.email = 'Email is required';
-      } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+      // Require at least one contact method (phone or email)
+      const hasEmail = formData.email.trim().length > 0;
+      const hasPhone = formData.phone.trim().length > 0;
+      if (!hasEmail && !hasPhone) {
+        errors.email = 'Please provide a phone number or email address';
+        errors.phone = 'Please provide a phone number or email address';
+      }
+      if (hasEmail && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
         errors.email = 'Please enter a valid email address';
       }
-      if (!formData.phone.trim()) {
-        errors.phone = 'Phone number is required';
-      } else if (!/^(\+27|0)[6-8][0-9]{8}$/.test(formData.phone.replace(/\s/g, ''))) {
+      if (hasPhone && !/^(\+27|0)[6-8][0-9]{8}$/.test(formData.phone.replace(/\s/g, ''))) {
         errors.phone = 'Please enter a valid SA phone number';
       }
     }
@@ -98,15 +93,6 @@
       formData.services = formData.services.filter(s => s !== service);
     } else {
       formData.services = [...formData.services, service];
-    }
-  }
-
-  function toggleExistingSecurity(item: string) {
-    const index = formData.existingSecurity.indexOf(item);
-    if (index > -1) {
-      formData.existingSecurity = formData.existingSecurity.filter(s => s !== item);
-    } else {
-      formData.existingSecurity = [...formData.existingSecurity, item];
     }
   }
 
@@ -137,10 +123,23 @@
     }
   }
 
-  const propertyTypes = ['House', 'Townhouse', 'Apartment', 'Office', 'Warehouse', 'Retail', 'Industrial', 'Estate', 'Other'];
-  const propertySizes = ['< 500m²', '500–1000m²', '1000–5000m²', '> 5000m²'];
+  const propertyTypesByClient: Record<ClientType, string[]> = {
+    residential: ['House', 'Townhouse', 'Apartment', 'Estate', 'Other'],
+    commercial: ['Office', 'Retail', 'Warehouse', 'Industrial', 'Shopping Centre', 'Other'],
+    corporate: ['Office Park', 'Corporate Campus', 'Data Centre', 'Mixed-Use', 'Other'],
+    event: ['Venue', 'Outdoor Space', 'Stadium', 'Exhibition Centre', 'Private Residence', 'Other'],
+    vip: ['Residence', 'Office', 'Travel Route', 'Other']
+  };
+
+  const propertySizesByClient: Record<ClientType, string[]> = {
+    residential: ['< 500m²', '500–1000m²', '1000–2000m²', '> 2000m²'],
+    commercial: ['< 500m²', '500–2000m²', '2000–5000m²', '> 5000m²'],
+    corporate: ['< 1000m²', '1000–5000m²', '5000–20000m²', '> 20000m²'],
+    event: ['< 500m²', '500–2000m²', '2000–10000m²', '> 10000m²'],
+    vip: ['N/A']
+  };
+
   const accessPointOptions = ['1', '2', '3', '4', '5+'];
-  const existingSecurityOptions = ['Alarm system', 'CCTV cameras', 'Electric fence', 'Security gate', 'Armed response (other provider)', 'None'];
 </script>
 
 <svelte:head>
@@ -298,97 +297,67 @@
               {#if currentStep === 2}
                 <div>
                   <h2 class="text-2xl font-bold text-white mb-2">Property Details</h2>
-                  <p class="text-zinc-400 mb-8">Tell us about the property to be secured.</p>
+                  <p class="text-zinc-400 mb-8">Help us understand your site. All fields are optional — we'll discuss details when we contact you.</p>
 
                   <div class="space-y-6">
-                    <!-- Property Type -->
+                    <!-- Property Type (context-aware) -->
                     <div>
-                      <label for="propertyType" class="block text-sm font-medium text-zinc-300 mb-2">Property Type *</label>
+                      <label for="propertyType" class="block text-sm font-medium text-zinc-300 mb-2">Property Type</label>
                       <select
                         id="propertyType"
                         bind:value={formData.propertyType}
                         class="w-full px-4 py-3 bg-[#09090B] border border-zinc-700 rounded-lg text-white focus:outline-none focus:border-red-500 transition-colors"
                       >
                         <option value="">Select property type</option>
-                        {#each propertyTypes as type}
+                        {#each propertyTypesByClient[formData.clientType] || [] as type}
                           <option value={type}>{type}</option>
                         {/each}
                       </select>
-                      {#if errors.propertyType}
-                        <p class="text-red-500 text-sm mt-2">{errors.propertyType}</p>
-                      {/if}
                     </div>
 
-                    <!-- Property Size -->
-                    <div>
-                      <label for="propertySize" class="block text-sm font-medium text-zinc-300 mb-2">Approximate Size *</label>
-                      <select
-                        id="propertySize"
-                        bind:value={formData.propertySize}
-                        class="w-full px-4 py-3 bg-[#09090B] border border-zinc-700 rounded-lg text-white focus:outline-none focus:border-red-500 transition-colors"
-                      >
-                        <option value="">Select size</option>
-                        {#each propertySizes as size}
-                          <option value={size}>{size}</option>
-                        {/each}
-                      </select>
-                      {#if errors.propertySize}
-                        <p class="text-red-500 text-sm mt-2">{errors.propertySize}</p>
-                      {/if}
-                    </div>
-
-                    <!-- Access Points -->
-                    <div>
-                      <label for="accessPoints" class="block text-sm font-medium text-zinc-300 mb-2">Number of Access Points *</label>
-                      <select
-                        id="accessPoints"
-                        bind:value={formData.accessPoints}
-                        class="w-full px-4 py-3 bg-[#09090B] border border-zinc-700 rounded-lg text-white focus:outline-none focus:border-red-500 transition-colors"
-                      >
-                        <option value="">Select number</option>
-                        {#each accessPointOptions as option}
-                          <option value={option}>{option}</option>
-                        {/each}
-                      </select>
-                      {#if errors.accessPoints}
-                        <p class="text-red-500 text-sm mt-2">{errors.accessPoints}</p>
-                      {/if}
-                    </div>
-
-                    <!-- Existing Security -->
-                    <div>
-                      <p class="block text-sm font-medium text-zinc-300 mb-2">Existing Security Measures</p>
-                      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                        {#each existingSecurityOptions as item}
-                          <button
-                            type="button"
-                            onclick={() => toggleExistingSecurity(item)}
-                            class="p-3 rounded-lg border text-left transition-colors {formData.existingSecurity.includes(item) ? 'border-red-500 bg-red-500/10 text-white' : 'border-zinc-700 bg-zinc-800/50 text-zinc-400 hover:border-zinc-600'}"
-                          >
-                            <div class="flex items-center gap-2">
-                              <div class="w-5 h-5 rounded border flex items-center justify-center {formData.existingSecurity.includes(item) ? 'border-red-500 bg-red-500' : 'border-zinc-600'}">
-                                {#if formData.existingSecurity.includes(item)}
-                                  <svg class="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
-                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
-                                  </svg>
-                                {/if}
-                              </div>
-                              <span class="text-sm">{item}</span>
-                            </div>
-                          </button>
-                        {/each}
+                    <!-- Property Size (context-aware) -->
+                    {#if formData.clientType !== 'vip'}
+                      <div>
+                        <label for="propertySize" class="block text-sm font-medium text-zinc-300 mb-2">Approximate Size</label>
+                        <select
+                          id="propertySize"
+                          bind:value={formData.propertySize}
+                          class="w-full px-4 py-3 bg-[#09090B] border border-zinc-700 rounded-lg text-white focus:outline-none focus:border-red-500 transition-colors"
+                        >
+                          <option value="">Select size</option>
+                          {#each propertySizesByClient[formData.clientType] || [] as size}
+                            <option value={size}>{size}</option>
+                          {/each}
+                        </select>
                       </div>
-                    </div>
+                    {/if}
+
+                    <!-- Access Points (not relevant for VIP or events) -->
+                    {#if !['vip', 'event'].includes(formData.clientType)}
+                      <div>
+                        <label for="accessPoints" class="block text-sm font-medium text-zinc-300 mb-2">Number of Access Points</label>
+                        <select
+                          id="accessPoints"
+                          bind:value={formData.accessPoints}
+                          class="w-full px-4 py-3 bg-[#09090B] border border-zinc-700 rounded-lg text-white focus:outline-none focus:border-red-500 transition-colors"
+                        >
+                          <option value="">Select number</option>
+                          {#each accessPointOptions as option}
+                            <option value={option}>{option}</option>
+                          {/each}
+                        </select>
+                      </div>
+                    {/if}
 
                     <!-- Additional Notes -->
                     <div>
-                      <label for="notes" class="block text-sm font-medium text-zinc-300 mb-2">Additional Notes (Optional)</label>
+                      <label for="notes" class="block text-sm font-medium text-zinc-300 mb-2">Additional Notes</label>
                       <textarea
                         id="notes"
                         bind:value={formData.notes}
                         rows="3"
                         class="w-full px-4 py-3 bg-[#09090B] border border-zinc-700 rounded-lg text-white placeholder-zinc-500 focus:outline-none focus:border-red-500 transition-colors resize-none"
-                        placeholder="Any specific requirements or concerns..."
+                        placeholder="Any specific requirements, concerns, or details about your property..."
                       ></textarea>
                     </div>
                   </div>
@@ -436,7 +405,7 @@
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                       <!-- Email -->
                       <div>
-                        <label for="email" class="block text-sm font-medium text-zinc-300 mb-2">Email *</label>
+                        <label for="email" class="block text-sm font-medium text-zinc-300 mb-2">Email</label>
                         <input
                           id="email"
                           type="email"
@@ -451,7 +420,7 @@
 
                       <!-- Phone -->
                       <div>
-                        <label for="phone" class="block text-sm font-medium text-zinc-300 mb-2">Phone Number *</label>
+                        <label for="phone" class="block text-sm font-medium text-zinc-300 mb-2">Phone Number</label>
                         <input
                           id="phone"
                           type="tel"
@@ -464,6 +433,8 @@
                         {/if}
                       </div>
                     </div>
+
+                    <p class="text-zinc-500 text-xs -mt-2">* Please provide at least a phone number or email address so we can reach you.</p>
 
                     <!-- Contact Preferences -->
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">

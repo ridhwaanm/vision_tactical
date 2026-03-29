@@ -1,4 +1,4 @@
-import { h as head, a as attr_class, d as stringify, c as escape_html, e as ensure_array_like, b as attr } from "../../../../chunks/index.js";
+import { h as head, g as attr_style, d as stringify, c as escape_html, e as ensure_array_like, b as attr } from "../../../../chunks/index.js";
 import { G as GlowCard } from "../../../../chunks/GlowCard.js";
 function _page($$renderer, $$props) {
   $$renderer.component(($$renderer2) => {
@@ -11,7 +11,7 @@ function _page($$renderer, $$props) {
     });
     if (data.service) {
       $$renderer2.push("<!--[0-->");
-      $$renderer2.push(`<div class="bg-[#09090B]"><section class="relative min-h-[60vh] flex items-center overflow-hidden"><div class="absolute inset-0 z-0"><div class="absolute inset-0 bg-gradient-to-b from-[#09090B]/90 via-[#09090B]/70 to-[#09090B] z-10"></div> <div${attr_class(`absolute inset-0 bg-[url('/images/services/${stringify(data.service.slug)}.jpg')] bg-cover bg-center`)}></div></div> <div class="glow-ambient glow-ambient-top"></div> <div class="container mx-auto px-4 relative z-20 py-32"><div class="max-w-4xl"><p class="overline mb-4">OUR SERVICES</p> <h1 class="heading-gradient text-4xl md:text-5xl font-bold mb-6">${escape_html(data.service.title)}</h1> <p class="text-zinc-400 text-lg md:text-xl leading-relaxed">${escape_html(data.service.shortDescription)}</p></div></div></section> <section class="py-24"><div class="container mx-auto px-4"><div class="grid grid-cols-1 lg:grid-cols-3 gap-12"><div class="lg:col-span-2 space-y-16"><div><h2 class="text-2xl font-bold text-white mb-6">Overview</h2> <div class="prose prose-invert max-w-none"><!--[-->`);
+      $$renderer2.push(`<div class="bg-[#09090B]"><section class="relative min-h-[60vh] flex items-center overflow-hidden"><div class="absolute inset-0 z-0"><div class="absolute inset-0 bg-gradient-to-b from-[#09090B]/90 via-[#09090B]/70 to-[#09090B] z-10"></div> <div class="absolute inset-0 bg-cover bg-center"${attr_style(`background-image: url('/images/services/${stringify(data.service.slug)}.jpg')`)}></div></div> <div class="glow-ambient glow-ambient-top"></div> <div class="container mx-auto px-4 relative z-20 py-32"><div class="max-w-4xl"><p class="overline mb-4">OUR SERVICES</p> <h1 class="heading-gradient text-4xl md:text-5xl font-bold mb-6">${escape_html(data.service.title)}</h1> <p class="text-zinc-400 text-lg md:text-xl leading-relaxed">${escape_html(data.service.shortDescription)}</p></div></div></section> <section class="py-24"><div class="container mx-auto px-4"><div class="grid grid-cols-1 lg:grid-cols-3 gap-12"><div class="lg:col-span-2 space-y-16"><div><h2 class="text-2xl font-bold text-white mb-6">Overview</h2> <div class="prose prose-invert max-w-none"><!--[-->`);
       const each_array = ensure_array_like(data.service.content.intro.split("\n\n"));
       for (let $$index = 0, $$length = each_array.length; $$index < $$length; $$index++) {
         let paragraph = each_array[$$index];

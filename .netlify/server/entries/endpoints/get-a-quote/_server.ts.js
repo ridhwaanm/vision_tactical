@@ -10,7 +10,6 @@ const POST = async ({ request }) => {
       propertyType: formData.propertyType,
       propertySize: formData.propertySize,
       accessPoints: formData.accessPoints,
-      existingSecurity: formData.existingSecurity,
       notes: formData.notes,
       fullName: formData.fullName,
       companyName: formData.companyName,
@@ -22,13 +21,15 @@ const POST = async ({ request }) => {
     if (!emailResult.success) {
       console.error("Failed to send quote email:", emailResult.error);
     }
-    const confirmResult = await sendQuoteConfirmationEmail(
-      formData.email,
-      reference,
-      formData.fullName
-    );
-    if (!confirmResult.success) {
-      console.error("Failed to send confirmation email:", confirmResult.error);
+    if (formData.email) {
+      const confirmResult = await sendQuoteConfirmationEmail(
+        formData.email,
+        reference,
+        formData.fullName
+      );
+      if (!confirmResult.success) {
+        console.error("Failed to send confirmation email:", confirmResult.error);
+      }
     }
     return new Response(JSON.stringify({ success: true, reference }), {
       headers: { "Content-Type": "application/json" }

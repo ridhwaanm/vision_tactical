@@ -20,7 +20,7 @@ function _page($$renderer) {
               browser preferences.</p> <h2>9. Third-Party Links</h2> <p>Our website may contain links to third-party websites. We are not responsible 
               for the privacy practices of these external sites.</p> <h2>10. Changes to This Policy</h2> <p>We may update this Privacy Policy from time to time. Updated versions will 
               be posted on our website with a revised "Last updated" date.</p> <h2>11. Contact Us</h2> <p>For any questions or concerns about this Privacy Policy or our data practices, 
-              please contact us at:</p> <p><strong>Information Officer</strong><br/> Vision Tactical<br/> 46 West Street, Houghton, Johannesburg<br/> Email: info@visiontactical.co.za<br/> Phone: 084 222 2222</p></div></div></div></div></section></div>`);
+              please contact us at:</p> <p><strong>Information Officer</strong><br/> Vision Tactical<br/> 46 Central Street, Houghton, Johannesburg<br/> Email: info@visiontactical.co.za<br/> Phone: 084 222 2222</p></div></div></div></div></section></div>`);
 }
 export {
   _page as default
