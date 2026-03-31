@@ -5,4 +5,5 @@ export default defineCliConfig({
     projectId: 'j5bp2u04',
     dataset: 'production',
   },
+  studioHost: 'vtac',
 });
