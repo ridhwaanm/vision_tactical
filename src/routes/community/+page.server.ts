@@ -1,5 +1,6 @@
 import { getAllPosts } from '$lib/server/blog';
 import { getSanityPosts } from '$lib/server/sanityQueries';
+import { sanityImageUrl } from '$lib/server/sanity';
 
 export async function load() {
   // Try Sanity first; fall back to local markdown
@@ -12,7 +13,7 @@ export async function load() {
           slug: p.slug.current,
           date: p.publishedAt,
           excerpt: p.excerpt || '',
-          image: p.mainImage?.asset?._ref ? `sanity:${p.mainImage.asset._ref}` : '/images/blog/placeholder.jpg',
+          image: p.mainImage ? sanityImageUrl(p.mainImage, 800) : '/images/og-default.jpg',
           tags: p.tags || [],
           author: p.author || 'Vision Tactical',
           source: 'sanity' as const,

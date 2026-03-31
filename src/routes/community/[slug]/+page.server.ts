@@ -1,6 +1,7 @@
 import { error } from '@sveltejs/kit';
 import { getPostBySlug, getRelatedPosts } from '$lib/server/blog';
 import { getSanityPostBySlug, getSanityRelatedPosts } from '$lib/server/sanityQueries';
+import { sanityImageUrl } from '$lib/server/sanity';
 
 export async function load({ params }: { params: { slug: string } }) {
   const { slug } = params;
@@ -16,11 +17,11 @@ export async function load({ params }: { params: { slug: string } }) {
           slug: sanityPost.slug.current,
           date: sanityPost.publishedAt,
           excerpt: sanityPost.excerpt || '',
-          image: '/images/blog/placeholder.jpg',
+          image: sanityPost.mainImage ? sanityImageUrl(sanityPost.mainImage, 1200) : '/images/og-default.jpg',
           tags: sanityPost.tags || [],
           author: sanityPost.author || 'Vision Tactical',
-          content: '', // body rendered via portable text in the template
-          body: sanityPost.body, // raw portable text blocks
+          content: '',
+          body: sanityPost.body,
           source: 'sanity' as const,
         },
         relatedPosts: related.map((p) => ({
@@ -28,7 +29,7 @@ export async function load({ params }: { params: { slug: string } }) {
           slug: p.slug.current,
           date: p.publishedAt,
           excerpt: p.excerpt || '',
-          image: '/images/blog/placeholder.jpg',
+          image: p.mainImage ? sanityImageUrl(p.mainImage, 400) : '/images/og-default.jpg',
           tags: p.tags || [],
           author: p.author || 'Vision Tactical',
         })),

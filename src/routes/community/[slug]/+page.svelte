@@ -2,6 +2,7 @@
   import type { PageData } from './$types';
   import { reveal } from '$lib/actions/reveal';
   import { formatDate } from '$lib/utils/formatDate';
+  import { PortableText } from '@portabletext/svelte';
 
   let { data }: { data: PageData } = $props();
 
@@ -96,7 +97,11 @@
           <!-- Main Content -->
           <div class="lg:col-span-2">
             <article class="prose prose-invert prose-lg max-w-none" use:reveal>
-              {@html data.post.content}
+              {#if data.post.source === 'sanity' && data.post.body}
+                <PortableText value={data.post.body} />
+              {:else}
+                {@html data.post.content}
+              {/if}
             </article>
 
             <!-- Share Buttons -->
