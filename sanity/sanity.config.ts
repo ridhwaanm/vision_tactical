@@ -7,7 +7,7 @@ export default defineConfig({
   name: 'vision-tactical',
   title: 'Vision Tactical',
 
-  projectId: 'REPLACE_WITH_PROJECT_ID',
+  projectId: 'j5bp2u04',
   dataset: 'production',
 
   plugins: [

@@ -1,10 +1,7 @@
-// import { Resend } from 'resend';
-// import { RESEND_API_KEY, CONTACT_FORM_TO_EMAIL } from '$env/static/private';
+import { Resend } from 'resend';
+import { RESEND_API_KEY, CONTACT_FORM_TO_EMAIL } from '$env/static/private';
 
-// const resend = new Resend(RESEND_API_KEY);
-
-// Demo mode: email sending disabled
-const CONTACT_FORM_TO_EMAIL = '';
+const resend = new Resend(RESEND_API_KEY);
 
 export interface SendEmailOptions {
   to: string;
@@ -17,20 +14,18 @@ export interface SendEmailOptions {
  * Send an email using Resend
  */
 export async function sendEmail(_options: SendEmailOptions) {
-  // Demo mode: email sending disabled
-  // try {
-  //   const data = await resend.emails.send({
-  //     from: _options.from ?? 'Vision Tactical <noreply@visiontactical.co.za>',
-  //     to: _options.to,
-  //     subject: _options.subject,
-  //     html: _options.html
-  //   });
-  //   return { success: true, data };
-  // } catch (error) {
-  //   console.error('Failed to send email:', error);
-  //   return { success: false, error };
-  // }
-  return { success: true, data: null };
+  try {
+    const data = await resend.emails.send({
+      from: _options.from ?? 'Vision Tactical <noreply@visiontactical.co.za>',
+      to: _options.to,
+      subject: _options.subject,
+      html: _options.html
+    });
+    return { success: true, data };
+  } catch (error) {
+    console.error('Failed to send email:', error);
+    return { success: false, error };
+  }
 }
 
 /**

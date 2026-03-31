@@ -10,7 +10,7 @@
     await import('leaflet/dist/leaflet.css');
 
     map = L.map(mapContainer, { zoomControl: false, attributionControl: true })
-      .setView([-26.1617, 28.0584], 16);
+      .setView([-26.156120, 28.058858], 16);
 
     L.control.zoom({ position: 'bottomright' }).addTo(map);
 
@@ -28,7 +28,7 @@
       popupAnchor: [0, -16]
     });
 
-    L.marker([-26.1617, 28.0584], { icon: hqIcon })
+    L.marker([-26.156120, 28.058858], { icon: hqIcon })
       .addTo(map)
       .bindPopup(`<div style="font-family:sans-serif;padding:8px;"><strong style="font-size:14px;">Vision Tactical HQ</strong><p style="margin:4px 0 0;color:#71717A;font-size:12px;">46 Central Street, Houghton<br/>Johannesburg</p></div>`)
       .openPopup();
