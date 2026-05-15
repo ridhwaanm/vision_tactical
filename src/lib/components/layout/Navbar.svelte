@@ -38,7 +38,7 @@
     mobileMenuOpen = false;
   }
 
-  const emergencyPhone = '084 222 2222';
+  const emergencyPhone = '010 972 2600';
   const whatsappNumber = '27842222222';
 </script>
 

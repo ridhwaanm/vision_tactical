@@ -21,7 +21,7 @@
     name: 'Vision Tactical',
     description: seoDescription,
     url: 'https://visiontactical.co.za',
-    telephone: '+27842222222',
+    telephone: '+27109722600',
     email: 'info@visiontactical.co.za',
     address: {
       '@type': 'PostalAddress',
@@ -89,7 +89,7 @@
         </p>
 
         <h1 class="heading-gradient mb-6 max-w-4xl mx-auto" use:reveal={{ delay: 100 }}>
-          Security That Never Sleeps
+          Vigilance in Action.
         </h1>
 
         <p class="text-zinc-400 text-lg md:text-xl max-w-2xl mx-auto mb-10" use:reveal={{ delay: 200 }}>
@@ -300,8 +300,8 @@
           <a href="/get-a-quote" class="btn btn-primary px-8 py-4">
             Get a Free Quote
           </a>
-          <a href="tel:0842222222" class="btn btn-secondary px-8 py-4">
-            Or Call Us: 084 222 2222
+          <a href="tel:0109722600" class="btn btn-secondary px-8 py-4">
+            Or Call Us: 010 972 2600
           </a>
         </div>
       </div>

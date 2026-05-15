@@ -116,7 +116,7 @@
   <title>Contact Us | Vision Tactical | Johannesburg Security</title>
   <meta
     name="description"
-    content="Get in touch with Vision Tactical. Emergency: 084 222 2222. Email: info@visiontactical.co.za. Office: 46 Central Street, Houghton, Johannesburg."
+    content="Get in touch with Vision Tactical. 24/7 Control Room: 010 972 2600. Email: info@visiontactical.co.za. Office: 46 Central Street, Houghton, Johannesburg."
   />
 </svelte:head>
 
@@ -146,16 +146,49 @@
           <div>
             <h2 class="text-xl font-bold text-white mb-6">Contact Information</h2>
             <div class="space-y-6">
-              <!-- Phone -->
+              <!-- Control Room -->
               <div class="flex items-start gap-4">
                 <div class="w-12 h-12 rounded-lg bg-red-500/10 flex items-center justify-center text-red-500 flex-shrink-0">
                   <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                   </svg>
                 </div>
-                <div>
-                  <p class="text-zinc-500 text-sm mb-1">Phone</p>
-                  <a href="tel:0842222222" class="text-white hover:text-red-500 transition-colors font-medium">084 222 2222</a>
+                <div class="space-y-2">
+                  <p class="text-zinc-500 text-sm">Control Room (24/7)</p>
+                  <div>
+                    <a href="tel:0109722600" class="text-white hover:text-red-500 transition-colors font-medium">010 972 2600</a>
+                    <span class="ml-2 text-xs uppercase tracking-wider text-red-500/80">Primary</span>
+                  </div>
+                  <div class="flex items-center gap-2 flex-wrap">
+                    <a href="tel:0842222222" class="text-white hover:text-red-500 transition-colors font-medium">084 222 2222</a>
+                    <a
+                      href="https://wa.me/27842222222"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="inline-flex items-center gap-1 text-xs text-[#25D366] hover:text-[#20BA5A] transition-colors"
+                      aria-label="WhatsApp 084 222 2222"
+                    >
+                      <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M.057 24l1.687-6.163a11.867 11.867 0 01-1.587-5.946C.16 5.335 5.495 0 12.05 0a11.817 11.817 0 018.413 3.488 11.824 11.824 0 013.48 8.413c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 01-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.86 9.86 0 001.51 5.26l-.999 3.648 3.978-1.607z"/>
+                      </svg>
+                      WhatsApp
+                    </a>
+                  </div>
+                  <div class="flex items-center gap-2 flex-wrap">
+                    <a href="tel:0610712001" class="text-white hover:text-red-500 transition-colors font-medium">061 071 2001</a>
+                    <a
+                      href="https://wa.me/27610712001"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="inline-flex items-center gap-1 text-xs text-[#25D366] hover:text-[#20BA5A] transition-colors"
+                      aria-label="WhatsApp 061 071 2001"
+                    >
+                      <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M.057 24l1.687-6.163a11.867 11.867 0 01-1.587-5.946C.16 5.335 5.495 0 12.05 0a11.817 11.817 0 018.413 3.488 11.824 11.824 0 013.48 8.413c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 01-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.86 9.86 0 001.51 5.26l-.999 3.648 3.978-1.607z"/>
+                      </svg>
+                      WhatsApp
+                    </a>
+                  </div>
                 </div>
               </div>
 
@@ -213,8 +246,8 @@
             <p class="text-zinc-400 text-sm mb-4">
               For immediate assistance, call our 24/7 emergency line.
             </p>
-            <a href="tel:0842222222" class="block text-center btn btn-primary">
-              Call 084 222 2222
+            <a href="tel:0109722600" class="block text-center btn btn-primary">
+              Call 010 972 2600
             </a>
           </div>
         </div>

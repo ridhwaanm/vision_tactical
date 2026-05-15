@@ -127,7 +127,7 @@
                   </div>
                   <div>
                     <p class="text-zinc-400 text-xs uppercase tracking-wider">24/7 Emergency</p>
-                    <a href="tel:0842222222" class="text-white font-bold text-lg hover:text-red-500 transition-colors">084 222 2222</a>
+                    <a href="tel:0109722600" class="text-white font-bold text-lg hover:text-red-500 transition-colors">010 972 2600</a>
                   </div>
                 </div>
                 <p class="text-zinc-500 text-sm">

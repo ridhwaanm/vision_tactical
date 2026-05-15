@@ -156,8 +156,8 @@
           <a href="/get-a-quote" class="btn btn-primary px-8 py-4">
             Get a Free Consultation
           </a>
-          <a href="tel:0842222222" class="btn btn-secondary px-8 py-4">
-            Call Us: 084 222 2222
+          <a href="tel:0109722600" class="btn btn-secondary px-8 py-4">
+            Call Us: 010 972 2600
           </a>
         </div>
       </div>

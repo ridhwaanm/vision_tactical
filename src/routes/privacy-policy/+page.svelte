@@ -136,7 +136,7 @@
               Vision Tactical<br />
               46 Central Street, Houghton, Johannesburg<br />
               Email: info@visiontactical.co.za<br />
-              Phone: 084 222 2222
+              Phone: 010 972 2600
             </p>
           </div>
         </div>

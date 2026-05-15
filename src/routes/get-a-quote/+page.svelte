@@ -226,7 +226,7 @@
               </p>
               <div class="p-4 bg-red-500/10 rounded-lg inline-block">
                 <p class="text-red-400 text-sm font-medium">
-                  For emergencies, call us directly: 084 222 2222
+                  For emergencies, call us directly: 010 972 2600
                 </p>
               </div>
             </div>
@@ -611,7 +611,7 @@
         <!-- Emergency Banner -->
         <div class="mt-8 p-6 card bg-red-500/10 border-red-500/30 text-center" use:reveal={{ delay: 200 }}>
           <p class="text-red-400 font-medium">
-            For emergencies, call us directly: <a href="tel:0842222222" class="underline hover:text-red-300">084 222 2222</a>
+            For emergencies, call us directly: <a href="tel:0109722600" class="underline hover:text-red-300">010 972 2600</a>
           </p>
         </div>
       </div>

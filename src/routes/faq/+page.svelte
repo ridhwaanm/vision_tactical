@@ -138,8 +138,8 @@
           <a href="/contact" class="btn btn-primary px-8 py-4">
             Contact Us
           </a>
-          <a href="tel:0842222222" class="btn btn-secondary px-8 py-4">
-            Call: 084 222 2222
+          <a href="tel:0109722600" class="btn btn-secondary px-8 py-4">
+            Call: 010 972 2600
           </a>
         </div>
       </div>

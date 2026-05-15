@@ -55,8 +55,8 @@
       <p class="text-zinc-400 text-sm mb-2">
         For immediate assistance, call our 24/7 emergency line:
       </p>
-      <a href="tel:0842222222" class="text-2xl font-bold text-white hover:text-red-500 transition-colors">
-        084 222 2222
+      <a href="tel:0109722600" class="text-2xl font-bold text-white hover:text-red-500 transition-colors">
+        010 972 2600
       </a>
     </div>
   </div>

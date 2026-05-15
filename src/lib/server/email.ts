@@ -4,7 +4,7 @@ import { RESEND_API_KEY, CONTACT_FORM_TO_EMAIL } from '$env/static/private';
 const resend = new Resend(RESEND_API_KEY);
 
 export interface SendEmailOptions {
-  to: string;
+  to: string | string[];
   subject: string;
   html: string;
   from?: string;
@@ -144,7 +144,11 @@ export async function sendQuoteRequestEmail(formData: {
   `;
 
   return sendEmail({
-    to: CONTACT_FORM_TO_EMAIL,
+    to: [
+      'Admin@visiontactical.co.za',
+      'Yaseen@visiontactical.co.za',
+      'info@visiontactical.co.za'
+    ],
     subject: `Quote Request: ${formData.reference} - ${formData.fullName}`,
     html
   });
@@ -160,7 +164,7 @@ export async function sendQuoteConfirmationEmail(clientEmail: string, reference:
     <p>Thank you for contacting Vision Tactical. We have received your quote request.</p>
     <p><strong>Reference Number:</strong> ${reference}</p>
     <p>A member of our team will contact you within 24 hours to discuss your requirements.</p>
-    <p>For emergencies, please call us directly on 084 222 2222.</p>
+    <p>For emergencies, please call our 24/7 Control Room on 010 972 2600.</p>
     <p>Best regards,<br>Vision Tactical Team</p>
   `;
 
