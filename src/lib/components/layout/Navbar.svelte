@@ -49,7 +49,7 @@
     <div class="flex items-center justify-between h-20">
       <!-- Logo -->
       <a href="/" class="flex items-center space-x-2 group">
-        <img src="/images/logo-navbar.svg" alt="Vision Tactical" class="h-10 w-auto transition-opacity group-hover:opacity-80" />
+        <img src="/images/logo/Vision Tactical Logo_dark.svg" alt="Vision Tactical" class="h-12 w-auto transition-opacity group-hover:opacity-80" />
       </a>
 
       <!-- Desktop Navigation -->
