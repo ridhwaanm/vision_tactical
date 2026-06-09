@@ -7,7 +7,7 @@
   target="_blank"
   rel="noopener noreferrer"
   style="background: radial-gradient(circle, #6b7280 0%, #7f1d1d 100%);"
-  class="fixed bottom-6 right-6 z-50 text-white p-4 rounded-full shadow-lg transition-all hover:scale-110 focus:outline-none focus:ring-2 focus:ring-red-900 focus:ring-offset-2 focus:ring-offset-[#09090B]"
+  class="fixed bottom-6 right-6 z-50 text-white p-4 rounded-full shadow-lg transition-all hover:scale-110 focus:outline-none focus:ring-2 focus:ring-red-900 focus:ring-offset-2 focus:ring-offset-base"
   aria-label="Chat on WhatsApp"
 >
   <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 24 24">

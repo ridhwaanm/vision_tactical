@@ -12,7 +12,7 @@
   Skip to main content
 </a>
 
-<div class="min-h-screen flex flex-col bg-[#09090B]">
+<div class="min-h-screen flex flex-col bg-base">
   <Navbar nav={data.nav} />
 
   <main id="main-content" class="flex-grow" tabindex="-1">

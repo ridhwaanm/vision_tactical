@@ -9,13 +9,13 @@
   ];
 </script>
 
-<footer class="bg-[#09090B] border-t border-zinc-800">
+<footer class="bg-base border-t border-line">
   <div class="container mx-auto px-4 py-16">
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
       <!-- Column 1: Company Info -->
       <div>
         <img src="/images/logo/Vision Tactical Logo_dark.svg" alt="Vision Tactical" class="h-12 w-auto mb-6" />
-        <p class="text-zinc-400 text-sm leading-relaxed mb-6">
+        <p class="text-secondary text-sm leading-relaxed mb-6">
           Vision Tactical is Johannesburg's trusted private security company, providing comprehensive
           security solutions including armed response, manned guarding, drone surveillance, and
           VIP protection.
@@ -24,7 +24,7 @@
           {#each socialLinks as link}
             <a
               href={link.href}
-              class="text-zinc-500 hover:text-red-500 transition-colors"
+              class="text-muted hover:text-accent-red transition-colors"
               aria-label={link.name}
               target="_blank"
               rel="noopener noreferrer"
@@ -39,76 +39,76 @@
 
       <!-- Column 2: Quick Links -->
       <div>
-        <h3 class="text-sm font-semibold text-white mb-4 uppercase tracking-wider">Quick Links</h3>
+        <h3 class="text-sm font-semibold text-primary mb-4 uppercase tracking-wider">Quick Links</h3>
         <ul class="space-y-3">
-          <li><a href="/about" class="text-zinc-400 hover:text-white transition-colors text-sm">About</a></li>
-          <li><a href="/services" class="text-zinc-400 hover:text-white transition-colors text-sm">Services</a></li>
-          <li><a href="/community" class="text-zinc-400 hover:text-white transition-colors text-sm">Community</a></li>
-          <li><a href="/awards" class="text-zinc-400 hover:text-white transition-colors text-sm">Awards</a></li>
-          <li><a href="/careers" class="text-zinc-400 hover:text-white transition-colors text-sm">Careers</a></li>
-          <li><a href="/contact" class="text-zinc-400 hover:text-white transition-colors text-sm">Contact</a></li>
+          <li><a href="/about" class="text-secondary hover:text-primary transition-colors text-sm">About</a></li>
+          <li><a href="/services" class="text-secondary hover:text-primary transition-colors text-sm">Services</a></li>
+          <li><a href="/community" class="text-secondary hover:text-primary transition-colors text-sm">Community</a></li>
+          <li><a href="/awards" class="text-secondary hover:text-primary transition-colors text-sm">Awards</a></li>
+          <li><a href="/careers" class="text-secondary hover:text-primary transition-colors text-sm">Careers</a></li>
+          <li><a href="/contact" class="text-secondary hover:text-primary transition-colors text-sm">Contact</a></li>
         </ul>
       </div>
 
       <!-- Column 3: Services -->
       <div>
-        <h3 class="text-sm font-semibold text-white mb-4 uppercase tracking-wider">Services</h3>
+        <h3 class="text-sm font-semibold text-primary mb-4 uppercase tracking-wider">Services</h3>
         <ul class="space-y-3">
-          <li><a href="/services/manned-guarding" class="text-zinc-400 hover:text-white transition-colors text-sm">Manned Guarding</a></li>
-          <li><a href="/services/armed-response" class="text-zinc-400 hover:text-white transition-colors text-sm">Armed Response</a></li>
-          <li><a href="/services/vip-protection" class="text-zinc-400 hover:text-white transition-colors text-sm">VIP Protection</a></li>
-          <li><a href="/services/emergency-medical" class="text-zinc-400 hover:text-white transition-colors text-sm">Emergency Medical</a></li>
-          <li><a href="/services/drone-surveillance" class="text-zinc-400 hover:text-white transition-colors text-sm">Drone Surveillance</a></li>
-          <li><a href="/services/cctv-alarms" class="text-zinc-400 hover:text-white transition-colors text-sm">CCTV &amp; Alarms</a></li>
-          <li><a href="/services/event-security" class="text-zinc-400 hover:text-white transition-colors text-sm">Event Security</a></li>
-          <li><a href="/services/dog-handling" class="text-zinc-400 hover:text-white transition-colors text-sm">Dog Handling</a></li>
+          <li><a href="/services/manned-guarding" class="text-secondary hover:text-primary transition-colors text-sm">Manned Guarding</a></li>
+          <li><a href="/services/armed-response" class="text-secondary hover:text-primary transition-colors text-sm">Armed Response</a></li>
+          <li><a href="/services/vip-protection" class="text-secondary hover:text-primary transition-colors text-sm">VIP Protection</a></li>
+          <li><a href="/services/emergency-medical" class="text-secondary hover:text-primary transition-colors text-sm">Emergency Medical</a></li>
+          <li><a href="/services/drone-surveillance" class="text-secondary hover:text-primary transition-colors text-sm">Drone Surveillance</a></li>
+          <li><a href="/services/cctv-alarms" class="text-secondary hover:text-primary transition-colors text-sm">CCTV &amp; Alarms</a></li>
+          <li><a href="/services/event-security" class="text-secondary hover:text-primary transition-colors text-sm">Event Security</a></li>
+          <li><a href="/services/dog-handling" class="text-secondary hover:text-primary transition-colors text-sm">Dog Handling</a></li>
         </ul>
       </div>
 
       <!-- Column 4: Contact Info -->
       <div>
-        <h3 class="text-sm font-semibold text-white mb-4 uppercase tracking-wider">Contact Us</h3>
+        <h3 class="text-sm font-semibold text-primary mb-4 uppercase tracking-wider">Contact Us</h3>
         <ul class="space-y-4">
           <li class="flex items-start space-x-3">
-            <svg class="w-5 h-5 text-red-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg class="w-5 h-5 text-accent-red mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
             </svg>
-            <span class="text-zinc-400 text-sm">46 Central Street, Houghton, Johannesburg</span>
+            <span class="text-secondary text-sm">46 Central Street, Houghton, Johannesburg</span>
           </li>
           <li class="flex items-center space-x-3">
-            <svg class="w-5 h-5 text-red-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg class="w-5 h-5 text-accent-red flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
             </svg>
-            <a href="tel:0109722600" class="text-zinc-400 hover:text-white text-sm transition-colors">010 972 2600</a>
+            <a href="tel:0109722600" class="text-secondary hover:text-primary text-sm transition-colors">010 972 2600</a>
           </li>
           <li class="flex items-center space-x-3">
-            <svg class="w-5 h-5 text-red-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg class="w-5 h-5 text-accent-red flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
             </svg>
-            <a href="mailto:info@visiontactical.co.za" class="text-zinc-400 hover:text-white text-sm transition-colors">info@visiontactical.co.za</a>
+            <a href="mailto:info@visiontactical.co.za" class="text-secondary hover:text-primary text-sm transition-colors">info@visiontactical.co.za</a>
           </li>
           <li class="flex items-center space-x-3">
-            <svg class="w-5 h-5 text-red-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg class="w-5 h-5 text-accent-red flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
             </svg>
-            <span class="text-zinc-400 text-sm">24/7 Emergency Response</span>
+            <span class="text-secondary text-sm">24/7 Emergency Response</span>
           </li>
         </ul>
       </div>
     </div>
 
     <!-- Bottom Bar -->
-    <div class="mt-16 pt-8 border-t border-zinc-800">
+    <div class="mt-16 pt-8 border-t border-line">
       <div class="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-        <p class="text-zinc-500 text-sm">
+        <p class="text-muted text-sm">
           &copy; {currentYear} Vision Tactical. All rights reserved.
         </p>
         <div class="flex space-x-6 text-sm">
-          <a href="/privacy-policy" class="text-zinc-500 hover:text-zinc-300 transition-colors">Privacy Policy</a>
-          <a href="/terms-of-service" class="text-zinc-500 hover:text-zinc-300 transition-colors">Terms of Service</a>
+          <a href="/privacy-policy" class="text-muted hover:text-secondary transition-colors">Privacy Policy</a>
+          <a href="/terms-of-service" class="text-muted hover:text-secondary transition-colors">Terms of Service</a>
         </div>
-        <p class="text-zinc-500 text-sm">
+        <p class="text-muted text-sm">
           PSIRA Reg No: 2464883
         </p>
       </div>

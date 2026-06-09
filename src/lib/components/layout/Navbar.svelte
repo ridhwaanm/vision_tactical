@@ -90,7 +90,7 @@
                         href={child.href}
                         class="block p-3 rounded-lg transition-colors group {$page.url.pathname === child.href ? 'bg-white/[0.05]' : 'hover:bg-white/[0.10]'}"
                       >
-                        <span class="text-sm font-medium text-white">{child.label}</span>
+                        <span class="text-sm font-medium text-primary">{child.label}</span>
                       </a>
                     {/each}
                   </div>
@@ -112,7 +112,7 @@
       <div class="hidden lg:flex items-center space-x-4">
         <a
           href="tel:{emergencyPhone}"
-          class="flex items-center space-x-2 text-red-500 font-medium text-sm hover:text-red-400 transition-colors"
+          class="flex items-center space-x-2 text-accent-red font-medium text-sm hover:text-accent-red-soft transition-colors"
         >
           <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
             <path
@@ -131,7 +131,7 @@
 
       <!-- Mobile Menu Button -->
       <button
-        class="lg:hidden text-zinc-400 hover:text-white p-2 transition-colors"
+        class="lg:hidden text-secondary hover:text-primary p-2 transition-colors"
         onclick={toggleMobileMenu}
         aria-label="Toggle menu"
         aria-expanded={mobileMenuOpen}
@@ -151,17 +151,17 @@
 
   <!-- Mobile Menu -->
   {#if mobileMenuOpen}
-    <div class="lg:hidden fixed inset-0 top-20 bg-[#09090B] z-40 overflow-y-auto border-t border-zinc-800">
+    <div class="lg:hidden fixed inset-0 top-20 bg-base z-40 overflow-y-auto border-t border-line">
       <div class="container mx-auto px-4 py-6">
         <nav class="space-y-1">
           {#each nav as item}
             {#if item.children}
               <div>
                 <details class="group">
-                  <summary class="flex items-center justify-between text-white py-4 cursor-pointer list-none border-b border-zinc-800">
+                  <summary class="flex items-center justify-between text-primary py-4 cursor-pointer list-none border-b border-line">
                     <span class="font-medium">{item.label}</span>
                     <svg
-                      class="w-5 h-5 transition-transform group-open:rotate-180 text-zinc-500"
+                      class="w-5 h-5 transition-transform group-open:rotate-180 text-muted"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
@@ -173,7 +173,7 @@
                     {#each item.children as child}
                       <a
                         href={child.href}
-                        class="block text-zinc-400 hover:text-white py-3 transition-colors border-l-2 border-transparent hover:border-red-500 pl-4 {$page.url.pathname === child.href ? 'text-red-500 border-red-500' : ''}"
+                        class="block text-secondary hover:text-primary py-3 transition-colors border-l-2 border-transparent hover:border-accent-red pl-4 {$page.url.pathname === child.href ? 'text-accent-red border-accent-red' : ''}"
                         onclick={closeMobileMenu}
                       >
                         {child.label}
@@ -185,7 +185,7 @@
             {:else}
               <a
                 href={item.href}
-                class="block text-white py-4 border-b border-zinc-800 font-medium {$page.url.pathname === item.href ? 'text-red-500' : ''}"
+                class="block text-primary py-4 border-b border-line font-medium {$page.url.pathname === item.href ? 'text-accent-red' : ''}"
                 onclick={closeMobileMenu}
               >
                 {item.label}
@@ -194,10 +194,10 @@
           {/each}
         </nav>
 
-        <div class="mt-8 pt-8 border-t border-zinc-800 space-y-4">
+        <div class="mt-8 pt-8 border-t border-line space-y-4">
           <a
             href="tel:{emergencyPhone}"
-            class="flex items-center space-x-2 text-red-500 font-medium"
+            class="flex items-center space-x-2 text-accent-red font-medium"
           >
             <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
               <path
