@@ -1,5 +1,5 @@
 import { g as getAllPosts } from "../../../chunks/blog.js";
-import { g as getSanityPosts } from "../../../chunks/sanityQueries.js";
+import { g as getSanityPosts, s as sanityImageUrl } from "../../../chunks/sanityQueries.js";
 async function load() {
   try {
     const sanityPosts = await getSanityPosts();
@@ -10,7 +10,7 @@ async function load() {
           slug: p.slug.current,
           date: p.publishedAt,
           excerpt: p.excerpt || "",
-          image: p.mainImage?.asset?._ref ? `sanity:${p.mainImage.asset._ref}` : "/images/blog/placeholder.jpg",
+          image: p.mainImage ? sanityImageUrl(p.mainImage, 800) : "/images/og-default.jpg",
           tags: p.tags || [],
           author: p.author || "Vision Tactical",
           source: "sanity"

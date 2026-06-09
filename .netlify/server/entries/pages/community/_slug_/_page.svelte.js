@@ -1,9 +1,554 @@
-import { h as head, e as ensure_array_like, b as attr, c as escape_html, a as attr_class, d as stringify, aa as derived } from "../../../../chunks/index.js";
+import { aa as derived, b as attr, ab as element, ac as fallback, c as escape_html, e as ensure_array_like, h as head, a as attr_class, d as stringify } from "../../../../chunks/index.js";
 import { f as formatDate } from "../../../../chunks/formatDate.js";
+import { spanToPlainText, isPortableTextToolkitList, isPortableTextListItemBlock, isPortableTextToolkitSpan, isPortableTextBlock, isPortableTextToolkitTextNode, buildMarksTree, nestLists, LIST_NEST_MODE_HTML } from "@portabletext/toolkit";
+import "clsx";
 function html(value) {
   var html2 = String(value ?? "");
   var open = "<!---->";
   return open + html2 + "<!---->";
+}
+function getRandomKey() {
+  return Math.random().toFixed(5).split(".")[1];
+}
+function assertSpanKey(span) {
+  return {
+    _key: span._key || getRandomKey(),
+    ...span
+  };
+}
+function assertBlockKey(block) {
+  return {
+    _key: block._key || getRandomKey(),
+    ...block,
+    ...block._type === "block" && Array.isArray(block.children) ? {
+      children: block.children.map(assertSpanKey)
+    } : {}
+  };
+}
+function DefaultMark($$renderer, $$props) {
+  let { portableText, children } = $$props;
+  let markType = derived(() => portableText.markType);
+  if (markType() === "strong") {
+    $$renderer.push("<!--[0-->");
+    $$renderer.push(`<strong>`);
+    children?.($$renderer);
+    $$renderer.push(`<!----></strong>`);
+  } else if (markType() === "em") {
+    $$renderer.push("<!--[1-->");
+    $$renderer.push(`<em>`);
+    children?.($$renderer);
+    $$renderer.push(`<!----></em>`);
+  } else if (markType() === "code") {
+    $$renderer.push("<!--[2-->");
+    $$renderer.push(`<code>`);
+    children?.($$renderer);
+    $$renderer.push(`<!----></code>`);
+  } else if (markType() === "underline") {
+    $$renderer.push("<!--[3-->");
+    $$renderer.push(`<span style="text-decoration:underline;">`);
+    children?.($$renderer);
+    $$renderer.push(`<!----></span>`);
+  } else if (markType() === "strike-through") {
+    $$renderer.push("<!--[4-->");
+    $$renderer.push(`<del>`);
+    children?.($$renderer);
+    $$renderer.push(`<!----></del>`);
+  } else {
+    $$renderer.push("<!--[-1-->");
+    children?.($$renderer);
+    $$renderer.push(`<!---->`);
+  }
+  $$renderer.push(`<!--]-->`);
+}
+function DefaultLink($$renderer, $$props) {
+  $$renderer.component(($$renderer2) => {
+    let { portableText, children } = $$props;
+    let href = derived(() => {
+      const { href: href2, url, link, value } = portableText.value;
+      return href2 || url || link || value;
+    });
+    if (typeof href() === "string") {
+      $$renderer2.push("<!--[0-->");
+      $$renderer2.push(`<a${attr("href", href())}>`);
+      children?.($$renderer2);
+      $$renderer2.push(`<!----></a>`);
+    } else {
+      $$renderer2.push("<!--[-1-->");
+      children?.($$renderer2);
+      $$renderer2.push(`<!---->`);
+    }
+    $$renderer2.push(`<!--]-->`);
+  });
+}
+function DefaultBlock($$renderer, $$props) {
+  $$renderer.component(($$renderer2) => {
+    let { portableText, children } = $$props;
+    let style = derived(() => portableText.value.style || "normal");
+    if (["h1", "h2", "h3", "h4", "h5", "h6", "blockquote"].includes(style())) {
+      $$renderer2.push("<!--[0-->");
+      element($$renderer2, style(), void 0, () => {
+        children?.($$renderer2);
+        $$renderer2.push(`<!---->`);
+      });
+    } else if (style() === "normal") {
+      $$renderer2.push("<!--[1-->");
+      $$renderer2.push(`<p>`);
+      children?.($$renderer2);
+      $$renderer2.push(`<!----></p>`);
+    } else {
+      $$renderer2.push("<!--[-1-->");
+      children?.($$renderer2);
+      $$renderer2.push(`<!---->`);
+    }
+    $$renderer2.push(`<!--]-->`);
+  });
+}
+function DefaultList($$renderer, $$props) {
+  let { portableText, children } = $$props;
+  let value = derived(() => portableText.value);
+  let listItem = derived(() => value().listItem);
+  if (listItem() === "number") {
+    $$renderer.push("<!--[0-->");
+    $$renderer.push(`<ol>`);
+    children?.($$renderer);
+    $$renderer.push(`<!----></ol>`);
+  } else {
+    $$renderer.push("<!--[-1-->");
+    $$renderer.push(`<ul>`);
+    children?.($$renderer);
+    $$renderer.push(`<!----></ul>`);
+  }
+  $$renderer.push(`<!--]-->`);
+}
+function DefaultListItem($$renderer, $$props) {
+  let { children } = $$props;
+  $$renderer.push(`<li>`);
+  children?.($$renderer);
+  $$renderer.push(`<!----></li>`);
+}
+function DefaultHardBreak($$renderer) {
+  $$renderer.push(`<br/>`);
+}
+function UnknownType($$renderer, $$props) {
+  let { children } = $$props;
+  children?.($$renderer);
+  $$renderer.push(`<!---->`);
+}
+const defaultComponents = {
+  marks: {
+    "strike-through": DefaultMark,
+    code: DefaultMark,
+    em: DefaultMark,
+    strong: DefaultMark,
+    underline: DefaultMark,
+    link: DefaultLink
+  },
+  block: {
+    blockquote: DefaultBlock,
+    h1: DefaultBlock,
+    h2: DefaultBlock,
+    h3: DefaultBlock,
+    h4: DefaultBlock,
+    h5: DefaultBlock,
+    h6: DefaultBlock,
+    normal: DefaultBlock
+  },
+  list: {
+    bullet: DefaultList,
+    number: DefaultList
+  },
+  listItem: {
+    bullet: DefaultListItem,
+    number: DefaultListItem
+  },
+  types: {},
+  hardBreak: DefaultHardBreak,
+  unknownBlockStyle: DefaultBlock,
+  unknownList: DefaultList,
+  unknownListItem: DefaultListItem,
+  unknownMark: DefaultMark,
+  unknownType: UnknownType
+};
+function mergeComponents(parent, overrides = {}) {
+  return {
+    ...parent,
+    ...overrides,
+    block: mergeDeeply(parent, overrides, "block"),
+    list: mergeDeeply(parent, overrides, "list"),
+    listItem: mergeDeeply(parent, overrides, "listItem"),
+    marks: mergeDeeply(parent, overrides, "marks"),
+    types: mergeDeeply(parent, overrides, "types")
+  };
+}
+function mergeDeeply(parent, overrides, key) {
+  const override = overrides[key];
+  const parentVal = parent[key];
+  if (typeof override === "function") {
+    return override;
+  }
+  if (override && typeof parentVal === "function") {
+    return override;
+  }
+  if (override) {
+    return { ...parentVal, ...override };
+  }
+  return parentVal;
+}
+function RenderBlock($$renderer, $$props) {
+  $$renderer.component(($$renderer2) => {
+    let { global, node, indexInParent, children } = $$props;
+    let components = derived(() => global.components);
+    let style = derived(() => fallback(node.style, "normal"));
+    let blockComponent = derived(() => typeof components().block === "function" ? components().block : components().block[style()]);
+    let blockProps = derived(() => {
+      return { global, indexInParent, value: node };
+    });
+    let BlockComponent = derived(() => blockComponent() || components().unknownBlockStyle);
+    if (BlockComponent()) {
+      $$renderer2.push("<!--[-->");
+      BlockComponent()($$renderer2, {
+        portableText: blockProps(),
+        children: ($$renderer3) => {
+          children?.($$renderer3);
+          $$renderer3.push(`<!---->`);
+        },
+        $$slots: { default: true }
+      });
+      $$renderer2.push("<!--]-->");
+    } else {
+      $$renderer2.push("<!--[!-->");
+      $$renderer2.push("<!--]-->");
+    }
+  });
+}
+function RenderCustomBlock($$renderer, $$props) {
+  $$renderer.component(($$renderer2) => {
+    let { global, node, parentBlock, indexInParent, isInline = false } = $$props;
+    let components = derived(() => global.components);
+    let _type = derived(() => node._type);
+    let customComponent = derived(() => components().types[_type()]);
+    let componentProps = derived(() => /* @__PURE__ */ (() => {
+      return { global, value: node, indexInParent, parentBlock, isInline };
+    })());
+    let CustomComponent = derived(() => customComponent() || components().unknownType);
+    if (CustomComponent()) {
+      $$renderer2.push("<!--[-->");
+      CustomComponent()($$renderer2, { portableText: componentProps() });
+      $$renderer2.push("<!--]-->");
+    } else {
+      $$renderer2.push("<!--[!-->");
+      $$renderer2.push("<!--]-->");
+    }
+  });
+}
+function RenderList($$renderer, $$props) {
+  $$renderer.component(($$renderer2) => {
+    let { global, indexInParent, node, children } = $$props;
+    let listComponent = derived(() => {
+      const { list } = global.components;
+      return typeof list === "function" ? list : list[node.listItem];
+    });
+    let listProps = derived(() => ({ global, value: node, indexInParent }));
+    let ListComponent = derived(() => listComponent() || global.components.unknownList);
+    if (ListComponent()) {
+      $$renderer2.push("<!--[-->");
+      ListComponent()($$renderer2, {
+        portableText: listProps(),
+        children: ($$renderer3) => {
+          children?.($$renderer3);
+          $$renderer3.push(`<!---->`);
+        },
+        $$slots: { default: true }
+      });
+      $$renderer2.push("<!--]-->");
+    } else {
+      $$renderer2.push("<!--[!-->");
+      $$renderer2.push("<!--]-->");
+    }
+  });
+}
+function RenderListItem($$renderer, $$props) {
+  $$renderer.component(($$renderer2) => {
+    let { global, indexInParent, node, children } = $$props;
+    let components = derived(() => global.components);
+    let style = derived(() => node.style ?? "normal");
+    let listItemComponent = derived(() => typeof components().listItem === "function" ? components().listItem : components().listItem[style()]);
+    let StyleComponent = derived(() => style() !== "normal" ? components().block[style()] : void 0);
+    let listItemProps = derived(() => ({ global, value: node, indexInParent }));
+    let ListItemComponent = derived(() => listItemComponent() || components().unknownListItem);
+    if (ListItemComponent()) {
+      $$renderer2.push("<!--[-->");
+      ListItemComponent()($$renderer2, {
+        portableText: listItemProps(),
+        children: ($$renderer3) => {
+          if (StyleComponent()) {
+            $$renderer3.push("<!--[0-->");
+            if (StyleComponent()) {
+              $$renderer3.push("<!--[-->");
+              StyleComponent()($$renderer3, {
+                portableText: { ...listItemProps(), value: { ...node, listItem: void 0 } },
+                children: ($$renderer4) => {
+                  children?.($$renderer4);
+                  $$renderer4.push(`<!---->`);
+                },
+                $$slots: { default: true }
+              });
+              $$renderer3.push("<!--]-->");
+            } else {
+              $$renderer3.push("<!--[!-->");
+              $$renderer3.push("<!--]-->");
+            }
+          } else {
+            $$renderer3.push("<!--[-1-->");
+            children?.($$renderer3);
+            $$renderer3.push(`<!---->`);
+          }
+          $$renderer3.push(`<!--]-->`);
+        },
+        $$slots: { default: true }
+      });
+      $$renderer2.push("<!--]-->");
+    } else {
+      $$renderer2.push("<!--[!-->");
+      $$renderer2.push("<!--]-->");
+    }
+  });
+}
+function RenderSpan($$renderer, $$props) {
+  $$renderer.component(($$renderer2) => {
+    let { global, node, parentBlock, children } = $$props;
+    let markComponent = derived(() => global.components.marks[node.markType]);
+    let markProps = derived(() => ({
+      global,
+      parentBlock,
+      markType: node.markType,
+      // @ts-expect-error @TODO
+      value: node.markDef,
+      markKey: node.markKey,
+      plainTextContent: spanToPlainText(node)
+    }));
+    let MarkComponent = derived(() => markComponent() || global.components.unknownMark);
+    if (MarkComponent()) {
+      $$renderer2.push("<!--[-->");
+      MarkComponent()($$renderer2, {
+        portableText: markProps(),
+        children: ($$renderer3) => {
+          children?.($$renderer3);
+          $$renderer3.push(`<!---->`);
+        },
+        $$slots: { default: true }
+      });
+      $$renderer2.push("<!--]-->");
+    } else {
+      $$renderer2.push("<!--[!-->");
+      $$renderer2.push("<!--]-->");
+    }
+  });
+}
+function RenderText($$renderer, $$props) {
+  let { global, node } = $$props;
+  let components = derived(() => global.components);
+  let text = derived(() => node.text);
+  if (text() === "\n") {
+    $$renderer.push("<!--[0-->");
+    if (typeof components().hardBreak === "function") {
+      $$renderer.push("<!--[0-->");
+      if (components.hardBreak) {
+        $$renderer.push("<!--[-->");
+        components.hardBreak($$renderer, {});
+        $$renderer.push("<!--]-->");
+      } else {
+        $$renderer.push("<!--[!-->");
+        $$renderer.push("<!--]-->");
+      }
+    } else {
+      $$renderer.push("<!--[-1-->");
+      $$renderer.push(`${escape_html(text())}`);
+    }
+    $$renderer.push(`<!--]-->`);
+  } else {
+    $$renderer.push("<!--[-1-->");
+    $$renderer.push(`${escape_html(text())}`);
+  }
+  $$renderer.push(`<!--]-->`);
+}
+function RenderNode_1($$renderer, $$props) {
+  $$renderer.component(($$renderer2) => {
+    let { global, options } = $$props;
+    let node = derived(() => options.node), indexInParent = derived(() => options.indexInParent), parentBlock = derived(() => options.parentBlock), isInline = derived(() => options.isInline);
+    if (isPortableTextToolkitList(node())) {
+      $$renderer2.push("<!--[0-->");
+      RenderList($$renderer2, {
+        node: node(),
+        indexInParent: indexInParent(),
+        global,
+        children: ($$renderer3) => {
+          $$renderer3.push(`<!--[-->`);
+          const each_array = ensure_array_like(node().children);
+          for (let childIndex = 0, $$length = each_array.length; childIndex < $$length; childIndex++) {
+            let child = each_array[childIndex];
+            RenderNode_1($$renderer3, {
+              options: {
+                node: child,
+                indexInParent: childIndex,
+                parentBlock: void 0,
+                isInline: void 0
+              },
+              global
+            });
+          }
+          $$renderer3.push(`<!--]-->`);
+        }
+      });
+    } else if (isPortableTextListItemBlock(node())) {
+      $$renderer2.push("<!--[1-->");
+      RenderListItem($$renderer2, {
+        node: node(),
+        indexInParent: indexInParent(),
+        global,
+        children: ($$renderer3) => {
+          $$renderer3.push(`<!--[-->`);
+          const each_array_1 = ensure_array_like(buildMarksTree(node()));
+          for (let childIndex = 0, $$length = each_array_1.length; childIndex < $$length; childIndex++) {
+            let child = each_array_1[childIndex];
+            RenderNode_1($$renderer3, {
+              options: {
+                parentBlock: node(),
+                node: child,
+                isInline: true,
+                indexInParent: childIndex
+              },
+              global
+            });
+          }
+          $$renderer3.push(`<!--]-->`);
+        }
+      });
+    } else if (isPortableTextToolkitSpan(node())) {
+      $$renderer2.push("<!--[2-->");
+      RenderSpan($$renderer2, {
+        node: node(),
+        parentBlock: parentBlock(),
+        global,
+        children: ($$renderer3) => {
+          $$renderer3.push(`<!--[-->`);
+          const each_array_2 = ensure_array_like(node().children);
+          for (let childIndex = 0, $$length = each_array_2.length; childIndex < $$length; childIndex++) {
+            let child = each_array_2[childIndex];
+            RenderNode_1($$renderer3, {
+              options: {
+                parentBlock: parentBlock(),
+                node: child,
+                isInline: true,
+                indexInParent: childIndex
+              },
+              global
+            });
+          }
+          $$renderer3.push(`<!--]-->`);
+        }
+      });
+    } else if (isPortableTextBlock(node())) {
+      $$renderer2.push("<!--[3-->");
+      RenderBlock($$renderer2, {
+        node: node(),
+        indexInParent: indexInParent(),
+        global,
+        children: ($$renderer3) => {
+          $$renderer3.push(`<!--[-->`);
+          const each_array_3 = ensure_array_like(buildMarksTree(node()));
+          for (let childIndex = 0, $$length = each_array_3.length; childIndex < $$length; childIndex++) {
+            let child = each_array_3[childIndex];
+            RenderNode_1($$renderer3, {
+              options: {
+                parentBlock: node(),
+                node: child,
+                isInline: true,
+                indexInParent: childIndex
+              },
+              global
+            });
+          }
+          $$renderer3.push(`<!--]-->`);
+        }
+      });
+    } else if (isPortableTextToolkitTextNode(node())) {
+      $$renderer2.push("<!--[4-->");
+      RenderText($$renderer2, { node: node(), global });
+    } else if (node()) {
+      $$renderer2.push("<!--[5-->");
+      RenderCustomBlock($$renderer2, {
+        node: node(),
+        parentBlock: parentBlock(),
+        indexInParent: indexInParent(),
+        isInline: isInline(),
+        global
+      });
+    } else {
+      $$renderer2.push("<!--[-1-->");
+    }
+    $$renderer2.push(`<!--]-->`);
+  });
+}
+const getTemplate = (type, prop) => `Unknown ${type}, specify a component for it in the \`components${prop ? "." : ""}${prop}\` prop`;
+const getWarningMessage = (type, nodeType) => {
+  switch (nodeType) {
+    case "block":
+      return getTemplate(`block type "${type}"`, "types");
+    case "blockStyle":
+      return getTemplate(`block style "${type}"`, "block");
+    case "listItemStyle":
+      return getTemplate(`list item style "${type}"`, "listItem");
+    case "listStyle":
+      return getTemplate(`list style "${type}"`, "list");
+    case "mark":
+      return getTemplate(`mark type "${type}"`, "marks");
+    default:
+      return getTemplate("type");
+  }
+};
+function printWarning(message) {
+  console.warn(message);
+}
+function PortableText($$renderer, $$props) {
+  $$renderer.component(($$renderer2) => {
+    let {
+      value = [],
+      components,
+      context = {},
+      onMissingComponent = true
+    } = $$props;
+    let mergedComponents = derived(() => mergeComponents(defaultComponents, components));
+    let keyedBlocks = derived(() => (Array.isArray(value) ? value : [value]).map(assertBlockKey));
+    let blocks = derived(() => nestLists(keyedBlocks(), LIST_NEST_MODE_HTML));
+    let missingComponentHandler = derived(() => (type, nodeType) => {
+      if (onMissingComponent === false) {
+        return;
+      }
+      const message = getWarningMessage(type, nodeType);
+      if (typeof onMissingComponent === "function") {
+        onMissingComponent(message, { type, nodeType });
+        return;
+      }
+      printWarning(message);
+    });
+    $$renderer2.push(`<!--[-->`);
+    const each_array = ensure_array_like(blocks());
+    for (let index = 0, $$length = each_array.length; index < $$length; index++) {
+      let node = each_array[index];
+      RenderNode_1($$renderer2, {
+        global: {
+          components: mergedComponents(),
+          missingComponentHandler: missingComponentHandler(),
+          context,
+          ptBlocks: blocks(),
+          ptRawValue: value
+        },
+        options: { node, isInline: false, indexInParent: index }
+      });
+    }
+    $$renderer2.push(`<!--]-->`);
+  });
 }
 function _page($$renderer, $$props) {
   $$renderer.component(($$renderer2) => {
@@ -39,43 +584,51 @@ function _page($$renderer, $$props) {
     });
     if (data.post) {
       $$renderer2.push("<!--[0-->");
-      $$renderer2.push(`<div class="bg-[#09090B]"><section class="relative py-24 md:py-32 overflow-hidden"><div class="glow-ambient glow-ambient-top"></div> <div class="container mx-auto px-4 relative z-10"><div class="max-w-4xl mx-auto">`);
+      $$renderer2.push(`<div class="bg-base"><section class="relative py-24 md:py-32 overflow-hidden"><div class="glow-ambient glow-ambient-top"></div> <div class="container mx-auto px-4 relative z-10"><div class="max-w-4xl mx-auto">`);
       if (data.post.tags && data.post.tags.length > 0) {
         $$renderer2.push("<!--[0-->");
         $$renderer2.push(`<div class="flex flex-wrap gap-2 mb-6"><!--[-->`);
         const each_array = ensure_array_like(data.post.tags);
         for (let $$index = 0, $$length = each_array.length; $$index < $$length; $$index++) {
           let tag = each_array[$$index];
-          $$renderer2.push(`<a${attr("href", `/community?tag=${stringify(tag)}`)} class="px-3 py-1 rounded-full bg-red-500/10 text-red-500 text-xs font-medium uppercase tracking-wider hover:bg-red-500/20 transition-colors">${escape_html(tag)}</a>`);
+          $$renderer2.push(`<a${attr("href", `/community?tag=${stringify(tag)}`)} class="px-3 py-1 rounded-full bg-red-500/10 text-accent-red text-xs font-medium uppercase tracking-wider hover:bg-red-500/20 transition-colors">${escape_html(tag)}</a>`);
         }
         $$renderer2.push(`<!--]--></div>`);
       } else {
         $$renderer2.push("<!--[-1-->");
       }
-      $$renderer2.push(`<!--]--> <h1 class="heading-gradient text-3xl md:text-5xl font-bold mb-6">${escape_html(data.post.title)}</h1> <div class="flex items-center gap-4 text-zinc-500 text-sm mb-8"><span class="flex items-center gap-2"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg> ${escape_html(formatDate(data.post.date))}</span> <span class="flex items-center gap-2"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg> ${escape_html(data.post.author)}</span></div></div></div></section> `);
+      $$renderer2.push(`<!--]--> <h1 class="heading-gradient text-3xl md:text-5xl font-bold mb-6">${escape_html(data.post.title)}</h1> <div class="flex items-center gap-4 text-muted text-sm mb-8"><span class="flex items-center gap-2"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg> ${escape_html(formatDate(data.post.date))}</span> <span class="flex items-center gap-2"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg> ${escape_html(data.post.author)}</span></div></div></div></section> `);
       if (data.post.image) {
         $$renderer2.push("<!--[0-->");
         $$renderer2.push(`<section class="pb-12"><div class="container mx-auto px-4"><div class="aspect-[21/9] rounded-2xl overflow-hidden"><div${attr_class(`w-full h-full bg-[url('${stringify(data.post.image)}')] bg-cover bg-center`)}></div></div></div></section>`);
       } else {
         $$renderer2.push("<!--[-1-->");
       }
-      $$renderer2.push(`<!--]--> <section class="pb-24"><div class="container mx-auto px-4"><div class="grid grid-cols-1 lg:grid-cols-3 gap-12"><div class="lg:col-span-2"><article class="prose prose-invert prose-lg max-w-none">${html(data.post.content)}</article> <div class="mt-12 pt-8 border-t border-zinc-800"><h3 class="text-white font-semibold mb-4">Share this post</h3> <div class="flex gap-3"><a${attr("href", getShareUrl("facebook"))} target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-lg bg-zinc-800 flex items-center justify-center text-zinc-400 hover:text-white hover:bg-zinc-700 transition-colors" aria-label="Share on Facebook"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"></path></svg></a> <a${attr("href", getShareUrl("twitter"))} target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-lg bg-zinc-800 flex items-center justify-center text-zinc-400 hover:text-white hover:bg-zinc-700 transition-colors" aria-label="Share on X"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path></svg></a> <a${attr("href", getShareUrl("whatsapp"))} target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-lg bg-zinc-800 flex items-center justify-center text-zinc-400 hover:text-white hover:bg-zinc-700 transition-colors" aria-label="Share on WhatsApp"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"></path></svg></a></div></div></div> <div class="lg:col-span-1"><div class="sticky top-24 space-y-6">`);
+      $$renderer2.push(`<!--]--> <section class="pb-24"><div class="container mx-auto px-4"><div class="grid grid-cols-1 lg:grid-cols-3 gap-12"><div class="lg:col-span-2"><article class="prose prose-lg max-w-none">`);
+      if (data.post.source === "sanity" && data.post.body) {
+        $$renderer2.push("<!--[0-->");
+        PortableText($$renderer2, { value: data.post.body });
+      } else {
+        $$renderer2.push("<!--[-1-->");
+        $$renderer2.push(`${html(data.post.content)}`);
+      }
+      $$renderer2.push(`<!--]--></article> <div class="mt-12 pt-8 border-t border-line"><h3 class="text-primary font-semibold mb-4">Share this post</h3> <div class="flex gap-3"><a${attr("href", getShareUrl("facebook"))} target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-lg bg-elevated flex items-center justify-center text-secondary hover:text-primary hover:bg-subtle transition-colors" aria-label="Share on Facebook"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"></path></svg></a> <a${attr("href", getShareUrl("twitter"))} target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-lg bg-elevated flex items-center justify-center text-secondary hover:text-primary hover:bg-subtle transition-colors" aria-label="Share on X"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path></svg></a> <a${attr("href", getShareUrl("whatsapp"))} target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-lg bg-elevated flex items-center justify-center text-secondary hover:text-primary hover:bg-subtle transition-colors" aria-label="Share on WhatsApp"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"></path></svg></a></div></div></div> <div class="lg:col-span-1"><div class="sticky top-24 space-y-6">`);
       if (data.relatedPosts && data.relatedPosts.length > 0) {
         $$renderer2.push("<!--[0-->");
-        $$renderer2.push(`<div><h3 class="text-white font-semibold mb-4">Related Posts</h3> <div class="space-y-4"><!--[-->`);
+        $$renderer2.push(`<div><h3 class="text-primary font-semibold mb-4">Related Posts</h3> <div class="space-y-4"><!--[-->`);
         const each_array_1 = ensure_array_like(data.relatedPosts.slice(0, 3));
         for (let $$index_1 = 0, $$length = each_array_1.length; $$index_1 < $$length; $$index_1++) {
           let post = each_array_1[$$index_1];
-          $$renderer2.push(`<a${attr("href", `/community/${stringify(post.slug)}`)} class="block group"><div class="flex gap-4"><div class="w-20 h-14 rounded-lg bg-zinc-800 overflow-hidden flex-shrink-0"><div${attr_class(`w-full h-full bg-[url('${stringify(post.image)}')] bg-cover bg-center`)}></div></div> <div><h4 class="text-white font-medium text-sm line-clamp-2 group-hover:text-red-400 transition-colors">${escape_html(post.title)}</h4> <p class="text-zinc-500 text-xs mt-1">${escape_html(formatDate(post.date))}</p></div></div></a>`);
+          $$renderer2.push(`<a${attr("href", `/community/${stringify(post.slug)}`)} class="block group"><div class="flex gap-4"><div class="w-20 h-14 rounded-lg bg-elevated overflow-hidden flex-shrink-0"><div${attr_class(`w-full h-full bg-[url('${stringify(post.image)}')] bg-cover bg-center`)}></div></div> <div><h4 class="text-primary font-medium text-sm line-clamp-2 group-hover:text-accent-red-soft transition-colors">${escape_html(post.title)}</h4> <p class="text-muted text-xs mt-1">${escape_html(formatDate(post.date))}</p></div></div></a>`);
         }
         $$renderer2.push(`<!--]--></div></div>`);
       } else {
         $$renderer2.push("<!--[-1-->");
       }
-      $$renderer2.push(`<!--]--> <div class="card p-6 bg-gradient-to-br from-red-900/20 to-[#0F0F12]"><h3 class="text-white font-semibold mb-2">Need Security Services?</h3> <p class="text-zinc-400 text-sm mb-4">Get a free, no-obligation quote for your security needs.</p> <a href="/get-a-quote" class="btn btn-primary w-full justify-center">Get a Quote</a></div></div></div></div></div></section> <section class="py-16 border-t border-zinc-800"><div class="container mx-auto px-4"><a href="/community" class="inline-flex items-center gap-2 text-zinc-400 hover:text-white transition-colors"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg> Back to All Posts</a></div></section></div>`);
+      $$renderer2.push(`<!--]--> <div class="card p-6 bg-gradient-to-br from-red-900/20 to-surface"><h3 class="text-primary font-semibold mb-2">Need Security Services?</h3> <p class="text-secondary text-sm mb-4">Get a free, no-obligation quote for your security needs.</p> <a href="/get-a-quote" class="btn btn-primary w-full justify-center">Get a Quote</a></div></div></div></div></div></section> <section class="py-16 border-t border-line"><div class="container mx-auto px-4"><a href="/community" class="inline-flex items-center gap-2 text-secondary hover:text-primary transition-colors"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg> Back to All Posts</a></div></section></div>`);
     } else {
       $$renderer2.push("<!--[-1-->");
-      $$renderer2.push(`<div class="min-h-screen flex items-center justify-center bg-[#09090B]"><div class="text-center"><h1 class="text-4xl font-bold text-white mb-4">Post Not Found</h1> <p class="text-zinc-400 mb-8">The blog post you're looking for doesn't exist.</p> <a href="/community" class="btn btn-primary">Back to All Posts</a></div></div>`);
+      $$renderer2.push(`<div class="min-h-screen flex items-center justify-center bg-base"><div class="text-center"><h1 class="text-4xl font-bold text-primary mb-4">Post Not Found</h1> <p class="text-secondary mb-8">The blog post you're looking for doesn't exist.</p> <a href="/community" class="btn btn-primary">Back to All Posts</a></div></div>`);
     }
     $$renderer2.push(`<!--]-->`);
   });

@@ -237,7 +237,7 @@
                       <img
                         src={partner.logo}
                         alt="{partner.name} logo"
-                        class="max-h-full max-w-[160px] object-contain transition-all duration-300 {partner.invertLogo ? 'brightness-0 invert opacity-70 hover:opacity-100' : 'grayscale opacity-60 hover:grayscale-0 hover:opacity-100'}"
+                        class="max-h-full max-w-[160px] object-contain transition-all duration-300 {partner.invertLogo ? 'dark:brightness-0 dark:invert opacity-70 hover:opacity-100' : 'grayscale opacity-60 hover:grayscale-0 hover:opacity-100'}"
                       />
                     </div>
                   {/if}

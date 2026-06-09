@@ -129,28 +129,28 @@ function _page($$renderer, $$props) {
     }
   <\/script>`);
     });
-    $$renderer2.push(`<div class="bg-[#09090B]"><section class="relative py-24 md:py-32 overflow-hidden"><div class="glow-ambient glow-ambient-top"></div> <div class="container mx-auto px-4 relative z-10"><div class="max-w-3xl"><p class="overline mb-4">FAQ</p> <h1 class="heading-gradient text-4xl md:text-5xl font-bold mb-6">Frequently Asked Questions</h1> <p class="text-zinc-400 text-lg leading-relaxed">Find answers to common questions about our services, coverage, 
+    $$renderer2.push(`<div class="bg-base"><section class="relative py-24 md:py-32 overflow-hidden"><div class="glow-ambient glow-ambient-top"></div> <div class="container mx-auto px-4 relative z-10"><div class="max-w-3xl"><p class="overline mb-4">FAQ</p> <h1 class="heading-gradient text-4xl md:text-5xl font-bold mb-6">Frequently Asked Questions</h1> <p class="text-secondary text-lg leading-relaxed">Find answers to common questions about our services, coverage,
           billing, and technology.</p></div></div></section> <section class="pb-12"><div class="container mx-auto px-4"><div class="flex flex-wrap gap-2"><!--[-->`);
     const each_array = ensure_array_like(categories);
     for (let $$index = 0, $$length = each_array.length; $$index < $$length; $$index++) {
       let category = each_array[$$index];
-      $$renderer2.push(`<button${attr_class(`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${stringify(selectedCategory === category ? "bg-red-500 text-white" : "bg-zinc-800 text-zinc-400 hover:text-white hover:bg-zinc-700")}`)}>${escape_html(category)}</button>`);
+      $$renderer2.push(`<button${attr_class(`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${stringify(selectedCategory === category ? "bg-accent-red text-white" : "bg-elevated text-secondary hover:text-primary hover:bg-subtle")}`)}>${escape_html(category)}</button>`);
     }
     $$renderer2.push(`<!--]--></div></div></section> <section class="pb-24"><div class="container mx-auto px-4"><div class="max-w-3xl mx-auto space-y-4"><!--[-->`);
     const each_array_1 = ensure_array_like(filteredItems());
     for (let i = 0, $$length = each_array_1.length; i < $$length; i++) {
       let item = each_array_1[i];
-      $$renderer2.push(`<details class="group card"><summary class="flex items-center justify-between p-6 cursor-pointer list-none"><h3 class="text-white font-medium pr-8">${escape_html(item.question)}</h3> <svg class="w-5 h-5 text-zinc-500 transition-transform group-open:rotate-180 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></summary> <div class="px-6 pb-6"><p class="text-zinc-400 leading-relaxed">${escape_html(item.answer)}</p></div></details>`);
+      $$renderer2.push(`<details class="group card"><summary class="flex items-center justify-between p-6 cursor-pointer list-none"><h3 class="text-primary font-medium pr-8">${escape_html(item.question)}</h3> <svg class="w-5 h-5 text-muted transition-transform group-open:rotate-180 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></summary> <div class="px-6 pb-6"><p class="text-secondary leading-relaxed">${escape_html(item.answer)}</p></div></details>`);
     }
     $$renderer2.push(`<!--]--></div> `);
     if (filteredItems().length === 0) {
       $$renderer2.push("<!--[0-->");
-      $$renderer2.push(`<div class="text-center py-12"><p class="text-zinc-500">No questions found in this category.</p></div>`);
+      $$renderer2.push(`<div class="text-center py-12"><p class="text-muted">No questions found in this category.</p></div>`);
     } else {
       $$renderer2.push("<!--[-1-->");
     }
-    $$renderer2.push(`<!--]--></div></section> <section class="py-24 relative overflow-hidden"><div class="absolute inset-0 bg-red-600/5"></div> <div class="glow-ambient glow-ambient-bottom"></div> <div class="container mx-auto px-4 relative z-10"><div class="card p-8 md:p-12 text-center max-w-3xl mx-auto"><h2 class="text-2xl md:text-3xl font-bold text-white mb-4">Still Have Questions?</h2> <p class="text-zinc-400 mb-8">Our team is here to help. Contact us for any questions not covered 
-          in our FAQ.</p> <div class="flex flex-col sm:flex-row items-center justify-center gap-4"><a href="/contact" class="btn btn-primary px-8 py-4">Contact Us</a> <a href="tel:0842222222" class="btn btn-secondary px-8 py-4">Call: 084 222 2222</a></div></div></div></section></div>`);
+    $$renderer2.push(`<!--]--></div></section> <section class="py-24 relative overflow-hidden"><div class="absolute inset-0 bg-red-600/5"></div> <div class="glow-ambient glow-ambient-bottom"></div> <div class="container mx-auto px-4 relative z-10"><div class="card p-8 md:p-12 text-center max-w-3xl mx-auto"><h2 class="text-2xl md:text-3xl font-bold text-primary mb-4">Still Have Questions?</h2> <p class="text-secondary mb-8">Our team is here to help. Contact us for any questions not covered 
+          in our FAQ.</p> <div class="flex flex-col sm:flex-row items-center justify-center gap-4"><a href="/contact" class="btn btn-primary px-8 py-4">Contact Us</a> <a href="tel:0109722600" class="btn btn-secondary px-8 py-4">Call: 010 972 2600</a></div></div></div></section></div>`);
   });
 }
 export {

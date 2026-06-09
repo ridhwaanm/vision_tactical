@@ -182,7 +182,7 @@
               { step: 4, label: 'Confirm' }
             ] as item}
               <div class="flex items-center flex-1">
-                <div class="flex items-center justify-center w-10 h-10 rounded-full font-semibold transition-colors {currentStep >= item.step ? 'bg-red-500 text-white' : 'bg-elevated text-muted'}">
+                <div class="flex items-center justify-center w-10 h-10 rounded-full font-semibold transition-colors {currentStep >= item.step ? 'bg-accent-red text-white' : 'bg-elevated text-muted'}">
                   {#if currentStep > item.step}
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
@@ -192,7 +192,7 @@
                   {/if}
                 </div>
                 {#if item.step < 4}
-                  <div class="flex-1 h-1 mx-4 {currentStep > item.step ? 'bg-red-500' : 'bg-elevated'}"></div>
+                  <div class="flex-1 h-1 mx-4 {currentStep > item.step ? 'bg-accent-red' : 'bg-elevated'}"></div>
                 {/if}
               </div>
             {/each}

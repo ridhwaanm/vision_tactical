@@ -6,8 +6,8 @@ function _page($$renderer) {
     });
     $$renderer2.push(`<meta name="description" content="Vision Tactical privacy policy outlining how we collect, use, and protect your personal information in accordance with POPIA."/>`);
   });
-  $$renderer.push(`<div class="bg-[#09090B]"><section class="relative py-24 md:py-32 overflow-hidden"><div class="glow-ambient glow-ambient-top"></div> <div class="container mx-auto px-4 relative z-10"><div class="max-w-3xl"><p class="overline mb-4">LEGAL</p> <h1 class="heading-gradient text-4xl md:text-5xl font-bold mb-6">Privacy Policy</h1> <p class="text-zinc-400 text-lg leading-relaxed">How we collect, use, and protect your personal information in 
-          accordance with the Protection of Personal Information Act (POPIA).</p></div></div></section> <section class="pb-24"><div class="container mx-auto px-4"><div class="max-w-3xl mx-auto"><div class="card p-8 md:p-12"><div class="prose prose-invert max-w-none"><p class="text-zinc-500 mb-8">Last updated: 17 March 2026</p> <h2>1. Introduction</h2> <p>Vision Tactical ("we", "our", "us") is committed to protecting your privacy. 
+  $$renderer.push(`<div class="bg-base"><section class="relative py-24 md:py-32 overflow-hidden"><div class="glow-ambient glow-ambient-top"></div> <div class="container mx-auto px-4 relative z-10"><div class="max-w-3xl"><p class="overline mb-4">LEGAL</p> <h1 class="heading-gradient text-4xl md:text-5xl font-bold mb-6">Privacy Policy</h1> <p class="text-secondary text-lg leading-relaxed">How we collect, use, and protect your personal information in
+          accordance with the Protection of Personal Information Act (POPIA).</p></div></div></section> <section class="pb-24"><div class="container mx-auto px-4"><div class="max-w-3xl mx-auto"><div class="card p-8 md:p-12"><div class="prose max-w-none"><p class="text-muted mb-8">Last updated: 17 March 2026</p> <h2>1. Introduction</h2> <p>Vision Tactical ("we", "our", "us") is committed to protecting your privacy. 
               This Privacy Policy explains how we collect, use, disclose, and safeguard your 
               personal information in accordance with the Protection of Personal Information 
               Act (POPIA) and other applicable South African laws.</p> <p>By using our services or providing us with your personal information, you 
@@ -20,7 +20,7 @@ function _page($$renderer) {
               browser preferences.</p> <h2>9. Third-Party Links</h2> <p>Our website may contain links to third-party websites. We are not responsible 
               for the privacy practices of these external sites.</p> <h2>10. Changes to This Policy</h2> <p>We may update this Privacy Policy from time to time. Updated versions will 
               be posted on our website with a revised "Last updated" date.</p> <h2>11. Contact Us</h2> <p>For any questions or concerns about this Privacy Policy or our data practices, 
-              please contact us at:</p> <p><strong>Information Officer</strong><br/> Vision Tactical<br/> 46 Central Street, Houghton, Johannesburg<br/> Email: info@visiontactical.co.za<br/> Phone: 084 222 2222</p></div></div></div></div></section></div>`);
+              please contact us at:</p> <p><strong>Information Officer</strong><br/> Vision Tactical<br/> 46 Central Street, Houghton, Johannesburg<br/> Email: info@visiontactical.co.za<br/> Phone: 010 972 2600</p></div></div></div></div></section></div>`);
 }
 export {
   _page as default

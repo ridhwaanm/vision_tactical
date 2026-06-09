@@ -77,7 +77,7 @@
         {#each categories as category}
           <button
             onclick={() => selectedCategory = category}
-            class="px-4 py-2 rounded-lg text-sm font-medium transition-colors {selectedCategory === category ? 'bg-red-500 text-white' : 'bg-elevated text-secondary hover:text-primary hover:bg-subtle'}"
+            class="px-4 py-2 rounded-lg text-sm font-medium transition-colors {selectedCategory === category ? 'bg-accent-red text-white' : 'bg-elevated text-secondary hover:text-primary hover:bg-subtle'}"
           >
             {category}
           </button>

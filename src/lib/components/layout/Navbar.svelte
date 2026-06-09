@@ -62,7 +62,7 @@
           {#if item.children}
             <div class="relative">
               <button
-                class="nav-link-gradient flex items-center space-x-1 px-4 py-2 rounded-md text-sm {servicesDropdownOpen ? 'active bg-white/[0.05]' : ''}"
+                class="nav-link-gradient flex items-center space-x-1 px-4 py-2 rounded-md text-sm {servicesDropdownOpen ? 'active bg-elevated' : ''}"
                 onmouseenter={openDropdown}
                 onmouseleave={scheduleClose}
                 aria-expanded={servicesDropdownOpen}
@@ -92,7 +92,7 @@
                     {#each item.children as child}
                       <a
                         href={child.href}
-                        class="block p-3 rounded-lg transition-colors group {$page.url.pathname === child.href ? 'bg-white/[0.05]' : 'hover:bg-white/[0.10]'}"
+                        class="block p-3 rounded-lg transition-colors group {$page.url.pathname === child.href ? 'bg-elevated' : 'hover:bg-elevated'}"
                       >
                         <span class="text-sm font-medium text-primary">{child.label}</span>
                       </a>

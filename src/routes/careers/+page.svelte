@@ -224,7 +224,7 @@
                   <input
                     id="fullName"
                     type="text"
-                    class="w-full px-4 py-3 bg-base border border-line-strong rounded-lg text-primary placeholder-ghost focus:outline-none focus:border-red-500 transition-colors"
+                    class="w-full px-4 py-3 bg-base border border-line-strong rounded-lg text-primary placeholder-ghost focus:outline-none focus:border-accent-red transition-colors"
                     placeholder="John Doe"
                   />
                 </div>
@@ -233,7 +233,7 @@
                   <input
                     id="email"
                     type="email"
-                    class="w-full px-4 py-3 bg-base border border-line-strong rounded-lg text-primary placeholder-ghost focus:outline-none focus:border-red-500 transition-colors"
+                    class="w-full px-4 py-3 bg-base border border-line-strong rounded-lg text-primary placeholder-ghost focus:outline-none focus:border-accent-red transition-colors"
                     placeholder="john@example.com"
                   />
                 </div>
@@ -245,7 +245,7 @@
                   <input
                     id="phone"
                     type="tel"
-                    class="w-full px-4 py-3 bg-base border border-line-strong rounded-lg text-primary placeholder-ghost focus:outline-none focus:border-red-500 transition-colors"
+                    class="w-full px-4 py-3 bg-base border border-line-strong rounded-lg text-primary placeholder-ghost focus:outline-none focus:border-accent-red transition-colors"
                     placeholder="084 123 4567"
                   />
                 </div>
@@ -253,7 +253,7 @@
                   <label for="position" class="block text-sm font-medium text-secondary mb-2">Position Interest</label>
                   <select
                     id="position"
-                    class="w-full px-4 py-3 bg-base border border-line-strong rounded-lg text-primary focus:outline-none focus:border-red-500 transition-colors"
+                    class="w-full px-4 py-3 bg-base border border-line-strong rounded-lg text-primary focus:outline-none focus:border-accent-red transition-colors"
                   >
                     <option value="">Select a position</option>
                     <option value="security-officer">Security Officer</option>
@@ -282,7 +282,7 @@
                 <textarea
                   id="coverMessage"
                   rows="4"
-                  class="w-full px-4 py-3 bg-base border border-line-strong rounded-lg text-primary placeholder-ghost focus:outline-none focus:border-red-500 transition-colors resize-none"
+                  class="w-full px-4 py-3 bg-base border border-line-strong rounded-lg text-primary placeholder-ghost focus:outline-none focus:border-accent-red transition-colors resize-none"
                   placeholder="Tell us why you'd be a great fit for Vision Tactical..."
                 ></textarea>
               </div>

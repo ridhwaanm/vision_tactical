@@ -49,7 +49,7 @@
         {#each allTags as tag}
           <button
             onclick={() => selectedTag = tag}
-            class="px-4 py-2 rounded-lg text-sm font-medium transition-colors {selectedTag === tag ? 'bg-red-500 text-white' : 'bg-elevated text-secondary hover:text-primary hover:bg-subtle'}"
+            class="px-4 py-2 rounded-lg text-sm font-medium transition-colors {selectedTag === tag ? 'bg-accent-red text-white' : 'bg-elevated text-secondary hover:text-primary hover:bg-subtle'}"
           >
             {tag}
           </button>
