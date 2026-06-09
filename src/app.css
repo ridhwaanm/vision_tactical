@@ -4,6 +4,31 @@
 @source not "../old-site-backup/**";
 
 /* ============================================
+   SEMANTIC THEME TOKENS (Tailwind v4)
+   Map role-named utilities to themeable vars.
+   @theme inline => utilities emit var(...) so the
+   light media-query override below cascades.
+   ============================================ */
+@theme inline {
+  --color-base:        var(--bg-base);
+  --color-surface:     var(--bg-surface);
+  --color-elevated:    var(--bg-elevated);
+  --color-subtle:      var(--bg-subtle);
+
+  --color-primary:     var(--text-primary);
+  --color-secondary:   var(--text-secondary);
+  --color-muted:       var(--text-muted);
+  --color-ghost:       var(--text-ghost);
+
+  --color-line:        var(--border-default);
+  --color-line-subtle: var(--border-subtle);
+  --color-line-strong: var(--border-hover);
+
+  --color-accent-red:      var(--accent-red);
+  --color-accent-red-soft: var(--accent-red-soft);
+}
+
+/* ============================================
    VISION TACTICAL — LINEAR LOOK DESIGN SYSTEM
    ============================================ */
 
@@ -82,7 +107,7 @@
 
 html {
   scroll-behavior: smooth;
-  color-scheme: dark;
+  color-scheme: light dark;
 }
 
 body {
@@ -643,5 +668,66 @@ a:hover {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+  }
+}
+
+/* ============================================
+   LIGHT THEME — follows OS prefers-color-scheme
+   Overrides the dark defaults defined in :root.
+   ============================================ */
+@media (prefers-color-scheme: light) {
+  :root {
+    /* Backgrounds (light to slightly darker) */
+    --bg-base:       #FFFFFF;
+    --bg-surface:    #FAFAFA;
+    --bg-elevated:   #F4F4F5;
+    --bg-subtle:     #ECECEE;   /* kept distinct from --border-default below */
+
+    /* Borders */
+    --border-default: #E4E4E7;
+    --border-subtle:  #F0F0F1;
+    --border-hover:   #D4D4D8;
+
+    /* Text (dark on light) */
+    --text-primary:   #18181B;
+    --text-secondary: #3F3F46;
+    --text-muted:     #52525B;
+    --text-ghost:     #A1A1AA;
+
+    /* Accent — deepen so red doesn't vibrate on white.
+       --accent-red-soft is the hover state (.btn-primary:hover); it must stay
+       deeper than --accent-red or the hover would be invisible in light mode. */
+    --accent-red:       #DC2626;  /* resting */
+    --accent-red-soft:  #B91C1C;  /* hover — deeper than resting */
+    --accent-red-glow:  rgba(220, 38, 38, 0.10);
+    --accent-red-flare: rgba(220, 38, 38, 0.05);
+  }
+
+  /* Hardcoded-rgba effects that vars can't reach */
+  .glass {
+    background: rgba(255, 255, 255, 0.8);
+  }
+  .glass-surface {
+    background: rgba(250, 250, 250, 0.85);
+  }
+  /* Soften cursor glow + spotlight so they don't muddy light surfaces */
+  .glow-card::before {
+    background: radial-gradient(
+      600px circle at var(--glow-x, 50%) var(--glow-y, 50%),
+      rgba(220, 38, 38, 0.04) 0%,
+      transparent 40%
+    );
+  }
+  .spotlight-layer {
+    background: radial-gradient(
+      800px circle at var(--spot-x, 50%) var(--spot-y, 50%),
+      rgba(220, 38, 38, 0.04) 0%,
+      rgba(220, 38, 38, 0.02) 25%,
+      transparent 60%
+    );
+  }
+  /* Card images were dimmed for dark bg; lift on light */
+  .card-image {
+    filter: brightness(0.95);
   }
 }
