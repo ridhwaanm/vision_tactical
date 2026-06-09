@@ -120,7 +120,7 @@
   />
 </svelte:head>
 
-<div class="bg-[#09090B]">
+<div class="bg-base">
   <!-- HERO SECTION -->
   <section class="relative py-24 md:py-32 overflow-hidden">
     <div class="glow-ambient glow-ambient-top"></div>
@@ -130,7 +130,7 @@
         <h1 class="heading-gradient text-4xl md:text-5xl font-bold mb-6">
           Get in Touch
         </h1>
-        <p class="text-zinc-400 text-lg leading-relaxed">
+        <p class="text-secondary text-lg leading-relaxed">
           Have a question or need security services? We're here to help.
         </p>
       </div>
@@ -144,23 +144,23 @@
         <!-- Contact Information -->
         <div class="lg:col-span-1 space-y-8" use:reveal>
           <div>
-            <h2 class="text-xl font-bold text-white mb-6">Contact Information</h2>
+            <h2 class="text-xl font-bold text-primary mb-6">Contact Information</h2>
             <div class="space-y-6">
               <!-- Control Room -->
               <div class="flex items-start gap-4">
-                <div class="w-12 h-12 rounded-lg bg-red-500/10 flex items-center justify-center text-red-500 flex-shrink-0">
+                <div class="w-12 h-12 rounded-lg bg-red-500/10 flex items-center justify-center text-accent-red flex-shrink-0">
                   <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                   </svg>
                 </div>
                 <div class="space-y-2">
-                  <p class="text-zinc-500 text-sm">Control Room (24/7)</p>
+                  <p class="text-muted text-sm">Control Room (24/7)</p>
                   <div>
-                    <a href="tel:0109722600" class="text-white hover:text-red-500 transition-colors font-medium">010 972 2600</a>
-                    <span class="ml-2 text-xs uppercase tracking-wider text-red-500/80">Primary</span>
+                    <a href="tel:0109722600" class="text-primary hover:text-accent-red-soft transition-colors font-medium">010 972 2600</a>
+                    <span class="ml-2 text-xs uppercase tracking-wider text-accent-red/80">Primary</span>
                   </div>
                   <div class="flex items-center gap-2 flex-wrap">
-                    <a href="tel:0842222222" class="text-white hover:text-red-500 transition-colors font-medium">084 222 2222</a>
+                    <a href="tel:0842222222" class="text-primary hover:text-accent-red-soft transition-colors font-medium">084 222 2222</a>
                     <a
                       href="https://wa.me/27842222222"
                       target="_blank"
@@ -175,7 +175,7 @@
                     </a>
                   </div>
                   <div class="flex items-center gap-2 flex-wrap">
-                    <a href="tel:0610712001" class="text-white hover:text-red-500 transition-colors font-medium">061 071 2001</a>
+                    <a href="tel:0610712001" class="text-primary hover:text-accent-red-soft transition-colors font-medium">061 071 2001</a>
                     <a
                       href="https://wa.me/27610712001"
                       target="_blank"
@@ -194,42 +194,42 @@
 
               <!-- Email -->
               <div class="flex items-start gap-4">
-                <div class="w-12 h-12 rounded-lg bg-red-500/10 flex items-center justify-center text-red-500 flex-shrink-0">
+                <div class="w-12 h-12 rounded-lg bg-red-500/10 flex items-center justify-center text-accent-red flex-shrink-0">
                   <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                   </svg>
                 </div>
                 <div>
-                  <p class="text-zinc-500 text-sm mb-1">Email</p>
-                  <a href="mailto:info@visiontactical.co.za" class="text-white hover:text-red-500 transition-colors font-medium">info@visiontactical.co.za</a>
+                  <p class="text-muted text-sm mb-1">Email</p>
+                  <a href="mailto:info@visiontactical.co.za" class="text-primary hover:text-accent-red-soft transition-colors font-medium">info@visiontactical.co.za</a>
                 </div>
               </div>
 
               <!-- Address -->
               <div class="flex items-start gap-4">
-                <div class="w-12 h-12 rounded-lg bg-red-500/10 flex items-center justify-center text-red-500 flex-shrink-0">
+                <div class="w-12 h-12 rounded-lg bg-red-500/10 flex items-center justify-center text-accent-red flex-shrink-0">
                   <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                   </svg>
                 </div>
                 <div>
-                  <p class="text-zinc-500 text-sm mb-1">Address</p>
-                  <p class="text-white">46 Central Street, Houghton<br />Johannesburg, South Africa</p>
+                  <p class="text-muted text-sm mb-1">Address</p>
+                  <p class="text-primary">46 Central Street, Houghton<br />Johannesburg, South Africa</p>
                 </div>
               </div>
 
               <!-- Hours -->
               <div class="flex items-start gap-4">
-                <div class="w-12 h-12 rounded-lg bg-red-500/10 flex items-center justify-center text-red-500 flex-shrink-0">
+                <div class="w-12 h-12 rounded-lg bg-red-500/10 flex items-center justify-center text-accent-red flex-shrink-0">
                   <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                   </svg>
                 </div>
                 <div>
-                  <p class="text-zinc-500 text-sm mb-1">Operating Hours</p>
-                  <p class="text-white text-sm">Armed Response: 24/7</p>
-                  <p class="text-zinc-400 text-sm">Office: Mon-Fri, 8am-5pm</p>
+                  <p class="text-muted text-sm mb-1">Operating Hours</p>
+                  <p class="text-primary text-sm">Armed Response: 24/7</p>
+                  <p class="text-secondary text-sm">Office: Mon-Fri, 8am-5pm</p>
                 </div>
               </div>
             </div>
@@ -238,12 +238,12 @@
           <!-- Emergency Banner -->
           <div class="p-6 card bg-red-500/10 border-red-500/30">
             <div class="flex items-center gap-3 mb-3">
-              <svg class="w-6 h-6 text-red-500" fill="currentColor" viewBox="0 0 20 20">
+              <svg class="w-6 h-6 text-accent-red" fill="currentColor" viewBox="0 0 20 20">
                 <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
               </svg>
-              <h3 class="text-white font-semibold">Emergency?</h3>
+              <h3 class="text-primary font-semibold">Emergency?</h3>
             </div>
-            <p class="text-zinc-400 text-sm mb-4">
+            <p class="text-secondary text-sm mb-4">
               For immediate assistance, call our 24/7 emergency line.
             </p>
             <a href="tel:0109722600" class="block text-center btn btn-primary">
@@ -263,8 +263,8 @@
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
                   </svg>
                 </div>
-                <h2 class="text-2xl font-bold text-white mb-4">Message Sent!</h2>
-                <p class="text-zinc-400 mb-8">
+                <h2 class="text-2xl font-bold text-primary mb-4">Message Sent!</h2>
+                <p class="text-secondary mb-8">
                   Thank you for contacting us. We'll get back to you within 24 hours.
                 </p>
                 <button
@@ -276,36 +276,36 @@
               </div>
             {:else}
               <form onsubmit={(e) => { e.preventDefault(); submitForm(); }}>
-                <h2 class="text-2xl font-bold text-white mb-6">Send us a Message</h2>
+                <h2 class="text-2xl font-bold text-primary mb-6">Send us a Message</h2>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                   <!-- Name -->
                   <div>
-                    <label for="contactName" class="block text-sm font-medium text-zinc-300 mb-2">Full Name *</label>
+                    <label for="contactName" class="block text-sm font-medium text-secondary mb-2">Full Name *</label>
                     <input
                       id="contactName"
                       type="text"
                       bind:value={formState.name}
-                      class="w-full px-4 py-3 bg-[#09090B] border border-zinc-700 rounded-lg text-white placeholder-zinc-500 focus:outline-none focus:border-red-500 transition-colors"
+                      class="w-full px-4 py-3 bg-base border border-line-strong rounded-lg text-primary placeholder-ghost focus:outline-none focus:border-accent-red transition-colors"
                       placeholder="John Doe"
                     />
                     {#if errors.name}
-                      <p class="text-red-500 text-sm mt-1">{errors.name}</p>
+                      <p class="text-accent-red text-sm mt-1">{errors.name}</p>
                     {/if}
                   </div>
 
                   <!-- Email -->
                   <div>
-                    <label for="contactEmail" class="block text-sm font-medium text-zinc-300 mb-2">Email *</label>
+                    <label for="contactEmail" class="block text-sm font-medium text-secondary mb-2">Email *</label>
                     <input
                       id="contactEmail"
                       type="email"
                       bind:value={formState.email}
-                      class="w-full px-4 py-3 bg-[#09090B] border border-zinc-700 rounded-lg text-white placeholder-zinc-500 focus:outline-none focus:border-red-500 transition-colors"
+                      class="w-full px-4 py-3 bg-base border border-line-strong rounded-lg text-primary placeholder-ghost focus:outline-none focus:border-accent-red transition-colors"
                       placeholder="john@example.com"
                     />
                     {#if errors.email}
-                      <p class="text-red-500 text-sm mt-1">{errors.email}</p>
+                      <p class="text-accent-red text-sm mt-1">{errors.email}</p>
                     {/if}
                   </div>
                 </div>
@@ -313,26 +313,26 @@
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                   <!-- Phone -->
                   <div>
-                    <label for="contactPhone" class="block text-sm font-medium text-zinc-300 mb-2">Phone Number *</label>
+                    <label for="contactPhone" class="block text-sm font-medium text-secondary mb-2">Phone Number *</label>
                     <input
                       id="contactPhone"
                       type="tel"
                       bind:value={formState.phone}
-                      class="w-full px-4 py-3 bg-[#09090B] border border-zinc-700 rounded-lg text-white placeholder-zinc-500 focus:outline-none focus:border-red-500 transition-colors"
+                      class="w-full px-4 py-3 bg-base border border-line-strong rounded-lg text-primary placeholder-ghost focus:outline-none focus:border-accent-red transition-colors"
                       placeholder="084 123 4567"
                     />
                     {#if errors.phone}
-                      <p class="text-red-500 text-sm mt-1">{errors.phone}</p>
+                      <p class="text-accent-red text-sm mt-1">{errors.phone}</p>
                     {/if}
                   </div>
 
                   <!-- Subject -->
                   <div>
-                    <label for="contactSubject" class="block text-sm font-medium text-zinc-300 mb-2">Subject *</label>
+                    <label for="contactSubject" class="block text-sm font-medium text-secondary mb-2">Subject *</label>
                     <select
                       id="contactSubject"
                       bind:value={formState.subject}
-                      class="w-full px-4 py-3 bg-[#09090B] border border-zinc-700 rounded-lg text-white focus:outline-none focus:border-red-500 transition-colors"
+                      class="w-full px-4 py-3 bg-base border border-line-strong rounded-lg text-primary focus:outline-none focus:border-accent-red transition-colors"
                     >
                       <option value="general">General Inquiry</option>
                       <option value="quote">Request a Quote</option>
@@ -346,22 +346,22 @@
 
                 <!-- Message -->
                 <div class="mb-6">
-                  <label for="contactMessage" class="block text-sm font-medium text-zinc-300 mb-2">Message *</label>
+                  <label for="contactMessage" class="block text-sm font-medium text-secondary mb-2">Message *</label>
                   <textarea
                     id="contactMessage"
                     bind:value={formState.message}
                     rows="5"
-                    class="w-full px-4 py-3 bg-[#09090B] border border-zinc-700 rounded-lg text-white placeholder-zinc-500 focus:outline-none focus:border-red-500 transition-colors resize-none"
+                    class="w-full px-4 py-3 bg-base border border-line-strong rounded-lg text-primary placeholder-ghost focus:outline-none focus:border-accent-red transition-colors resize-none"
                     placeholder="How can we help you?"
                   ></textarea>
                   {#if errors.message}
-                    <p class="text-red-500 text-sm mt-1">{errors.message}</p>
+                    <p class="text-accent-red text-sm mt-1">{errors.message}</p>
                   {/if}
                 </div>
 
                 {#if errors.form}
                   <div class="mb-6 p-4 bg-red-500/10 border border-red-500/30 rounded-lg">
-                    <p class="text-red-400 text-sm">{errors.form}</p>
+                    <p class="text-accent-red text-sm">{errors.form}</p>
                   </div>
                 {/if}
 
@@ -396,7 +396,7 @@
       <div class="card overflow-hidden" use:reveal>
         <div class="aspect-[21/9] relative">
           <div bind:this={mapContainer} class="absolute inset-0 z-10"></div>
-          <div class="absolute inset-0 bg-[#0F0F12] flex items-center justify-center z-0">
+          <div class="absolute inset-0 bg-surface flex items-center justify-center z-0">
             <div class="animate-spin h-8 w-8 border-2 border-red-500 border-t-transparent rounded-full"></div>
           </div>
         </div>

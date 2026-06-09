@@ -150,7 +150,7 @@
   />
 </svelte:head>
 
-<div class="bg-[#09090B]">
+<div class="bg-base">
   <!-- HERO SECTION -->
   <section class="relative py-24 md:py-32 overflow-hidden">
     <div class="glow-ambient glow-ambient-top"></div>
@@ -160,8 +160,8 @@
         <h1 class="heading-gradient text-4xl md:text-5xl font-bold mb-6">
           Request a Free Quote
         </h1>
-        <p class="text-zinc-400 text-lg leading-relaxed">
-          Tell us about your security needs and we'll provide a tailored 
+        <p class="text-secondary text-lg leading-relaxed">
+          Tell us about your security needs and we'll provide a tailored
           solution within 24 hours.
         </p>
       </div>
@@ -182,7 +182,7 @@
               { step: 4, label: 'Confirm' }
             ] as item}
               <div class="flex items-center flex-1">
-                <div class="flex items-center justify-center w-10 h-10 rounded-full font-semibold transition-colors {currentStep >= item.step ? 'bg-red-500 text-white' : 'bg-zinc-800 text-zinc-500'}">
+                <div class="flex items-center justify-center w-10 h-10 rounded-full font-semibold transition-colors {currentStep >= item.step ? 'bg-red-500 text-white' : 'bg-elevated text-muted'}">
                   {#if currentStep > item.step}
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
@@ -192,14 +192,14 @@
                   {/if}
                 </div>
                 {#if item.step < 4}
-                  <div class="flex-1 h-1 mx-4 {currentStep > item.step ? 'bg-red-500' : 'bg-zinc-800'}"></div>
+                  <div class="flex-1 h-1 mx-4 {currentStep > item.step ? 'bg-red-500' : 'bg-elevated'}"></div>
                 {/if}
               </div>
             {/each}
           </div>
           <div class="flex justify-between mt-3">
             {#each ['Services', 'Property', 'Your Details', 'Confirmation'] as label}
-              <span class="text-xs text-zinc-500 hidden sm:block">{label}</span>
+              <span class="text-xs text-muted hidden sm:block">{label}</span>
             {/each}
           </div>
         </div>
@@ -214,18 +214,18 @@
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
                 </svg>
               </div>
-              <h2 class="text-2xl font-bold text-white mb-4">Thank You, {formData.fullName}!</h2>
-              <p class="text-zinc-400 mb-2">
+              <h2 class="text-2xl font-bold text-primary mb-4">Thank You, {formData.fullName}!</h2>
+              <p class="text-secondary mb-2">
                 We've received your quote request.
               </p>
-              <p class="text-zinc-400 mb-6">
-                Reference: <span class="text-white font-mono">{referenceNumber}</span>
+              <p class="text-secondary mb-6">
+                Reference: <span class="text-primary font-mono">{referenceNumber}</span>
               </p>
-              <p class="text-zinc-400 mb-8">
+              <p class="text-secondary mb-8">
                 A member of our team will contact you within 24 hours.
               </p>
               <div class="p-4 bg-red-500/10 rounded-lg inline-block">
-                <p class="text-red-400 text-sm font-medium">
+                <p class="text-accent-red text-sm font-medium">
                   For emergencies, call us directly: 010 972 2600
                 </p>
               </div>
@@ -235,12 +235,12 @@
               <!-- STEP 1: Service Selection -->
               {#if currentStep === 1}
                 <div>
-                  <h2 class="text-2xl font-bold text-white mb-2">What do you need?</h2>
-                  <p class="text-zinc-400 mb-8">Select your client type and services required.</p>
+                  <h2 class="text-2xl font-bold text-primary mb-2">What do you need?</h2>
+                  <p class="text-secondary mb-8">Select your client type and services required.</p>
 
                   <!-- Client Type -->
                   <div class="mb-8">
-                    <p class="block text-sm font-medium text-zinc-300 mb-4">Client Type *</p>
+                    <p class="block text-sm font-medium text-secondary mb-4">Client Type *</p>
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
                       {#each [
                         { value: 'residential', label: 'Residential Security' },
@@ -252,32 +252,32 @@
                         <button
                           type="button"
                           onclick={() => { formData.clientType = option.value as ClientType; formData.services = []; }}
-                          class="p-4 rounded-lg border text-left transition-colors {formData.clientType === option.value ? 'border-red-500 bg-red-500/10 text-white' : 'border-zinc-700 bg-zinc-800/50 text-zinc-400 hover:border-zinc-600'}"
+                          class="p-4 rounded-lg border text-left transition-colors {formData.clientType === option.value ? 'border-accent-red bg-red-500/10 text-primary' : 'border-line-strong bg-elevated/50 text-secondary hover:border-line-strong'}"
                         >
                           {option.label}
                         </button>
                       {/each}
                     </div>
                     {#if errors.clientType}
-                      <p class="text-red-500 text-sm mt-2">{errors.clientType}</p>
+                      <p class="text-accent-red text-sm mt-2">{errors.clientType}</p>
                     {/if}
                   </div>
 
                   <!-- Services -->
                   {#if formData.clientType}
                     <div>
-                      <p class="block text-sm font-medium text-zinc-300 mb-4">Services Required *</p>
+                      <p class="block text-sm font-medium text-secondary mb-4">Services Required *</p>
                       <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
                         {#each serviceOptions[formData.clientType] as service}
                           <button
                             type="button"
                             onclick={() => toggleService(service)}
-                            class="p-4 rounded-lg border text-left transition-colors {formData.services.includes(service) ? 'border-red-500 bg-red-500/10 text-white' : 'border-zinc-700 bg-zinc-800/50 text-zinc-400 hover:border-zinc-600'}"
+                            class="p-4 rounded-lg border text-left transition-colors {formData.services.includes(service) ? 'border-accent-red bg-red-500/10 text-primary' : 'border-line-strong bg-elevated/50 text-secondary hover:border-line-strong'}"
                           >
                             <div class="flex items-center justify-between">
                               <span>{service}</span>
                               {#if formData.services.includes(service)}
-                                <svg class="w-5 h-5 text-red-500" fill="currentColor" viewBox="0 0 20 20">
+                                <svg class="w-5 h-5 text-accent-red" fill="currentColor" viewBox="0 0 20 20">
                                   <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
                                 </svg>
                               {/if}
@@ -286,7 +286,7 @@
                         {/each}
                       </div>
                       {#if errors.services}
-                        <p class="text-red-500 text-sm mt-2">{errors.services}</p>
+                        <p class="text-accent-red text-sm mt-2">{errors.services}</p>
                       {/if}
                     </div>
                   {/if}
@@ -296,17 +296,17 @@
               <!-- STEP 2: Property Details -->
               {#if currentStep === 2}
                 <div>
-                  <h2 class="text-2xl font-bold text-white mb-2">Property Details</h2>
-                  <p class="text-zinc-400 mb-8">Help us understand your site. All fields are optional — we'll discuss details when we contact you.</p>
+                  <h2 class="text-2xl font-bold text-primary mb-2">Property Details</h2>
+                  <p class="text-secondary mb-8">Help us understand your site. All fields are optional — we'll discuss details when we contact you.</p>
 
                   <div class="space-y-6">
                     <!-- Property Type (context-aware) -->
                     <div>
-                      <label for="propertyType" class="block text-sm font-medium text-zinc-300 mb-2">Property Type</label>
+                      <label for="propertyType" class="block text-sm font-medium text-secondary mb-2">Property Type</label>
                       <select
                         id="propertyType"
                         bind:value={formData.propertyType}
-                        class="w-full px-4 py-3 bg-[#09090B] border border-zinc-700 rounded-lg text-white focus:outline-none focus:border-red-500 transition-colors"
+                        class="w-full px-4 py-3 bg-base border border-line-strong rounded-lg text-primary focus:outline-none focus:border-accent-red transition-colors"
                       >
                         <option value="">Select property type</option>
                         {#each propertyTypesByClient[formData.clientType] || [] as type}
@@ -318,11 +318,11 @@
                     <!-- Property Size (context-aware) -->
                     {#if formData.clientType !== 'vip'}
                       <div>
-                        <label for="propertySize" class="block text-sm font-medium text-zinc-300 mb-2">Approximate Size</label>
+                        <label for="propertySize" class="block text-sm font-medium text-secondary mb-2">Approximate Size</label>
                         <select
                           id="propertySize"
                           bind:value={formData.propertySize}
-                          class="w-full px-4 py-3 bg-[#09090B] border border-zinc-700 rounded-lg text-white focus:outline-none focus:border-red-500 transition-colors"
+                          class="w-full px-4 py-3 bg-base border border-line-strong rounded-lg text-primary focus:outline-none focus:border-accent-red transition-colors"
                         >
                           <option value="">Select size</option>
                           {#each propertySizesByClient[formData.clientType] || [] as size}
@@ -335,11 +335,11 @@
                     <!-- Access Points (not relevant for VIP or events) -->
                     {#if !['vip', 'event'].includes(formData.clientType)}
                       <div>
-                        <label for="accessPoints" class="block text-sm font-medium text-zinc-300 mb-2">Number of Access Points</label>
+                        <label for="accessPoints" class="block text-sm font-medium text-secondary mb-2">Number of Access Points</label>
                         <select
                           id="accessPoints"
                           bind:value={formData.accessPoints}
-                          class="w-full px-4 py-3 bg-[#09090B] border border-zinc-700 rounded-lg text-white focus:outline-none focus:border-red-500 transition-colors"
+                          class="w-full px-4 py-3 bg-base border border-line-strong rounded-lg text-primary focus:outline-none focus:border-accent-red transition-colors"
                         >
                           <option value="">Select number</option>
                           {#each accessPointOptions as option}
@@ -351,12 +351,12 @@
 
                     <!-- Additional Notes -->
                     <div>
-                      <label for="notes" class="block text-sm font-medium text-zinc-300 mb-2">Additional Notes</label>
+                      <label for="notes" class="block text-sm font-medium text-secondary mb-2">Additional Notes</label>
                       <textarea
                         id="notes"
                         bind:value={formData.notes}
                         rows="3"
-                        class="w-full px-4 py-3 bg-[#09090B] border border-zinc-700 rounded-lg text-white placeholder-zinc-500 focus:outline-none focus:border-red-500 transition-colors resize-none"
+                        class="w-full px-4 py-3 bg-base border border-line-strong rounded-lg text-primary placeholder-ghost focus:outline-none focus:border-accent-red transition-colors resize-none"
                         placeholder="Any specific requirements, concerns, or details about your property..."
                       ></textarea>
                     </div>
@@ -367,35 +367,35 @@
               <!-- STEP 3: Your Details -->
               {#if currentStep === 3}
                 <div>
-                  <h2 class="text-2xl font-bold text-white mb-2">Your Contact Details</h2>
-                  <p class="text-zinc-400 mb-8">How can we reach you?</p>
+                  <h2 class="text-2xl font-bold text-primary mb-2">Your Contact Details</h2>
+                  <p class="text-secondary mb-8">How can we reach you?</p>
 
                   <div class="space-y-6">
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                       <!-- Full Name -->
                       <div>
-                        <label for="fullName" class="block text-sm font-medium text-zinc-300 mb-2">Full Name *</label>
+                        <label for="fullName" class="block text-sm font-medium text-secondary mb-2">Full Name *</label>
                         <input
                           id="fullName"
                           type="text"
                           bind:value={formData.fullName}
-                          class="w-full px-4 py-3 bg-[#09090B] border border-zinc-700 rounded-lg text-white placeholder-zinc-500 focus:outline-none focus:border-red-500 transition-colors"
+                          class="w-full px-4 py-3 bg-base border border-line-strong rounded-lg text-primary placeholder-ghost focus:outline-none focus:border-accent-red transition-colors"
                           placeholder="John Doe"
                         />
                         {#if errors.fullName}
-                          <p class="text-red-500 text-sm mt-2">{errors.fullName}</p>
+                          <p class="text-accent-red text-sm mt-2">{errors.fullName}</p>
                         {/if}
                       </div>
 
                       <!-- Company Name (conditional) -->
                       {#if ['commercial', 'corporate', 'event'].includes(formData.clientType)}
                         <div>
-                          <label for="companyName" class="block text-sm font-medium text-zinc-300 mb-2">Company Name</label>
+                          <label for="companyName" class="block text-sm font-medium text-secondary mb-2">Company Name</label>
                           <input
                             id="companyName"
                             type="text"
                             bind:value={formData.companyName}
-                            class="w-full px-4 py-3 bg-[#09090B] border border-zinc-700 rounded-lg text-white placeholder-zinc-500 focus:outline-none focus:border-red-500 transition-colors"
+                            class="w-full px-4 py-3 bg-base border border-line-strong rounded-lg text-primary placeholder-ghost focus:outline-none focus:border-accent-red transition-colors"
                             placeholder="Company Ltd"
                           />
                         </div>
@@ -405,41 +405,41 @@
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                       <!-- Email -->
                       <div>
-                        <label for="email" class="block text-sm font-medium text-zinc-300 mb-2">Email</label>
+                        <label for="email" class="block text-sm font-medium text-secondary mb-2">Email</label>
                         <input
                           id="email"
                           type="email"
                           bind:value={formData.email}
-                          class="w-full px-4 py-3 bg-[#09090B] border border-zinc-700 rounded-lg text-white placeholder-zinc-500 focus:outline-none focus:border-red-500 transition-colors"
+                          class="w-full px-4 py-3 bg-base border border-line-strong rounded-lg text-primary placeholder-ghost focus:outline-none focus:border-accent-red transition-colors"
                           placeholder="john@example.com"
                         />
                         {#if errors.email}
-                          <p class="text-red-500 text-sm mt-2">{errors.email}</p>
+                          <p class="text-accent-red text-sm mt-2">{errors.email}</p>
                         {/if}
                       </div>
 
                       <!-- Phone -->
                       <div>
-                        <label for="phone" class="block text-sm font-medium text-zinc-300 mb-2">Phone Number</label>
+                        <label for="phone" class="block text-sm font-medium text-secondary mb-2">Phone Number</label>
                         <input
                           id="phone"
                           type="tel"
                           bind:value={formData.phone}
-                          class="w-full px-4 py-3 bg-[#09090B] border border-zinc-700 rounded-lg text-white placeholder-zinc-500 focus:outline-none focus:border-red-500 transition-colors"
+                          class="w-full px-4 py-3 bg-base border border-line-strong rounded-lg text-primary placeholder-ghost focus:outline-none focus:border-accent-red transition-colors"
                           placeholder="084 123 4567"
                         />
                         {#if errors.phone}
-                          <p class="text-red-500 text-sm mt-2">{errors.phone}</p>
+                          <p class="text-accent-red text-sm mt-2">{errors.phone}</p>
                         {/if}
                       </div>
                     </div>
 
-                    <p class="text-zinc-500 text-xs -mt-2">* Please provide at least a phone number or email address so we can reach you.</p>
+                    <p class="text-muted text-xs -mt-2">* Please provide at least a phone number or email address so we can reach you.</p>
 
                     <!-- Contact Preferences -->
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                       <div>
-                        <p class="block text-sm font-medium text-zinc-300 mb-2">Preferred Contact Method</p>
+                        <p class="block text-sm font-medium text-secondary mb-2">Preferred Contact Method</p>
                         <div class="space-y-2">
                           {#each [
                             { value: 'phone', label: 'Phone Call' },
@@ -452,16 +452,16 @@
                                 name="contactMethod"
                                 value={option.value}
                                 bind:group={formData.contactMethod}
-                                class="w-4 h-4 text-red-500 bg-zinc-800 border-zinc-600 focus:ring-red-500"
+                                class="w-4 h-4 text-accent-red bg-elevated border-line-strong focus:ring-accent-red"
                               />
-                              <span class="text-zinc-400 text-sm">{option.label}</span>
+                              <span class="text-secondary text-sm">{option.label}</span>
                             </label>
                           {/each}
                         </div>
                       </div>
 
                       <div>
-                        <p class="block text-sm font-medium text-zinc-300 mb-2">Preferred Contact Time</p>
+                        <p class="block text-sm font-medium text-secondary mb-2">Preferred Contact Time</p>
                         <div class="space-y-2">
                           {#each [
                             { value: 'morning', label: 'Morning (8am - 12pm)' },
@@ -474,9 +474,9 @@
                                 name="contactTime"
                                 value={option.value}
                                 bind:group={formData.contactTime}
-                                class="w-4 h-4 text-red-500 bg-zinc-800 border-zinc-600 focus:ring-red-500"
+                                class="w-4 h-4 text-accent-red bg-elevated border-line-strong focus:ring-accent-red"
                               />
-                              <span class="text-zinc-400 text-sm">{option.label}</span>
+                              <span class="text-secondary text-sm">{option.label}</span>
                             </label>
                           {/each}
                         </div>
@@ -485,7 +485,7 @@
 
                     {#if errors.form}
                       <div class="p-4 bg-red-500/10 border border-red-500/30 rounded-lg">
-                        <p class="text-red-400 text-sm">{errors.form}</p>
+                        <p class="text-accent-red text-sm">{errors.form}</p>
                       </div>
                     {/if}
                   </div>
@@ -495,58 +495,58 @@
               <!-- STEP 4: Confirmation -->
               {#if currentStep === 4}
                 <div>
-                  <h2 class="text-2xl font-bold text-white mb-2">Review & Submit</h2>
-                  <p class="text-zinc-400 mb-8">Please review your information before submitting.</p>
+                  <h2 class="text-2xl font-bold text-primary mb-2">Review & Submit</h2>
+                  <p class="text-secondary mb-8">Please review your information before submitting.</p>
 
                   <div class="space-y-6">
-                    <div class="card p-6 bg-zinc-800/50">
-                      <h3 class="text-white font-semibold mb-4">Client Type & Services</h3>
-                      <p class="text-zinc-400 capitalize mb-2">{formData.clientType}</p>
+                    <div class="card p-6 bg-elevated/50">
+                      <h3 class="text-primary font-semibold mb-4">Client Type & Services</h3>
+                      <p class="text-secondary capitalize mb-2">{formData.clientType}</p>
                       <div class="flex flex-wrap gap-2">
                         {#each formData.services as service}
-                          <span class="px-3 py-1 rounded-full bg-red-500/10 text-red-400 text-sm">{service}</span>
+                          <span class="px-3 py-1 rounded-full bg-red-500/10 text-accent-red text-sm">{service}</span>
                         {/each}
                       </div>
                     </div>
 
-                    <div class="card p-6 bg-zinc-800/50">
-                      <h3 class="text-white font-semibold mb-4">Property Details</h3>
+                    <div class="card p-6 bg-elevated/50">
+                      <h3 class="text-primary font-semibold mb-4">Property Details</h3>
                       <div class="grid grid-cols-2 gap-4 text-sm">
                         <div>
-                          <p class="text-zinc-500">Property Type</p>
-                          <p class="text-white">{formData.propertyType}</p>
+                          <p class="text-muted">Property Type</p>
+                          <p class="text-primary">{formData.propertyType}</p>
                         </div>
                         <div>
-                          <p class="text-zinc-500">Size</p>
-                          <p class="text-white">{formData.propertySize}</p>
+                          <p class="text-muted">Size</p>
+                          <p class="text-primary">{formData.propertySize}</p>
                         </div>
                         <div>
-                          <p class="text-zinc-500">Access Points</p>
-                          <p class="text-white">{formData.accessPoints}</p>
+                          <p class="text-muted">Access Points</p>
+                          <p class="text-primary">{formData.accessPoints}</p>
                         </div>
                       </div>
                     </div>
 
-                    <div class="card p-6 bg-zinc-800/50">
-                      <h3 class="text-white font-semibold mb-4">Contact Information</h3>
+                    <div class="card p-6 bg-elevated/50">
+                      <h3 class="text-primary font-semibold mb-4">Contact Information</h3>
                       <div class="grid grid-cols-2 gap-4 text-sm">
                         <div>
-                          <p class="text-zinc-500">Full Name</p>
-                          <p class="text-white">{formData.fullName}</p>
+                          <p class="text-muted">Full Name</p>
+                          <p class="text-primary">{formData.fullName}</p>
                         </div>
                         {#if formData.companyName}
                           <div>
-                            <p class="text-zinc-500">Company</p>
-                            <p class="text-white">{formData.companyName}</p>
+                            <p class="text-muted">Company</p>
+                            <p class="text-primary">{formData.companyName}</p>
                           </div>
                         {/if}
                         <div>
-                          <p class="text-zinc-500">Email</p>
-                          <p class="text-white">{formData.email}</p>
+                          <p class="text-muted">Email</p>
+                          <p class="text-primary">{formData.email}</p>
                         </div>
                         <div>
-                          <p class="text-zinc-500">Phone</p>
-                          <p class="text-white">{formData.phone}</p>
+                          <p class="text-muted">Phone</p>
+                          <p class="text-primary">{formData.phone}</p>
                         </div>
                       </div>
                     </div>
@@ -555,7 +555,7 @@
               {/if}
 
               <!-- Navigation Buttons -->
-              <div class="flex justify-between mt-8 pt-6 border-t border-zinc-800">
+              <div class="flex justify-between mt-8 pt-6 border-t border-line">
                 {#if currentStep > 1 && currentStep < 4}
                   <button
                     type="button"
@@ -610,8 +610,8 @@
 
         <!-- Emergency Banner -->
         <div class="mt-8 p-6 card bg-red-500/10 border-red-500/30 text-center" use:reveal={{ delay: 200 }}>
-          <p class="text-red-400 font-medium">
-            For emergencies, call us directly: <a href="tel:0109722600" class="underline hover:text-red-300">010 972 2600</a>
+          <p class="text-accent-red font-medium">
+            For emergencies, call us directly: <a href="tel:0109722600" class="underline hover:text-accent-red-soft">010 972 2600</a>
           </p>
         </div>
       </div>
