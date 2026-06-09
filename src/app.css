@@ -731,3 +731,35 @@ a:hover {
     filter: brightness(0.95);
   }
 }
+
+/* ============================================
+   DARK SCOPE — force dark tokens in a subtree
+   Use on content layered over dark hero imagery
+   so it stays legible (light text on the dark
+   photo overlay) in BOTH light and dark mode.
+   Re-pins the design-system vars to their dark
+   values regardless of prefers-color-scheme.
+   ============================================ */
+.on-dark {
+  --bg-base:        #09090B;
+  --bg-surface:     #0F0F12;
+  --bg-elevated:    #18181B;
+  --bg-subtle:      #1E1E22;
+
+  --border-default: #27272A;
+  --border-subtle:  #1C1C1F;
+  --border-hover:   #3F3F46;
+
+  --text-primary:   #FAFAFA;
+  --text-secondary: #A1A1AA;
+  --text-muted:     #71717A;
+  --text-ghost:     #52525B;
+
+  --accent-red:       #EF4444;
+  --accent-red-soft:  #DC2626;
+  --accent-red-muted: #991B1B;
+  --accent-red-glow:  rgba(239, 68, 68, 0.15);
+  --accent-red-flare: rgba(239, 68, 68, 0.08);
+
+  color-scheme: dark;
+}
