@@ -61,7 +61,7 @@
   />
 </svelte:head>
 
-<div class="bg-[#09090B]">
+<div class="bg-base">
   <!-- HERO SECTION -->
   <section class="relative py-24 md:py-32 overflow-hidden">
     <div class="glow-ambient glow-ambient-top"></div>
@@ -71,9 +71,9 @@
         <h1 class="heading-gradient text-4xl md:text-5xl font-bold mb-6">
           Join the Team
         </h1>
-        <p class="text-zinc-400 text-lg md:text-xl leading-relaxed">
-          Build your career with Johannesburg's most innovative security company. 
-          We offer competitive salaries, comprehensive training, and opportunities 
+        <p class="text-secondary text-lg md:text-xl leading-relaxed">
+          Build your career with Johannesburg's most innovative security company.
+          We offer competitive salaries, comprehensive training, and opportunities
           for advancement.
         </p>
       </div>
@@ -86,8 +86,8 @@
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
         <!-- Left: Content -->
         <div use:reveal>
-          <h2 class="text-2xl font-bold text-white mb-6">Our Culture</h2>
-          <div class="space-y-4 text-zinc-400 leading-relaxed">
+          <h2 class="text-2xl font-bold text-primary mb-6">Our Culture</h2>
+          <div class="space-y-4 text-secondary leading-relaxed">
             <p>
               At Vision Tactical, we believe that our people are our greatest asset. 
               We foster a culture of excellence, integrity, and continuous improvement. 
@@ -111,9 +111,9 @@
 
         <!-- Right: Image -->
         <div class="relative" use:reveal={{ delay: 100 }}>
-          <div class="aspect-[4/3] rounded-2xl overflow-hidden bg-gradient-to-br from-zinc-800 to-zinc-900">
+          <div class="aspect-[4/3] rounded-2xl overflow-hidden bg-gradient-to-br from-elevated to-base">
             <div class="absolute inset-0 bg-[url('/images/team/group.jpg')] bg-cover bg-center opacity-60"></div>
-            <div class="absolute inset-0 bg-gradient-to-t from-[#09090B] via-transparent to-transparent"></div>
+            <div class="absolute inset-0 bg-gradient-to-t from-base via-transparent to-transparent"></div>
           </div>
         </div>
       </div>
@@ -121,7 +121,7 @@
   </section>
 
   <!-- BENEFITS SECTION -->
-  <section class="py-24 bg-[#0F0F12] border-y border-zinc-800">
+  <section class="py-24 bg-surface border-y border-line">
     <div class="container mx-auto px-4">
       <div class="text-center mb-16" use:reveal>
         <p class="overline mb-4">BENEFITS</p>
@@ -134,13 +134,13 @@
         {#each benefits as benefit, i}
           <GlowCard>
             <div class="card p-6" use:reveal={{ delay: i * 100 }}>
-              <div class="w-12 h-12 rounded-lg bg-red-500/10 flex items-center justify-center mb-4 text-red-500">
+              <div class="w-12 h-12 rounded-lg bg-red-500/10 flex items-center justify-center mb-4 text-accent-red">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d={benefit.icon} />
                 </svg>
               </div>
-              <h3 class="text-white font-semibold mb-2">{benefit.title}</h3>
-              <p class="text-zinc-400 text-sm leading-relaxed">{benefit.description}</p>
+              <h3 class="text-primary font-semibold mb-2">{benefit.title}</h3>
+              <p class="text-secondary text-sm leading-relaxed">{benefit.description}</p>
             </div>
           </GlowCard>
         {/each}
@@ -156,8 +156,8 @@
         <h2 class="heading-gradient text-3xl md:text-4xl font-bold mb-4">
           Current Openings
         </h2>
-        <p class="text-zinc-400 max-w-2xl mx-auto">
-          Explore our available positions. Don't see a role that fits? Submit a 
+        <p class="text-secondary max-w-2xl mx-auto">
+          Explore our available positions. Don't see a role that fits? Submit a
           general application and we'll keep your details on file.
         </p>
       </div>
@@ -168,8 +168,8 @@
             <div class="card p-6" use:reveal={{ delay: i * 100 }}>
               <div class="flex items-start justify-between mb-4">
                 <div>
-                  <h3 class="text-white font-semibold text-lg">{position.title}</h3>
-                  <div class="flex items-center gap-3 mt-2 text-sm text-zinc-500">
+                  <h3 class="text-primary font-semibold text-lg">{position.title}</h3>
+                  <div class="flex items-center gap-3 mt-2 text-sm text-muted">
                     <span class="flex items-center gap-1">
                       <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -186,8 +186,8 @@
                   </div>
                 </div>
               </div>
-              <p class="text-zinc-400 text-sm mb-4">{position.description}</p>
-              <a href="#apply" class="text-red-500 hover:text-red-400 text-sm font-medium inline-flex items-center gap-1 transition-colors">
+              <p class="text-secondary text-sm mb-4">{position.description}</p>
+              <a href="#apply" class="text-accent-red hover:text-accent-red-soft text-sm font-medium inline-flex items-center gap-1 transition-colors">
                 Apply Now
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
@@ -201,7 +201,7 @@
   </section>
 
   <!-- APPLICATION SECTION -->
-  <section id="apply" class="py-24 bg-[#0F0F12] border-y border-zinc-800">
+  <section id="apply" class="py-24 bg-surface border-y border-line">
     <div class="container mx-auto px-4">
       <div class="max-w-2xl mx-auto">
         <div class="text-center mb-12" use:reveal>
@@ -209,8 +209,8 @@
           <h2 class="heading-gradient text-3xl md:text-4xl font-bold mb-4">
             Don't See Your Role?
           </h2>
-          <p class="text-zinc-400">
-            Submit a general application and we'll keep your details on file for 
+          <p class="text-secondary">
+            Submit a general application and we'll keep your details on file for
             future opportunities.
           </p>
         </div>
@@ -220,20 +220,20 @@
             <form class="space-y-6">
               <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
-                  <label for="fullName" class="block text-sm font-medium text-zinc-300 mb-2">Full Name</label>
+                  <label for="fullName" class="block text-sm font-medium text-secondary mb-2">Full Name</label>
                   <input
                     id="fullName"
                     type="text"
-                    class="w-full px-4 py-3 bg-[#09090B] border border-zinc-700 rounded-lg text-white placeholder-zinc-500 focus:outline-none focus:border-red-500 transition-colors"
+                    class="w-full px-4 py-3 bg-base border border-line-strong rounded-lg text-primary placeholder-ghost focus:outline-none focus:border-red-500 transition-colors"
                     placeholder="John Doe"
                   />
                 </div>
                 <div>
-                  <label for="email" class="block text-sm font-medium text-zinc-300 mb-2">Email</label>
+                  <label for="email" class="block text-sm font-medium text-secondary mb-2">Email</label>
                   <input
                     id="email"
                     type="email"
-                    class="w-full px-4 py-3 bg-[#09090B] border border-zinc-700 rounded-lg text-white placeholder-zinc-500 focus:outline-none focus:border-red-500 transition-colors"
+                    class="w-full px-4 py-3 bg-base border border-line-strong rounded-lg text-primary placeholder-ghost focus:outline-none focus:border-red-500 transition-colors"
                     placeholder="john@example.com"
                   />
                 </div>
@@ -241,19 +241,19 @@
 
               <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
-                  <label for="phone" class="block text-sm font-medium text-zinc-300 mb-2">Phone</label>
+                  <label for="phone" class="block text-sm font-medium text-secondary mb-2">Phone</label>
                   <input
                     id="phone"
                     type="tel"
-                    class="w-full px-4 py-3 bg-[#09090B] border border-zinc-700 rounded-lg text-white placeholder-zinc-500 focus:outline-none focus:border-red-500 transition-colors"
+                    class="w-full px-4 py-3 bg-base border border-line-strong rounded-lg text-primary placeholder-ghost focus:outline-none focus:border-red-500 transition-colors"
                     placeholder="084 123 4567"
                   />
                 </div>
                 <div>
-                  <label for="position" class="block text-sm font-medium text-zinc-300 mb-2">Position Interest</label>
+                  <label for="position" class="block text-sm font-medium text-secondary mb-2">Position Interest</label>
                   <select
                     id="position"
-                    class="w-full px-4 py-3 bg-[#09090B] border border-zinc-700 rounded-lg text-white focus:outline-none focus:border-red-500 transition-colors"
+                    class="w-full px-4 py-3 bg-base border border-line-strong rounded-lg text-primary focus:outline-none focus:border-red-500 transition-colors"
                   >
                     <option value="">Select a position</option>
                     <option value="security-officer">Security Officer</option>
@@ -266,23 +266,23 @@
               </div>
 
               <div>
-                <label for="cv-upload" class="block text-sm font-medium text-zinc-300 mb-2">CV / Resume</label>
-                <div class="border-2 border-dashed border-zinc-700 rounded-lg p-6 text-center hover:border-zinc-600 transition-colors cursor-pointer">
-                  <svg class="w-10 h-10 text-zinc-500 mx-auto mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <label for="cv-upload" class="block text-sm font-medium text-secondary mb-2">CV / Resume</label>
+                <div class="border-2 border-dashed border-line-strong rounded-lg p-6 text-center hover:border-line transition-colors cursor-pointer">
+                  <svg class="w-10 h-10 text-muted mx-auto mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
                   </svg>
-                  <p class="text-zinc-400 text-sm">Drop your CV here or click to browse</p>
-                  <p class="text-zinc-500 text-xs mt-1">PDF, DOC, or DOCX (max 5MB)</p>
+                  <p class="text-secondary text-sm">Drop your CV here or click to browse</p>
+                  <p class="text-muted text-xs mt-1">PDF, DOC, or DOCX (max 5MB)</p>
                   <input id="cv-upload" type="file" class="sr-only" accept=".pdf,.doc,.docx" />
                 </div>
               </div>
 
               <div>
-                <label for="coverMessage" class="block text-sm font-medium text-zinc-300 mb-2">Cover Message</label>
+                <label for="coverMessage" class="block text-sm font-medium text-secondary mb-2">Cover Message</label>
                 <textarea
                   id="coverMessage"
                   rows="4"
-                  class="w-full px-4 py-3 bg-[#09090B] border border-zinc-700 rounded-lg text-white placeholder-zinc-500 focus:outline-none focus:border-red-500 transition-colors resize-none"
+                  class="w-full px-4 py-3 bg-base border border-line-strong rounded-lg text-primary placeholder-ghost focus:outline-none focus:border-red-500 transition-colors resize-none"
                   placeholder="Tell us why you'd be a great fit for Vision Tactical..."
                 ></textarea>
               </div>
@@ -291,7 +291,7 @@
                 Submit Application
               </button>
 
-              <p class="text-zinc-500 text-xs text-center">
+              <p class="text-muted text-xs text-center">
                 By submitting this application, you agree to our privacy policy and 
                 consent to us processing your personal information for recruitment purposes.
               </p>
