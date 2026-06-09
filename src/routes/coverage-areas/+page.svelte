@@ -131,7 +131,7 @@
   />
 </svelte:head>
 
-<div class="bg-[#09090B]">
+<div class="bg-base">
   <!-- HERO SECTION -->
   <section class="relative py-24 md:py-32 overflow-hidden">
     <div class="glow-ambient glow-ambient-top"></div>
@@ -141,8 +141,8 @@
         <h1 class="heading-gradient text-4xl md:text-5xl font-bold mb-6">
           Where We Operate
         </h1>
-        <p class="text-zinc-400 text-lg md:text-xl leading-relaxed">
-          Comprehensive security coverage across greater Johannesburg, 
+        <p class="text-secondary text-lg md:text-xl leading-relaxed">
+          Comprehensive security coverage across greater Johannesburg,
           from Houghton to Sandton and beyond.
         </p>
       </div>
@@ -156,13 +156,13 @@
         <div class="aspect-[21/9] md:aspect-[21/10] relative">
           <div bind:this={mapContainer} class="absolute inset-0 z-10"></div>
           <!-- Loading state -->
-          <div class="absolute inset-0 bg-[#0F0F12] flex items-center justify-center z-0">
+          <div class="absolute inset-0 bg-surface flex items-center justify-center z-0">
             <div class="text-center">
-              <svg class="animate-spin h-10 w-10 text-red-500 mx-auto mb-4" viewBox="0 0 24 24">
+              <svg class="animate-spin h-10 w-10 text-accent-red mx-auto mb-4" viewBox="0 0 24 24">
                 <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4" fill="none" />
                 <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
               </svg>
-              <p class="text-zinc-500">Loading map...</p>
+              <p class="text-muted">Loading map...</p>
             </div>
           </div>
         </div>
@@ -172,11 +172,11 @@
       <div class="flex items-center justify-center gap-6 mt-6" use:reveal={{ delay: 100 }}>
         <div class="flex items-center gap-2">
           <div class="w-3 h-3 rounded-full bg-red-500"></div>
-          <span class="text-zinc-400 text-sm">Coverage Area</span>
+          <span class="text-secondary text-sm">Coverage Area</span>
         </div>
         <div class="flex items-center gap-2">
           <div class="w-3 h-3 rounded-full bg-red-500 animate-pulse"></div>
-          <span class="text-zinc-400 text-sm">Active Patrol</span>
+          <span class="text-secondary text-sm">Active Patrol</span>
         </div>
       </div>
     </div>
@@ -185,22 +185,22 @@
   <!-- ACCESSIBLE TABLE ALTERNATIVE -->
   <section class="container mx-auto px-4 pb-6">
     <details class="sr-visible">
-      <summary class="text-zinc-500 text-sm cursor-pointer hover:text-zinc-300 transition-colors">
+      <summary class="text-muted text-sm cursor-pointer hover:text-secondary transition-colors">
         Coverage areas list (text alternative for screen readers)
       </summary>
-      <div class="mt-4 overflow-x-auto rounded border border-zinc-800">
-        <table class="w-full text-sm bg-[#0F0F12] text-zinc-400 border-collapse">
+      <div class="mt-4 overflow-x-auto rounded border border-line">
+        <table class="w-full text-sm bg-surface text-secondary border-collapse">
           <thead>
-            <tr class="border-b border-zinc-800">
-              <th class="text-left px-4 py-3 font-semibold text-zinc-300">Area</th>
-              <th class="text-left px-4 py-3 font-semibold text-zinc-300">Description</th>
-              <th class="text-left px-4 py-3 font-semibold text-zinc-300">Active Since</th>
+            <tr class="border-b border-line">
+              <th class="text-left px-4 py-3 font-semibold text-secondary">Area</th>
+              <th class="text-left px-4 py-3 font-semibold text-secondary">Description</th>
+              <th class="text-left px-4 py-3 font-semibold text-secondary">Active Since</th>
             </tr>
           </thead>
           <tbody>
             {#each coverageAreas as area}
-              <tr class="border-b border-zinc-800 last:border-0">
-                <td class="px-4 py-3 font-medium text-zinc-300">{area.name}</td>
+              <tr class="border-b border-line last:border-0">
+                <td class="px-4 py-3 font-medium text-secondary">{area.name}</td>
                 <td class="px-4 py-3">{area.description}</td>
                 <td class="px-4 py-3">{area.activeSince}</td>
               </tr>
@@ -212,15 +212,15 @@
   </section>
 
   <!-- SUBURBS GRID -->
-  <section class="pb-24 bg-[#0F0F12] border-y border-zinc-800">
+  <section class="pb-24 bg-surface border-y border-line">
     <div class="container mx-auto px-4">
       <div class="text-center mb-12" use:reveal>
         <p class="overline mb-4">SUBURBS</p>
         <h2 class="heading-gradient text-3xl md:text-4xl font-bold mb-4">
           Our Coverage Areas
         </h2>
-        <p class="text-zinc-400 max-w-2xl mx-auto">
-          We provide comprehensive security services to these Johannesburg suburbs 
+        <p class="text-secondary max-w-2xl mx-auto">
+          We provide comprehensive security services to these Johannesburg suburbs
           and surrounding areas.
         </p>
       </div>
@@ -230,17 +230,17 @@
           <GlowCard>
             <div class="card p-6" use:reveal={{ delay: i * 50 }}>
               <div class="flex items-start justify-between mb-3">
-                <h3 class="text-white font-semibold text-lg">{area.name}</h3>
+                <h3 class="text-primary font-semibold text-lg">{area.name}</h3>
                 <span class="px-2 py-1 rounded bg-green-500/10 text-green-500 text-xs font-medium">
                   Active
                 </span>
               </div>
-              <p class="text-zinc-400 text-sm mb-4">{area.description}</p>
+              <p class="text-secondary text-sm mb-4">{area.description}</p>
               <div class="flex items-center justify-between">
-                <span class="text-zinc-500 text-xs">Protecting since {area.activeSince}</span>
+                <span class="text-muted text-xs">Protecting since {area.activeSince}</span>
                 <a
                   href="/get-a-quote"
-                  class="text-red-500 hover:text-red-400 text-sm font-medium inline-flex items-center gap-1 transition-colors"
+                  class="text-accent-red hover:text-accent-red-soft text-sm font-medium inline-flex items-center gap-1 transition-colors"
                 >
                   Get quote
                   <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -261,10 +261,10 @@
     <div class="glow-ambient glow-ambient-bottom"></div>
     <div class="container mx-auto px-4 relative z-10">
       <div class="card p-8 md:p-12 text-center max-w-3xl mx-auto" use:reveal>
-        <h2 class="text-2xl md:text-3xl font-bold text-white mb-4">
+        <h2 class="text-2xl md:text-3xl font-bold text-primary mb-4">
           Don't See Your Area?
         </h2>
-        <p class="text-zinc-400 mb-8">
+        <p class="text-secondary mb-8">
           We're constantly expanding our coverage. Contact us to check if we can
           service your location.
         </p>

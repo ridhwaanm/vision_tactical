@@ -35,7 +35,7 @@
 </svelte:head>
 
 {#if data.post}
-  <div class="bg-[#09090B]">
+  <div class="bg-base">
     <!-- HERO SECTION -->
     <section class="relative py-24 md:py-32 overflow-hidden">
       <div class="glow-ambient glow-ambient-top"></div>
@@ -47,7 +47,7 @@
               {#each data.post.tags as tag}
                 <a
                   href="/community?tag={tag}"
-                  class="px-3 py-1 rounded-full bg-red-500/10 text-red-500 text-xs font-medium uppercase tracking-wider hover:bg-red-500/20 transition-colors"
+                  class="px-3 py-1 rounded-full bg-red-500/10 text-accent-red text-xs font-medium uppercase tracking-wider hover:bg-red-500/20 transition-colors"
                 >
                   {tag}
                 </a>
@@ -61,7 +61,7 @@
           </h1>
 
           <!-- Meta -->
-          <div class="flex items-center gap-4 text-zinc-500 text-sm mb-8">
+          <div class="flex items-center gap-4 text-muted text-sm mb-8">
             <span class="flex items-center gap-2">
               <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
@@ -96,7 +96,7 @@
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
           <!-- Main Content -->
           <div class="lg:col-span-2">
-            <article class="prose prose-invert prose-lg max-w-none" use:reveal>
+            <article class="prose prose-lg max-w-none" use:reveal>
               {#if data.post.source === 'sanity' && data.post.body}
                 <PortableText value={data.post.body} />
               {:else}
@@ -105,14 +105,14 @@
             </article>
 
             <!-- Share Buttons -->
-            <div class="mt-12 pt-8 border-t border-zinc-800" use:reveal={{ delay: 200 }}>
-              <h3 class="text-white font-semibold mb-4">Share this post</h3>
+            <div class="mt-12 pt-8 border-t border-line" use:reveal={{ delay: 200 }}>
+              <h3 class="text-primary font-semibold mb-4">Share this post</h3>
               <div class="flex gap-3">
                 <a
                   href={getShareUrl('facebook')}
                   target="_blank"
                   rel="noopener noreferrer"
-                  class="w-10 h-10 rounded-lg bg-zinc-800 flex items-center justify-center text-zinc-400 hover:text-white hover:bg-zinc-700 transition-colors"
+                  class="w-10 h-10 rounded-lg bg-elevated flex items-center justify-center text-secondary hover:text-primary hover:bg-subtle transition-colors"
                   aria-label="Share on Facebook"
                 >
                   <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
@@ -123,7 +123,7 @@
                   href={getShareUrl('twitter')}
                   target="_blank"
                   rel="noopener noreferrer"
-                  class="w-10 h-10 rounded-lg bg-zinc-800 flex items-center justify-center text-zinc-400 hover:text-white hover:bg-zinc-700 transition-colors"
+                  class="w-10 h-10 rounded-lg bg-elevated flex items-center justify-center text-secondary hover:text-primary hover:bg-subtle transition-colors"
                   aria-label="Share on X"
                 >
                   <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
@@ -134,7 +134,7 @@
                   href={getShareUrl('whatsapp')}
                   target="_blank"
                   rel="noopener noreferrer"
-                  class="w-10 h-10 rounded-lg bg-zinc-800 flex items-center justify-center text-zinc-400 hover:text-white hover:bg-zinc-700 transition-colors"
+                  class="w-10 h-10 rounded-lg bg-elevated flex items-center justify-center text-secondary hover:text-primary hover:bg-subtle transition-colors"
                   aria-label="Share on WhatsApp"
                 >
                   <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
@@ -151,7 +151,7 @@
               <!-- Related Posts -->
               {#if data.relatedPosts && data.relatedPosts.length > 0}
                 <div use:reveal={{ delay: 100 }}>
-                  <h3 class="text-white font-semibold mb-4">Related Posts</h3>
+                  <h3 class="text-primary font-semibold mb-4">Related Posts</h3>
                   <div class="space-y-4">
                     {#each data.relatedPosts.slice(0, 3) as post}
                       <a
@@ -159,14 +159,14 @@
                         class="block group"
                       >
                         <div class="flex gap-4">
-                          <div class="w-20 h-14 rounded-lg bg-zinc-800 overflow-hidden flex-shrink-0">
+                          <div class="w-20 h-14 rounded-lg bg-elevated overflow-hidden flex-shrink-0">
                             <div class="w-full h-full bg-[url('{post.image}')] bg-cover bg-center"></div>
                           </div>
                           <div>
-                            <h4 class="text-white font-medium text-sm line-clamp-2 group-hover:text-red-400 transition-colors">
+                            <h4 class="text-primary font-medium text-sm line-clamp-2 group-hover:text-accent-red-soft transition-colors">
                               {post.title}
                             </h4>
-                            <p class="text-zinc-500 text-xs mt-1">{formatDate(post.date)}</p>
+                            <p class="text-muted text-xs mt-1">{formatDate(post.date)}</p>
                           </div>
                         </div>
                       </a>
@@ -176,9 +176,9 @@
               {/if}
 
               <!-- CTA -->
-              <div class="card p-6 bg-gradient-to-br from-red-900/20 to-[#0F0F12]" use:reveal={{ delay: 200 }}>
-                <h3 class="text-white font-semibold mb-2">Need Security Services?</h3>
-                <p class="text-zinc-400 text-sm mb-4">
+              <div class="card p-6 bg-gradient-to-br from-red-900/20 to-surface" use:reveal={{ delay: 200 }}>
+                <h3 class="text-primary font-semibold mb-2">Need Security Services?</h3>
+                <p class="text-secondary text-sm mb-4">
                   Get a free, no-obligation quote for your security needs.
                 </p>
                 <a href="/get-a-quote" class="btn btn-primary w-full justify-center">
@@ -192,9 +192,9 @@
     </section>
 
     <!-- BACK TO BLOG -->
-    <section class="py-16 border-t border-zinc-800">
+    <section class="py-16 border-t border-line">
       <div class="container mx-auto px-4">
-        <a href="/community" class="inline-flex items-center gap-2 text-zinc-400 hover:text-white transition-colors">
+        <a href="/community" class="inline-flex items-center gap-2 text-secondary hover:text-primary transition-colors">
           <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
           </svg>
@@ -205,10 +205,10 @@
   </div>
 {:else}
   <!-- 404 State -->
-  <div class="min-h-screen flex items-center justify-center bg-[#09090B]">
+  <div class="min-h-screen flex items-center justify-center bg-base">
     <div class="text-center">
-      <h1 class="text-4xl font-bold text-white mb-4">Post Not Found</h1>
-      <p class="text-zinc-400 mb-8">The blog post you're looking for doesn't exist.</p>
+      <h1 class="text-4xl font-bold text-primary mb-4">Post Not Found</h1>
+      <p class="text-secondary mb-8">The blog post you're looking for doesn't exist.</p>
       <a href="/community" class="btn btn-primary">
         Back to All Posts
       </a>
