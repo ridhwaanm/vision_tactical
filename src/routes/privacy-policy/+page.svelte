@@ -10,7 +10,7 @@
   />
 </svelte:head>
 
-<div class="bg-[#09090B]">
+<div class="bg-base">
   <!-- HERO SECTION -->
   <section class="relative py-24 md:py-32 overflow-hidden">
     <div class="glow-ambient glow-ambient-top"></div>
@@ -20,8 +20,8 @@
         <h1 class="heading-gradient text-4xl md:text-5xl font-bold mb-6">
           Privacy Policy
         </h1>
-        <p class="text-zinc-400 text-lg leading-relaxed">
-          How we collect, use, and protect your personal information in 
+        <p class="text-secondary text-lg leading-relaxed">
+          How we collect, use, and protect your personal information in
           accordance with the Protection of Personal Information Act (POPIA).
         </p>
       </div>
@@ -33,8 +33,8 @@
     <div class="container mx-auto px-4">
       <div class="max-w-3xl mx-auto">
         <div class="card p-8 md:p-12" use:reveal>
-          <div class="prose prose-invert max-w-none">
-            <p class="text-zinc-500 mb-8">Last updated: 17 March 2026</p>
+          <div class="prose max-w-none">
+            <p class="text-muted mb-8">Last updated: 17 March 2026</p>
 
             <h2>1. Introduction</h2>
             <p>

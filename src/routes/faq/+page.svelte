@@ -52,7 +52,7 @@
   </script>
 </svelte:head>
 
-<div class="bg-[#09090B]">
+<div class="bg-base">
   <!-- HERO SECTION -->
   <section class="relative py-24 md:py-32 overflow-hidden">
     <div class="glow-ambient glow-ambient-top"></div>
@@ -62,8 +62,8 @@
         <h1 class="heading-gradient text-4xl md:text-5xl font-bold mb-6">
           Frequently Asked Questions
         </h1>
-        <p class="text-zinc-400 text-lg leading-relaxed">
-          Find answers to common questions about our services, coverage, 
+        <p class="text-secondary text-lg leading-relaxed">
+          Find answers to common questions about our services, coverage,
           billing, and technology.
         </p>
       </div>
@@ -77,7 +77,7 @@
         {#each categories as category}
           <button
             onclick={() => selectedCategory = category}
-            class="px-4 py-2 rounded-lg text-sm font-medium transition-colors {selectedCategory === category ? 'bg-red-500 text-white' : 'bg-zinc-800 text-zinc-400 hover:text-white hover:bg-zinc-700'}"
+            class="px-4 py-2 rounded-lg text-sm font-medium transition-colors {selectedCategory === category ? 'bg-red-500 text-white' : 'bg-elevated text-secondary hover:text-primary hover:bg-subtle'}"
           >
             {category}
           </button>
@@ -96,9 +96,9 @@
             use:reveal={{ delay: i * 50 }}
           >
             <summary class="flex items-center justify-between p-6 cursor-pointer list-none">
-              <h3 class="text-white font-medium pr-8">{item.question}</h3>
+              <h3 class="text-primary font-medium pr-8">{item.question}</h3>
               <svg
-                class="w-5 h-5 text-zinc-500 transition-transform group-open:rotate-180 flex-shrink-0"
+                class="w-5 h-5 text-muted transition-transform group-open:rotate-180 flex-shrink-0"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -107,7 +107,7 @@
               </svg>
             </summary>
             <div class="px-6 pb-6">
-              <p class="text-zinc-400 leading-relaxed">{item.answer}</p>
+              <p class="text-secondary leading-relaxed">{item.answer}</p>
             </div>
           </details>
         {/each}
@@ -115,7 +115,7 @@
 
       {#if filteredItems.length === 0}
         <div class="text-center py-12" use:reveal>
-          <p class="text-zinc-500">No questions found in this category.</p>
+          <p class="text-muted">No questions found in this category.</p>
         </div>
       {/if}
     </div>
@@ -127,10 +127,10 @@
     <div class="glow-ambient glow-ambient-bottom"></div>
     <div class="container mx-auto px-4 relative z-10">
       <div class="card p-8 md:p-12 text-center max-w-3xl mx-auto" use:reveal>
-        <h2 class="text-2xl md:text-3xl font-bold text-white mb-4">
+        <h2 class="text-2xl md:text-3xl font-bold text-primary mb-4">
           Still Have Questions?
         </h2>
-        <p class="text-zinc-400 mb-8">
+        <p class="text-secondary mb-8">
           Our team is here to help. Contact us for any questions not covered 
           in our FAQ.
         </p>
