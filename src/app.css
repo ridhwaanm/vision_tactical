@@ -160,8 +160,26 @@ h1, h2, h3, h4, h5, h6 {
 .nav-link-gradient:hover,
 .nav-link-gradient.active {
   background: none;
-  -webkit-text-fill-color: white;
-  color: white;
+  -webkit-text-fill-color: var(--text-primary);
+  color: var(--text-primary);
+}
+
+/* Resting (unscrolled) header background.
+   Dark mode: transparent (melts into the hero, unchanged).
+   Light mode: a light glass bar so the floating header has a
+   deterministic light backdrop (logo/links stay legible). */
+.nav-rest {
+  background: transparent;
+  border-bottom: 1px solid transparent;
+}
+
+@media (prefers-color-scheme: light) {
+  .nav-rest {
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(12px) saturate(150%);
+    -webkit-backdrop-filter: blur(12px) saturate(150%);
+    border-bottom: 1px solid var(--border-subtle);
+  }
 }
 
 /* Red accent gradient */

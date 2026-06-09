@@ -43,13 +43,17 @@
 </script>
 
 <header
-  class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 {scrolled || mobileMenuOpen ? 'glass' : 'bg-transparent'}"
+  class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 {scrolled || mobileMenuOpen ? 'glass' : 'nav-rest'}"
 >
   <div class="container mx-auto px-4">
     <div class="flex items-center justify-between h-20">
       <!-- Logo -->
       <a href="/" class="flex items-center space-x-2 group">
-        <img src="/images/logo/Vision Tactical Logo_dark.svg" alt="Vision Tactical" class="h-12 w-auto transition-opacity group-hover:opacity-80" />
+        <picture>
+          <!-- Light OS theme: dark-ink wordmark for light backgrounds -->
+          <source srcset="/images/logo/Vision Tactical Logo_light.svg" media="(prefers-color-scheme: light)" />
+          <img src="/images/logo/Vision Tactical Logo_dark.svg" alt="Vision Tactical" class="h-12 w-auto transition-opacity group-hover:opacity-80" />
+        </picture>
       </a>
 
       <!-- Desktop Navigation -->
