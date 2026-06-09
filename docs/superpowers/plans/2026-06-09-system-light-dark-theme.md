@@ -74,6 +74,25 @@ Before converting a `text-white` (or `text-zinc-*` used as a label), look at wha
 
 When unsure, render the page in light mode and check the element is readable.
 
+### Hero-over-photo sections use the `.on-dark` scope (added during Task 3)
+
+Per-element color-locking is NOT enough for hero sections, because shared classes
+like `.heading-gradient` and `.btn-secondary` resolve to theme vars and would flip
+to dark text over the dark photo overlay (invisible in light mode). Instead,
+`app.css` defines a `.on-dark` class that re-pins all design-system vars to their
+dark values (and `color-scheme: dark`) for its subtree.
+
+**Rule:** when a `<section>` layers content over a dark photo overlay, add `on-dark`
+to that section element. Then use NORMAL role tokens inside it (`text-secondary`,
+`border-line`, `from-base` overlay, `text-accent-red`) — they resolve to dark values
+via the scope, so the whole hero stays dark-themed in both modes. Do not hand-lock
+individual hero elements to `text-zinc-*`/`#09090B`; wrap once with `.on-dark` and
+tokenize normally.
+
+Pages with photo heroes to wrap: home (done), about, services, services/[slug],
+community, community/[slug], awards, careers. (coverage-areas, contact,
+get-a-quote, faq have no photo hero.)
+
 ---
 
 ## Task 1: Token foundation in `app.css`
