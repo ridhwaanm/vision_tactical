@@ -71,7 +71,7 @@
                 <!-- Image -->
                 <div class="md:col-span-1">
                   <div class="aspect-[4/3] rounded-lg overflow-hidden bg-gradient-to-br from-elevated to-base">
-                    <div class="absolute inset-0 bg-[url('{award.image}')] bg-cover bg-center opacity-60"></div>
+                    <div class="absolute inset-0 bg-cover bg-center opacity-60" style:background-image="url('{award.image}')"></div>
                     <div class="absolute inset-0 bg-gradient-to-t from-surface via-transparent to-transparent"></div>
                   </div>
                 </div>

@@ -69,7 +69,7 @@
                 <a href="/community/{post.slug}" class="block group">
                   <!-- Featured Image -->
                   <div class="relative aspect-[16/10] overflow-hidden">
-                    <div class="absolute inset-0 bg-[url('{post.image}')] bg-cover bg-center transition-transform group-hover:scale-105"></div>
+                    <div class="absolute inset-0 bg-cover bg-center transition-transform group-hover:scale-105" style:background-image="url('{post.image}')"></div>
                     <div class="absolute inset-0 bg-gradient-to-t from-surface via-transparent to-transparent"></div>
                   </div>
 

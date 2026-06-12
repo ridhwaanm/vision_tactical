@@ -1,4 +1,4 @@
-import { aa as derived, b as attr, ab as element, ac as fallback, c as escape_html, e as ensure_array_like, h as head, a as attr_class, d as stringify } from "../../../../chunks/index.js";
+import { aa as derived, b as attr, ab as element, ac as fallback, c as escape_html, e as ensure_array_like, h as head, g as attr_style, d as stringify } from "../../../../chunks/index.js";
 import { f as formatDate } from "../../../../chunks/formatDate.js";
 import { spanToPlainText, isPortableTextToolkitList, isPortableTextListItemBlock, isPortableTextToolkitSpan, isPortableTextBlock, isPortableTextToolkitTextNode, buildMarksTree, nestLists, LIST_NEST_MODE_HTML } from "@portabletext/toolkit";
 import "clsx";
@@ -550,6 +550,26 @@ function PortableText($$renderer, $$props) {
     $$renderer2.push(`<!--]-->`);
   });
 }
+function PortableTextImage($$renderer, $$props) {
+  $$renderer.component(($$renderer2) => {
+    let { portableText } = $$props;
+    let value = derived(() => portableText.value);
+    if (value().url) {
+      $$renderer2.push("<!--[0-->");
+      $$renderer2.push(`<figure class="my-8"><img${attr("src", value().url)}${attr("alt", value().alt || "")} loading="lazy" class="w-full rounded-2xl"/> `);
+      if (value().caption) {
+        $$renderer2.push("<!--[0-->");
+        $$renderer2.push(`<figcaption class="text-muted text-sm text-center mt-3">${escape_html(value().caption)}</figcaption>`);
+      } else {
+        $$renderer2.push("<!--[-1-->");
+      }
+      $$renderer2.push(`<!--]--></figure>`);
+    } else {
+      $$renderer2.push("<!--[-1-->");
+    }
+    $$renderer2.push(`<!--]-->`);
+  });
+}
 function _page($$renderer, $$props) {
   $$renderer.component(($$renderer2) => {
     let { data } = $$props;
@@ -600,14 +620,17 @@ function _page($$renderer, $$props) {
       $$renderer2.push(`<!--]--> <h1 class="heading-gradient text-3xl md:text-5xl font-bold mb-6">${escape_html(data.post.title)}</h1> <div class="flex items-center gap-4 text-muted text-sm mb-8"><span class="flex items-center gap-2"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg> ${escape_html(formatDate(data.post.date))}</span> <span class="flex items-center gap-2"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg> ${escape_html(data.post.author)}</span></div></div></div></section> `);
       if (data.post.image) {
         $$renderer2.push("<!--[0-->");
-        $$renderer2.push(`<section class="pb-12"><div class="container mx-auto px-4"><div class="aspect-[21/9] rounded-2xl overflow-hidden"><div${attr_class(`w-full h-full bg-[url('${stringify(data.post.image)}')] bg-cover bg-center`)}></div></div></div></section>`);
+        $$renderer2.push(`<section class="pb-12"><div class="container mx-auto px-4"><div class="aspect-[21/9] rounded-2xl overflow-hidden"><div class="w-full h-full bg-cover bg-center"${attr_style("", { "background-image": `url('${stringify(data.post.image)}')` })}></div></div></div></section>`);
       } else {
         $$renderer2.push("<!--[-1-->");
       }
       $$renderer2.push(`<!--]--> <section class="pb-24"><div class="container mx-auto px-4"><div class="grid grid-cols-1 lg:grid-cols-3 gap-12"><div class="lg:col-span-2"><article class="prose prose-lg max-w-none">`);
       if (data.post.source === "sanity" && data.post.body) {
         $$renderer2.push("<!--[0-->");
-        PortableText($$renderer2, { value: data.post.body });
+        PortableText($$renderer2, {
+          value: data.post.body,
+          components: { types: { image: PortableTextImage } }
+        });
       } else {
         $$renderer2.push("<!--[-1-->");
         $$renderer2.push(`${html(data.post.content)}`);
@@ -619,7 +642,7 @@ function _page($$renderer, $$props) {
         const each_array_1 = ensure_array_like(data.relatedPosts.slice(0, 3));
         for (let $$index_1 = 0, $$length = each_array_1.length; $$index_1 < $$length; $$index_1++) {
           let post = each_array_1[$$index_1];
-          $$renderer2.push(`<a${attr("href", `/community/${stringify(post.slug)}`)} class="block group"><div class="flex gap-4"><div class="w-20 h-14 rounded-lg bg-elevated overflow-hidden flex-shrink-0"><div${attr_class(`w-full h-full bg-[url('${stringify(post.image)}')] bg-cover bg-center`)}></div></div> <div><h4 class="text-primary font-medium text-sm line-clamp-2 group-hover:text-accent-red-soft transition-colors">${escape_html(post.title)}</h4> <p class="text-muted text-xs mt-1">${escape_html(formatDate(post.date))}</p></div></div></a>`);
+          $$renderer2.push(`<a${attr("href", `/community/${stringify(post.slug)}`)} class="block group"><div class="flex gap-4"><div class="w-20 h-14 rounded-lg bg-elevated overflow-hidden flex-shrink-0"><div class="w-full h-full bg-cover bg-center"${attr_style("", { "background-image": `url('${stringify(post.image)}')` })}></div></div> <div><h4 class="text-primary font-medium text-sm line-clamp-2 group-hover:text-accent-red-soft transition-colors">${escape_html(post.title)}</h4> <p class="text-muted text-xs mt-1">${escape_html(formatDate(post.date))}</p></div></div></a>`);
         }
         $$renderer2.push(`<!--]--></div></div>`);
       } else {

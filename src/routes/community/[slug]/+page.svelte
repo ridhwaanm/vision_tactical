@@ -3,6 +3,7 @@
   import { reveal } from '$lib/actions/reveal';
   import { formatDate } from '$lib/utils/formatDate';
   import { PortableText } from '@portabletext/svelte';
+  import PortableTextImage from '$lib/components/ui/PortableTextImage.svelte';
 
   let { data }: { data: PageData } = $props();
 
@@ -84,7 +85,7 @@
       <section class="pb-12">
         <div class="container mx-auto px-4">
           <div class="aspect-[21/9] rounded-2xl overflow-hidden" use:reveal>
-            <div class="w-full h-full bg-[url('{data.post.image}')] bg-cover bg-center"></div>
+            <div class="w-full h-full bg-cover bg-center" style:background-image="url('{data.post.image}')"></div>
           </div>
         </div>
       </section>
@@ -98,7 +99,7 @@
           <div class="lg:col-span-2">
             <article class="prose prose-lg max-w-none" use:reveal>
               {#if data.post.source === 'sanity' && data.post.body}
-                <PortableText value={data.post.body} />
+                <PortableText value={data.post.body} components={{ types: { image: PortableTextImage } }} />
               {:else}
                 {@html data.post.content}
               {/if}
@@ -160,7 +161,7 @@
                       >
                         <div class="flex gap-4">
                           <div class="w-20 h-14 rounded-lg bg-elevated overflow-hidden flex-shrink-0">
-                            <div class="w-full h-full bg-[url('{post.image}')] bg-cover bg-center"></div>
+                            <div class="w-full h-full bg-cover bg-center" style:background-image="url('{post.image}')"></div>
                           </div>
                           <div>
                             <h4 class="text-primary font-medium text-sm line-clamp-2 group-hover:text-accent-red-soft transition-colors">

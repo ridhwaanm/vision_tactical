@@ -8,7 +8,7 @@ function Navbar($$renderer, $$props) {
     let mobileMenuOpen = false;
     let servicesDropdownOpen = false;
     const emergencyPhone = "010 972 2600";
-    $$renderer2.push(`<header${attr_class(`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${stringify("nav-rest")}`)}><div class="container mx-auto px-4"><div class="flex items-center justify-between h-20"><a href="/" class="flex items-center space-x-2 group"><picture><source srcset="/images/logo/Vision Tactical Logo_light.svg" media="(prefers-color-scheme: light)"/> <img src="/images/logo/Vision Tactical Logo_dark.svg" alt="Vision Tactical" class="h-12 w-auto transition-opacity group-hover:opacity-80"/></picture></a> <nav class="hidden lg:flex items-center space-x-1"><!--[-->`);
+    $$renderer2.push(`<header${attr_class(`on-dark fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${stringify("nav-rest")}`)}><div class="container mx-auto px-4"><div class="flex items-center justify-between h-20"><a href="/" class="flex items-center space-x-2 group"><img src="/images/logo/Vision Tactical Logo_dark.svg" alt="Vision Tactical" class="h-12 w-auto transition-opacity group-hover:opacity-80"/></a> <nav class="hidden lg:flex items-center space-x-1"><!--[-->`);
     const each_array = ensure_array_like(nav);
     for (let $$index_1 = 0, $$length = each_array.length; $$index_1 < $$length; $$index_1++) {
       let item = each_array[$$index_1];
@@ -68,7 +68,7 @@ function Footer($$renderer, $$props) {
         icon: "M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"
       }
     ];
-    $$renderer2.push(`<footer class="bg-base border-t border-line"><div class="container mx-auto px-4 py-16"><div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12"><div><picture><source srcset="/images/logo/Vision Tactical Logo_light.svg" media="(prefers-color-scheme: light)"/> <img src="/images/logo/Vision Tactical Logo_dark.svg" alt="Vision Tactical" class="h-12 w-auto mb-6"/></picture> <p class="text-secondary text-sm leading-relaxed mb-6">Vision Tactical is Johannesburg's trusted private security company, providing comprehensive
+    $$renderer2.push(`<footer class="bg-base border-t border-line"><div class="container mx-auto px-4 py-16"><div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12"><div><picture><source srcset="/images/logo/Vision%20Tactical%20Logo_light.svg" media="(prefers-color-scheme: light)"/> <img src="/images/logo/Vision Tactical Logo_dark.svg" alt="Vision Tactical" class="h-12 w-auto mb-6"/></picture> <p class="text-secondary text-sm leading-relaxed mb-6">Vision Tactical is Johannesburg's trusted private security company, providing comprehensive
           security solutions including armed response, manned guarding, drone surveillance, and
           VIP protection.</p> <div class="flex space-x-4"><!--[-->`);
     const each_array = ensure_array_like(socialLinks);

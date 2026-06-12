@@ -1,4 +1,4 @@
-import { h as head, e as ensure_array_like, a as attr_class, c as escape_html, aa as derived, b as attr, d as stringify } from "../../../chunks/index.js";
+import { h as head, e as ensure_array_like, a as attr_class, c as escape_html, aa as derived, b as attr, d as stringify, g as attr_style } from "../../../chunks/index.js";
 import { G as GlowCard } from "../../../chunks/GlowCard.js";
 import { f as formatDate } from "../../../chunks/formatDate.js";
 function _page($$renderer, $$props) {
@@ -31,7 +31,7 @@ function _page($$renderer, $$props) {
         let post = each_array_1[i];
         GlowCard($$renderer2, {
           children: ($$renderer3) => {
-            $$renderer3.push(`<article class="card overflow-hidden"><a${attr("href", `/community/${stringify(post.slug)}`)} class="block group"><div class="relative aspect-[16/10] overflow-hidden"><div${attr_class(`absolute inset-0 bg-[url('${stringify(post.image)}')] bg-cover bg-center transition-transform group-hover:scale-105`)}></div> <div class="absolute inset-0 bg-gradient-to-t from-surface via-transparent to-transparent"></div></div> <div class="p-6"><div class="flex items-center gap-3 mb-3"><span class="text-muted text-xs">${escape_html(formatDate(post.date))}</span> `);
+            $$renderer3.push(`<article class="card overflow-hidden"><a${attr("href", `/community/${stringify(post.slug)}`)} class="block group"><div class="relative aspect-[16/10] overflow-hidden"><div class="absolute inset-0 bg-cover bg-center transition-transform group-hover:scale-105"${attr_style("", { "background-image": `url('${stringify(post.image)}')` })}></div> <div class="absolute inset-0 bg-gradient-to-t from-surface via-transparent to-transparent"></div></div> <div class="p-6"><div class="flex items-center gap-3 mb-3"><span class="text-muted text-xs">${escape_html(formatDate(post.date))}</span> `);
             if (post.tags && post.tags.length > 0) {
               $$renderer3.push("<!--[0-->");
               $$renderer3.push(`<span class="px-2 py-1 rounded bg-red-500/10 text-accent-red text-xs">${escape_html(post.tags[0])}</span>`);

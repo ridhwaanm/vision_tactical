@@ -1,4 +1,4 @@
-import { h as head, e as ensure_array_like, a as attr_class, d as stringify, c as escape_html } from "../../../chunks/index.js";
+import { h as head, e as ensure_array_like, g as attr_style, d as stringify, c as escape_html } from "../../../chunks/index.js";
 import { G as GlowCard } from "../../../chunks/GlowCard.js";
 function _page($$renderer) {
   const awards = [
@@ -55,7 +55,7 @@ function _page($$renderer) {
     let award = each_array[i];
     GlowCard($$renderer, {
       children: ($$renderer2) => {
-        $$renderer2.push(`<div class="card p-6 md:p-8"><div class="grid grid-cols-1 md:grid-cols-3 gap-6"><div class="md:col-span-1"><div class="aspect-[4/3] rounded-lg overflow-hidden bg-gradient-to-br from-elevated to-base"><div${attr_class(`absolute inset-0 bg-[url('${stringify(award.image)}')] bg-cover bg-center opacity-60`)}></div> <div class="absolute inset-0 bg-gradient-to-t from-surface via-transparent to-transparent"></div></div></div> <div class="md:col-span-2"><div class="flex items-center gap-3 mb-3"><span class="px-3 py-1 rounded-full bg-red-500/10 text-accent-red text-xs font-medium uppercase tracking-wider">${escape_html(award.year)}</span> <span class="text-muted text-sm">${escape_html(award.issuer)}</span></div> <h2 class="text-xl font-bold text-primary mb-3">${escape_html(award.title)}</h2> <p class="text-secondary leading-relaxed">${escape_html(award.description)}</p></div></div></div>`);
+        $$renderer2.push(`<div class="card p-6 md:p-8"><div class="grid grid-cols-1 md:grid-cols-3 gap-6"><div class="md:col-span-1"><div class="aspect-[4/3] rounded-lg overflow-hidden bg-gradient-to-br from-elevated to-base"><div class="absolute inset-0 bg-cover bg-center opacity-60"${attr_style("", { "background-image": `url('${stringify(award.image)}')` })}></div> <div class="absolute inset-0 bg-gradient-to-t from-surface via-transparent to-transparent"></div></div></div> <div class="md:col-span-2"><div class="flex items-center gap-3 mb-3"><span class="px-3 py-1 rounded-full bg-red-500/10 text-accent-red text-xs font-medium uppercase tracking-wider">${escape_html(award.year)}</span> <span class="text-muted text-sm">${escape_html(award.issuer)}</span></div> <h2 class="text-xl font-bold text-primary mb-3">${escape_html(award.title)}</h2> <p class="text-secondary leading-relaxed">${escape_html(award.description)}</p></div></div></div>`);
       }
     });
   }

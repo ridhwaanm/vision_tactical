@@ -17,7 +17,11 @@ async function load({ params }) {
           tags: sanityPost.tags || [],
           author: sanityPost.author || "Vision Tactical",
           content: "",
-          body: sanityPost.body,
+          // Image blocks in the body only carry an asset ref; resolve the CDN
+          // URL here so the client never needs the Sanity client.
+          body: (sanityPost.body || []).map(
+            (block) => block._type === "image" && block.asset ? { ...block, url: sanityImageUrl(block, 1200) } : block
+          ),
           source: "sanity"
         },
         relatedPosts: related.map((p) => ({
