@@ -31,7 +31,7 @@
   <title>{data.post?.title ?? 'Post Not Found'} | Vision Tactical</title>
   <meta name="description" content={data.post?.excerpt ?? ''} />
   {#if data.post?.image}
-    <meta property="og:image" content={data.post.image} />
+    <meta property="og:image" content={data.post.ogImage ?? data.post.image} />
   {/if}
 </svelte:head>
 

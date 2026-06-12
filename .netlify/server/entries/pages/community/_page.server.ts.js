@@ -10,7 +10,7 @@ async function load() {
           slug: p.slug.current,
           date: p.publishedAt,
           excerpt: p.excerpt || "",
-          image: p.mainImage ? sanityImageUrl(p.mainImage, 800) : "/images/og-default.jpg",
+          image: p.mainImage ? sanityImageUrl(p.mainImage, 800, 500) : "/images/og-default.jpg",
           tags: p.tags || [],
           author: p.author || "Vision Tactical",
           source: "sanity"

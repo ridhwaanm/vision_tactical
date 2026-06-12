@@ -17,7 +17,8 @@ export async function load({ params }: { params: { slug: string } }) {
           slug: sanityPost.slug.current,
           date: sanityPost.publishedAt,
           excerpt: sanityPost.excerpt || '',
-          image: sanityPost.mainImage ? sanityImageUrl(sanityPost.mainImage, 1200) : '/images/og-default.jpg',
+          image: sanityPost.mainImage ? sanityImageUrl(sanityPost.mainImage, 2100, 900) : '/images/og-default.jpg',
+          ogImage: sanityPost.mainImage ? sanityImageUrl(sanityPost.mainImage, 1200, 630) : '/images/og-default.jpg',
           tags: sanityPost.tags || [],
           author: sanityPost.author || 'Vision Tactical',
           content: '',
@@ -35,7 +36,7 @@ export async function load({ params }: { params: { slug: string } }) {
           slug: p.slug.current,
           date: p.publishedAt,
           excerpt: p.excerpt || '',
-          image: p.mainImage ? sanityImageUrl(p.mainImage, 400) : '/images/og-default.jpg',
+          image: p.mainImage ? sanityImageUrl(p.mainImage, 400, 280) : '/images/og-default.jpg',
           tags: p.tags || [],
           author: p.author || 'Vision Tactical',
         })),
@@ -49,5 +50,5 @@ export async function load({ params }: { params: { slug: string } }) {
   const post = await getPostBySlug(slug);
   if (!post) throw error(404, 'Post not found');
   const relatedPosts = await getRelatedPosts(slug);
-  return { post: { ...post, source: 'markdown' as const, body: null }, relatedPosts };
+  return { post: { ...post, source: 'markdown' as const, body: null, ogImage: null }, relatedPosts };
 };

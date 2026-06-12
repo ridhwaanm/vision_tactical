@@ -11,7 +11,7 @@ export async function getSanityPosts(): Promise<SanityBlogPost[]> {
       slug,
       publishedAt,
       excerpt,
-      mainImage { asset, alt },
+      mainImage { asset, alt, hotspot, crop },
       tags,
       author
     }
@@ -28,7 +28,7 @@ export async function getSanityPostBySlug(slug: string): Promise<SanityBlogPost 
       slug,
       publishedAt,
       excerpt,
-      mainImage { asset, alt },
+      mainImage { asset, alt, hotspot, crop },
       body,
       tags,
       author
@@ -46,7 +46,7 @@ export async function getSanityRelatedPosts(currentId: string, tags: string[]): 
       slug,
       publishedAt,
       excerpt,
-      mainImage { asset, alt },
+      mainImage { asset, alt, hotspot, crop },
       tags,
       author
     }

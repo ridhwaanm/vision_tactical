@@ -596,7 +596,7 @@ function _page($$renderer, $$props) {
       $$renderer3.push(`<meta name="description"${attr("content", data.post?.excerpt ?? "")}/> `);
       if (data.post?.image) {
         $$renderer3.push("<!--[0-->");
-        $$renderer3.push(`<meta property="og:image"${attr("content", data.post.image)}/>`);
+        $$renderer3.push(`<meta property="og:image"${attr("content", data.post.ogImage ?? data.post.image)}/>`);
       } else {
         $$renderer3.push("<!--[-1-->");
       }
