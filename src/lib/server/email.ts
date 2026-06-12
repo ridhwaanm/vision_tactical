@@ -1,7 +1,7 @@
 import { Resend } from 'resend';
-import { RESEND_API_KEY, CONTACT_FORM_TO_EMAIL } from '$env/static/private';
+import { env } from '$env/dynamic/private';
 
-const resend = new Resend(RESEND_API_KEY);
+const resend = new Resend(env.RESEND_API_KEY);
 
 export interface SendEmailOptions {
   to: string | string[];
@@ -65,7 +65,7 @@ export async function sendContactEmail(formData: {
   `;
 
   return sendEmail({
-    to: CONTACT_FORM_TO_EMAIL,
+    to: env.CONTACT_FORM_TO_EMAIL,
     subject: `Contact Form: ${formData.subject}`,
     html
   });

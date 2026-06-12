@@ -1,4 +1,5 @@
 {
+  "extends": "./.svelte-kit/tsconfig.json",
   "compilerOptions": {
     "allowJs": true,
     "checkJs": true,
@@ -11,12 +12,6 @@
     "moduleResolution": "bundler",
     "target": "ES2022",
     "module": "ESNext",
-    "lib": ["ES2022", "DOM", "DOM.Iterable"],
-    "paths": {
-      "$lib": ["./src/lib"],
-      "$lib/*": ["./src/lib/*"]
-    }
-  },
-  "include": ["src/**/*", "tests/**/*"],
-  "exclude": ["node_modules"]
+    "lib": ["ES2022", "DOM", "DOM.Iterable"]
+  }
 }
