@@ -51,7 +51,7 @@
       <!-- Logo -->
       <a href="/" class="flex items-center space-x-2 group">
         <!-- Navbar is always dark, so always the white wordmark (no theme swap) -->
-        <img src="/images/logo/Vision Tactical Logo_dark.svg" alt="Vision Tactical" class="h-12 w-auto transition-opacity group-hover:opacity-80" />
+        <img src="/images/logo/vision-tactical-logo-dark.svg" alt="Vision Tactical" class="h-12 w-auto transition-opacity group-hover:opacity-80" />
       </a>
 
       <!-- Desktop Navigation -->
